@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SubjectResource\Pages;
-use App\Filament\Resources\SubjectResource\RelationManagers;
+use App\Filament\Resources\ExamCategoryResource\Pages;
+use App\Filament\Resources\ExamCategoryResource\RelationManagers;
+use App\Models\ExamCategory;
 use App\Models\Subject;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -18,11 +20,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
-class SubjectResource extends Resource
+class ExamCategoryResource extends Resource
 {
-    protected static ?string $model = Subject::class;
+    protected static ?string $model = ExamCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     public static function form(Form $form): Form
     {
@@ -30,18 +32,26 @@ class SubjectResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->live()
+                    ->placeholder('Enter Exam Category Name')
                     ->required()
-                    ->placeholder('Enter Subject name')
                     ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                         if (($get('slug') ?? '') !== Str::slug($old)) {
                             return;
                         }
 
                         $set('slug', Str::slug($state));
-                    })->required(),
+                    }),
                 TextInput::make('slug')->unique(ignoreRecord: true)
                     ->placeholder('Enter slug')
                     ->required(),
+                Select::make('subject_id')
+                    ->label('Select Subject')
+                    ->options(Subject::pluck('name', 'id'))
+                    ->required(),
+//                Forms\Components\FileUpload::make('image')
+//                ->nullable()
+//                ->image()
+
             ]);
     }
 
@@ -51,11 +61,12 @@ class SubjectResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('slug'),
-                TextColumn::make('exam_categories_count')
-                    ->label('Categories')
-                    ->counts('exam_categories'),
+                TextColumn::make('subject.name')->label('Subject'),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('subject_id')
+                    ->label('Select Subject')
+                    ->options(Subject::pluck('name', 'id')),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
@@ -87,9 +98,9 @@ class SubjectResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSubjects::route('/'),
-            'create' => Pages\CreateSubject::route('/create'),
-            'edit' => Pages\EditSubject::route('/{record}/edit'),
+            'index' => Pages\ListExamCategories::route('/'),
+            'create' => Pages\CreateExamCategory::route('/create'),
+            'edit' => Pages\EditExamCategory::route('/{record}/edit'),
         ];
     }
 

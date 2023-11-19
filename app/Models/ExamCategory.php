@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subject extends Model
+class ExamCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function exam_categories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function subject(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(ExamCategory::class);
+        return $this->belongsTo(Subject::class);
     }
 }

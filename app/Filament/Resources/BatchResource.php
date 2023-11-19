@@ -31,6 +31,8 @@ class BatchResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->live()
+                    ->placeholder('Enter Batch name')
+                    ->required()
                     ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                         if (($get('slug') ?? '') !== Str::slug($old)) {
                             return;
@@ -38,7 +40,9 @@ class BatchResource extends Resource
 
                         $set('slug', Str::slug($state));
                     }),
-                TextInput::make('slug')->unique(ignoreRecord: true),
+                TextInput::make('slug')->unique(ignoreRecord: true)
+                    ->placeholder('Enter slug')
+                    ->required(),
             ]);
     }
 
