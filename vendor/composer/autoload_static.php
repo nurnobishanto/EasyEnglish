@@ -674,6 +674,10 @@ class ComposerStaticInite1913143ef9f6b5da61ef224aa22046e
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Filament\\Pages\\Identity' => __DIR__ . '/../..' . '/app/Filament/Pages/Identity.php',
+        'App\\Filament\\Portal\\Pages\\Auth\\Login' => __DIR__ . '/../..' . '/app/Filament/Portal/Pages/Auth/Login.php',
+        'App\\Filament\\Portal\\Pages\\Auth\\Profile' => __DIR__ . '/../..' . '/app/Filament/Portal/Pages/Auth/Profile.php',
+        'App\\Filament\\Portal\\Pages\\Auth\\Registration' => __DIR__ . '/../..' . '/app/Filament/Portal/Pages/Auth/Registration.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -695,6 +699,7 @@ class ComposerStaticInite1913143ef9f6b5da61ef224aa22046e
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\Filament\\AdminPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/AdminPanelProvider.php',
+        'App\\Providers\\Filament\\PortalPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/PortalPanelProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => __DIR__ . '/..' . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',

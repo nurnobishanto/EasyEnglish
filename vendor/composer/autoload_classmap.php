@@ -8,6 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Filament\\Pages\\Identity' => $baseDir . '/app/Filament/Pages/Identity.php',
+    'App\\Filament\\Portal\\Pages\\Auth\\Login' => $baseDir . '/app/Filament/Portal/Pages/Auth/Login.php',
+    'App\\Filament\\Portal\\Pages\\Auth\\Profile' => $baseDir . '/app/Filament/Portal/Pages/Auth/Profile.php',
+    'App\\Filament\\Portal\\Pages\\Auth\\Registration' => $baseDir . '/app/Filament/Portal/Pages/Auth/Registration.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
@@ -29,6 +33,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\Filament\\AdminPanelProvider' => $baseDir . '/app/Providers/Filament/AdminPanelProvider.php',
+    'App\\Providers\\Filament\\PortalPanelProvider' => $baseDir . '/app/Providers/Filament/PortalPanelProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider' => $vendorDir . '/blade-ui-kit/blade-heroicons/src/BladeHeroiconsServiceProvider.php',
