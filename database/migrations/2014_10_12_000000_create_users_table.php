@@ -21,7 +21,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('college')->nullable();
             $table->string('batch')->nullable();
-            $table->string('district')->nullable();
+            $table->string('division_id')->nullable();
+            $table->string('district_id')->nullable();
+            $table->string('upazila')->nullable();
+            $table->string('postOffice')->nullable();
+            $table->string('postCode')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

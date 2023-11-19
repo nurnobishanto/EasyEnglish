@@ -20,7 +20,11 @@ class User extends Authenticatable
         'password',
         'college',
         'batch',
-        'district',
+        'division_id',
+        'district_id',
+        'upazila',
+        'postOffice',
+        'postCode',
     ];
 
 

@@ -4,6 +4,7 @@ namespace App\Filament\Portal\Pages\Auth;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Component;
@@ -25,7 +26,15 @@ class Registration extends BaseAuth
                 $this->getConfirmPasswordFormComponent(),
                 $this->getBatchFormComponent(),
                 $this->getCollegeFormComponent(),
+                $this->getDivisionFormComponent(),
                 $this->getDistrictFormComponent(),
+            ])->columns([
+                'default' => 1,
+                'sm' => 2,
+                'md' => 2,
+                'lg' => 2,
+                'xl' => 2,
+                '2xl' => 2,
             ])
             ->statePath('data');
     }
@@ -81,12 +90,27 @@ class Registration extends BaseAuth
             ->placeholder('Optional');
     }
 
-    protected function getDistrictFormComponent(): Component
+    protected function getDivisionFormComponent(): Component
     {
-        return TextInput::make('district')
-            ->label('District')
-            ->placeholder('Optional');
+        return
+            Select::make('division_id')
+                ->label('Select Division')
+                ->searchable()
+                ->options(getDivisionOptions())
+                ->reactive();
     }
+ protected function getDistrictFormComponent(): Component
+    {
+        return
+            Select::make('district_id')
+                ->label('Select District')
+                ->reactive()
+                ->options(function (callable $get, callable $set) {
+                    return getDistrictOptions($get('division_id'));
+                });
+
+    }
+
     public function register(): ?RegistrationResponse
     {
         try {
@@ -114,7 +138,8 @@ class Registration extends BaseAuth
             'password'        => $data['password'],
             'batch'           => $data['batch'] ?? null,
             'college'         => $data['college'] ?? null,
-            'district'        => $data['district'] ?? null,
+            'division_id'        => $data['division_id'] ?? null,
+            'district_id'        => $data['district_id'] ?? null,
         ];
         $user = $this->getUserModel()::create($newData);
 

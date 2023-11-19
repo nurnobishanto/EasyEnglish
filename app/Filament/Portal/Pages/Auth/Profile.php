@@ -4,6 +4,7 @@ namespace App\Filament\Portal\Pages\Auth;
 
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -27,6 +28,7 @@ class Profile extends Page
     public $current_password;
     public $new_password;
     public $new_password_confirmation;
+    public $division_id;
 
     public function mount()
     {
@@ -34,6 +36,7 @@ class Profile extends Page
             'user_id' => auth()->user()->user_id,
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,
+            'division_id' => auth()->user()->division_id,
             'phone_number' => auth()->user()->phone_number,
         ]);
     }
@@ -65,6 +68,7 @@ class Profile extends Page
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
+            'division_id' => $this->division_id,
             'password' => $this->new_password ? Hash::make($this->new_password) : null,
         ]);
 
@@ -113,6 +117,19 @@ class Profile extends Page
                         ->required()
                         ->unique('users,phone_number')
                         ->tel(),
+                    Select::make('division_id')
+                        ->label('Select Division')
+                        ->searchable()
+                        ->options(getDivisionOptions())
+                        ->reactive(),
+
+                    Select::make('district_id')
+                        ->label('Select District')
+                        ->reactive()
+                        ->options(function (callable $get, callable $set) {
+                            return getDistrictOptions($get('division_id'));
+                        }),
+
                 ]),
             Section::make('Update Password')
                 ->columns(2)
