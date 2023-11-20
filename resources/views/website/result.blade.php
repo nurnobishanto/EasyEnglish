@@ -45,11 +45,11 @@
                                     <strong>Name : {{ $r->user->name }}</strong>
                                     <div class="m-2 text-center">
                                         <span class="bg-info p-1">Full Mark :
-                                            {{ $r->exampaper->questions->count() * $r->exampaper->pmark }}
+                                            {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
                                         </span>
 
                                         <span class="bg-success text-light p-1"><strong> Mark : {{ $r->total_mark }} /
-                                                {{ $r->exampaper->questions->count() * $r->exampaper->pmark }}
+                                                {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
                                             </strong></span>
                                     </div>
 
@@ -75,16 +75,16 @@
 
                                     <div class="progress">
                                         <div class="progress-bar bg-success" role="progressbar"
-                                            style="width:{{ ($r->ca * 100) / $r->exampaper->questions->count() }}%">
-                                            Correct ({{ ($r->ca * 100) / $r->exampaper->questions->count() }}%)
+                                            style="width:{{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%">
+                                            Correct ({{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%)
                                         </div>
                                         <div class="progress-bar bg-warning" role="progressbar"
-                                            style="width:{{ ($r->na * 100) / $r->exampaper->questions->count() }}%">
-                                            Avoid ({{ ($r->na * 100) / $r->exampaper->questions->count() }}%)
+                                            style="width:{{ ($r->na * 100) / $r->exam_paper->questions->count() }}%">
+                                            Avoid ({{ ($r->na * 100) / $r->exam_paper->questions->count() }}%)
                                         </div>
                                         <div class="progress-bar bg-danger " role="progressbar"
-                                            style="width:{{ ($r->wa * 100) / $r->exampaper->questions->count() }}%">
-                                            Wrong ({{ ($r->wa * 100) / $r->exampaper->questions->count() }}%)
+                                            style="width:{{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%">
+                                            Wrong ({{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%)
                                         </div>
                                     </div>
 
@@ -144,7 +144,7 @@
                                 {!! $question->description !!}
                                 @if ($question->image)
                                     <div>
-                                        <img style="max-height:250px;" src="{{ Voyager::image($question->image) }}"
+                                        <img style="max-height:250px;" src="{{ asset('uploads/'.$question->image) }}"
                                              alt="{{ $question->name }}">
                                     </div>
                                 @endif
@@ -196,7 +196,9 @@
                                 </strong>
                                 <br>
                                 <div>Explain : {{$question->explain}}</div>
-                                <img src="{{Voyager::image($question->explain_img)}}" style="max-height:250px;">
+                                    @if($question->explain_img)
+                                <img src="{{asset('uploads/'.$question->explain_img)}}" style="max-height:250px;">
+                                    @endif
 
                             </div>
 

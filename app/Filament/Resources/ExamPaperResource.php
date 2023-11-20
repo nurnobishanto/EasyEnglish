@@ -14,6 +14,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -85,6 +86,14 @@ class ExamPaperResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                Action::make('clone')
+                    ->url(fn (ExamPaper $record): string => route('ep.clone', $record)),
+                Action::make('start')
+                    ->label('Start')
+                    ->url(fn (ExamPaper $record): string => route('start', $record)),
+                Action::make('download')
+                    ->label('PDF')
+                    ->url(fn (ExamPaper $record): string => route('question', $record)),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\RestoreAction::make(),

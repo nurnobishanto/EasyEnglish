@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exampaper;
-use App\Models\Question;
 use App\Models\Result;
-use App\Models\User;
 use App\Models\FreeNote;
 use App\Models\Ebook;
+use Artesaos\SEOTools\Facades\SEOTools;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SEO;
-use Session;
+use Illuminate\Support\Facades\Session;
 use \Carbon\Carbon;
-
 class ExamController extends Controller
 {
     //
@@ -65,8 +62,8 @@ class ExamController extends Controller
                 } else {
                     Session::put($paperid, $currentTime);
                 }
-                SEO::setTitle($paper->name);
-                SEO::setDescription(getSetting('site.description'));
+                SEOTools::setTitle($paper->name);
+                SEOTools::setDescription(getSetting('site.description'));
                 if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
                     return view('website.test', compact(['paper', 'attmDuration']));
                 }else{
@@ -121,8 +118,8 @@ class ExamController extends Controller
                 } else {
                     Session::put($paperid, $currentTime);
                 }
-                SEO::setTitle($paper->name);
-                SEO::setDescription(getSetting('site.description'));
+                SEOTools::setTitle($paper->name);
+                SEOTools::setDescription(getSetting('site.description'));
                 if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
                     return view('website.test', compact(['paper', 'attmDuration']));
                 }else{
@@ -154,8 +151,8 @@ class ExamController extends Controller
             $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $request->paperid)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
             // return $result;
-            SEO::setTitle('My Result');
-            SEO::setDescription(getSetting('site.description'));
+            SEOTools::setTitle('My Result');
+            SEOTools::setDescription(getSetting('site.description'));
             return view('website.singleresult', compact(['result', 'id']));
         }
         $paper = Exampaper::where('id', $id)->first();
@@ -208,8 +205,8 @@ class ExamController extends Controller
         $result->created_at;
         $result->save();
         $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $request->paperid)->orderBy('created_at', 'DESC')->take(1)->get();
-        SEO::setTitle('My Result');
-        SEO::setDescription(getSetting('site.description'));
+        SEOTools::setTitle('My Result');
+        SEOTools::setDescription(getSetting('site.description'));
         return view('website.result', compact(['result', 'id','request','paper']));
     }
 
