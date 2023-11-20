@@ -129,6 +129,24 @@ class Profile extends Page
                         ->options(function (callable $get, callable $set) {
                             return getDistrictOptions($get('division_id'));
                         }),
+                    Select::make('upazila')
+                        ->label('Select Upazila')
+                        ->reactive()
+                        ->options(function (callable $get, callable $set) {
+                            return getUpazila($get('district_id'));
+                        }),
+                    Select::make('postOffice')
+                        ->label('Select post Office')
+                        ->reactive()
+                        ->options(function (callable $get, callable $set) {
+                            return getPostOffices($get('upazila'));
+                        }),
+                    Select::make('postCode')
+                        ->label('Select post Code')
+                        ->reactive()
+                        ->options(function (callable $get, callable $set) {
+                            return getPostCodes($get('upazila'));
+                        }),
 
                 ]),
             Section::make('Update Password')

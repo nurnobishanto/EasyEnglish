@@ -25,6 +25,7 @@ class ExamCategoryResource extends Resource
     protected static ?string $model = ExamCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -46,8 +47,9 @@ class ExamCategoryResource extends Resource
                     ->required(),
                 Select::make('subject_id')
                     ->label('Select Subject')
-                    ->options(Subject::pluck('name', 'id'))
+                    ->relationship('subject', 'name')
                     ->required(),
+
 //                Forms\Components\FileUpload::make('image')
 //                ->nullable()
 //                ->image()

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('college')->nullable();
+            $table->text('image')->nullable();
             $table->string('batch')->nullable();
             $table->string('division_id')->nullable();
             $table->string('district_id')->nullable();

@@ -28,6 +28,36 @@ class Registration extends BaseAuth
                 $this->getCollegeFormComponent(),
                 $this->getDivisionFormComponent(),
                 $this->getDistrictFormComponent(),
+                Select::make('division_id')
+                    ->label('Select Division')
+                    ->searchable()
+                    ->options(getDivisionOptions())
+                    ->reactive(),
+
+                Select::make('district_id')
+                    ->label('Select District')
+                    ->reactive()
+                    ->options(function (callable $get, callable $set) {
+                        return getDistrictOptions($get('division_id'));
+                    }),
+                Select::make('upazila')
+                    ->label('Select Upazila')
+                    ->reactive()
+                    ->options(function (callable $get, callable $set) {
+                        return getUpazila($get('district_id'));
+                    }),
+                Select::make('postOffice')
+                    ->label('Select post Office')
+                    ->reactive()
+                    ->options(function (callable $get, callable $set) {
+                        return getPostOffices($get('upazila'));
+                    }),
+                Select::make('postCode')
+                    ->label('Select post Code')
+                    ->reactive()
+                    ->options(function (callable $get, callable $set) {
+                        return getPostCodes($get('upazila'));
+                    }),
             ])->columns([
                 'default' => 1,
                 'sm' => 2,

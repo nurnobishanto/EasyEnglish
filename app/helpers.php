@@ -2,6 +2,60 @@
 // app/helpers.php
 
 use App\Models\Setting;
+if (!function_exists('getPostOffices')) {
+    function getPostOffices($upazila)
+    {
+        $jsonFile = public_path('json/bd-postcodes.json');
+        $data = [];
+        $data['other'] = 'Other';
+        if (file_exists($jsonFile)) {
+            $jsonContents = file_get_contents($jsonFile);
+            $postOffices = json_decode($jsonContents, true);
+            foreach ($postOffices as $postOffice) {
+                if ($postOffice['upazila'] == $upazila) {
+                    $data[$postOffice['postOffice']] = $postOffice['postOffice'] ;
+                }
+            }
+        }
+        return $data;
+    }
+}
+if (!function_exists('getPostCodes')) {
+    function getPostCodes($upazila)
+    {
+        $jsonFile = public_path('json/bd-postcodes.json');
+        $data = [];
+        $data['xxxx'] = 'XXXX';
+        if (file_exists($jsonFile)) {
+            $jsonContents = file_get_contents($jsonFile);
+            $postOffices = json_decode($jsonContents, true);
+            foreach ($postOffices as $postOffice) {
+                if ($postOffice['upazila'] == $upazila) {
+                    $data[$postOffice['postCode']] = $postOffice['postCode'] ;
+                }
+            }
+        }
+        return $data;
+    }
+}
+if (!function_exists('getUpazila')) {
+    function getUpazila($districtId)
+    {
+        $jsonFile = public_path('json/bd-upazilas.json');
+        $data = [];
+        if (file_exists($jsonFile)) {
+            $jsonContents = file_get_contents($jsonFile);
+            $upazilas = json_decode($jsonContents, true);
+            foreach ($upazilas as $upazila) {
+                if ($upazila['district_id'] == $districtId) {
+                    $data[$upazila['name']] = $upazila['name'] . ' - ' . $upazila['bn_name'];
+                }
+            }
+        }
+
+        return $data;
+    }
+}
 if (!function_exists('getDistrictOptions')) {
     function getDistrictOptions($divisionId)
     {

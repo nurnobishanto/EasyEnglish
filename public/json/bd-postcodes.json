@@ -1,5 +1,4 @@
-{
-	"postcodes": [
+[
 		{
 			"division_id": "1",
 			"district_id": "34",
@@ -9444,4 +9443,3 @@
 			"postCode": "3101"
 		}
 	]
-}

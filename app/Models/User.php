@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'password',
+        'image',
         'college',
         'batch',
         'division_id',
