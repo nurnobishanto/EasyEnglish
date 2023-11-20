@@ -1,7 +1,15 @@
 <?php
 // app/helpers.php
 
+use App\Models\Menu;
 use App\Models\Setting;
+if (!function_exists('menu')) {
+    function menu($slug, $type = null, array $options = [])
+    {
+        return (new App\Models\Menu)->display($slug, $type, $options);
+    }
+}
+
 if (!function_exists('getPostOffices')) {
     function getPostOffices($upazila)
     {

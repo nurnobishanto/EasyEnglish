@@ -3,13 +3,22 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0555a220df2ebb2bff0cfc0f2491cbec83a0d84f',
+        'reference' => '492d5f2654ecd9aff07c8e397f6c0c3a6ab2f1b9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'artesaos/seotools' => array(
+            'pretty_version' => 'v1.2.0',
+            'version' => '1.2.0.0',
+            'reference' => '99744eaa8c3e21a2121914d8a7ca61284e5497a4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../artesaos/seotools',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'blade-ui-kit/blade-heroicons' => array(
             'pretty_version' => '2.1.0',
             'version' => '2.1.0.0',
@@ -526,7 +535,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0555a220df2ebb2bff0cfc0f2491cbec83a0d84f',
+            'reference' => '492d5f2654ecd9aff07c8e397f6c0c3a6ab2f1b9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -12,7 +12,47 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/login',function (){
+    return redirect('portal/login');
+})->name('login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register',function (){
+    return redirect('portal/register');
+})->name('register');
+
+Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name('website');
+Route::get('/blog', [App\Http\Controllers\WebsiteController::class, 'blog'])->name('blog');
+Route::get('/about-us', [App\Http\Controllers\WebsiteController::class, 'about'])->name('about-us');
+Route::get('/exam', [App\Http\Controllers\WebsiteController::class, 'exam'])->name('exam');
+Route::get('/ebook', [App\Http\Controllers\WebsiteController::class, 'ebook'])->name('ebook');
+Route::get('/notes', [App\Http\Controllers\WebsiteController::class, 'notes'])->name('notes');
+Route::get('/category', [App\Http\Controllers\WebsiteController::class, 'categoryclouds'])->name('website.categoryclouds');
+Route::get('/category/{slug}', [App\Http\Controllers\WebsiteController::class, 'category'])->name('website.category');
+Route::get('/author/{slug}', [App\Http\Controllers\WebsiteController::class, 'author'])->name('website.author');
+Route::post('/comment', [App\Http\Controllers\HomeController::class, 'comment'])->name('website.comment');
+Route::post('/contactstore', [App\Http\Controllers\ContactController::class, 'storeComment'])->name('comment.store');
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'contact'])->name('website.contact');
+Route::get('/about', [App\Http\Controllers\WebsiteController::class, 'about'])->name('website.about');
+Route::post('/contact-form', [App\Http\Controllers\ContactController::class, 'storeContactForm'])->name('contactform.store');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'index'])->name('profile');
+Route::post('/update', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
+Route::get('/exam/{slug}', [App\Http\Controllers\WebsiteController::class, 'subject'])->name('subject');
+Route::get('/exam-category/{slug}', [App\Http\Controllers\WebsiteController::class, 'examcategory'])->name('examcategory');
+Route::get('/clone/{id}', [App\Http\Controllers\WebsiteController::class, 'clone'])->name('ep.clone');
+Route::get('/start/{id}', [App\Http\Controllers\WebsiteController::class, 'start'])->name('start');
+Route::get('/testpass/{id}/{pass}', [App\Http\Controllers\ExamController::class, 'indexpass']);
+Route::get('/test/{id}', [App\Http\Controllers\ExamController::class, 'index'])->name('test');
+Route::post('/testpass', [App\Http\Controllers\ExamController::class, 'pass'])->name('testpass');
+
+
+Route::get('/result/{id}', [App\Http\Controllers\WebsiteController::class, 'result'])->name('result');
+Route::get('/rank/{id}', [App\Http\Controllers\WebsiteController::class, 'rank'])->name('rank');
+Route::post('/check-test', [App\Http\Controllers\ExamController::class, 'checking'])->name('checking');
+
+Route::post('/download', [App\Http\Controllers\ExamController::class, 'download'])->name('download');
+
+Route::get('/questionpdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFquestion'])->name('question');
+Route::get('/rankpdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFrank'])->name('rankpdf');
+Route::get('/resultCardPdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFresultCardPdf'])->name('resultCardPdf');
+
+Route::get('/{slug}', [App\Http\Controllers\WebsiteController::class, 'post'])->name('website.post');
