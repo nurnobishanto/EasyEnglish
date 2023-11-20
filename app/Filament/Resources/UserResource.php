@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Hash;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 5;
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form

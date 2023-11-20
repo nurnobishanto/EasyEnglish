@@ -9,4 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Result extends Model
 {
     use HasFactory, SoftDeletes;
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function exam_paper(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(ExamPaper::class);
+    }
 }

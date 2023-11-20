@@ -35,7 +35,7 @@
                         <div class="row justify-content-center ptb-100">
 
                             <div class="col-sm-6 col-md-4 border text-center p-5">
-                                <img src="{{ Voyager::image($profile->avatar) }}" alt="{{ $profile->name }}"
+                                <img src="{{ asset('uploads/'.$profile->image) }}" alt="{{ $profile->name }}"
                                     class="img-rounded img-responsive" />
                                 <p>
                                     <b>User ID : #{{ $profile->id }}</b><br>
@@ -178,7 +178,7 @@
 
                         <div class="card m-1">
                             <div class="card-body">
-                                
+
                                 <p>Exam Name: {{ $r->exampaper->name }}</p>
                                 <div class="m-2 text-center">
                                     <span class="bg-info p-1">Full Mark :
@@ -264,9 +264,9 @@
                         <!--    </thead>-->
                         <!--    <tbody>-->
                                 <?php
-                                
+
                                 $count = 1;
-                                
+
                                 ?>
                         <!--        @foreach ($activity as $r)-->
                         <!--         @if($r->exampaper)-->

@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Hash;
 class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
-
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 6;
     protected static ?string $navigationIcon = 'heroicon-o-lock-closed';
 
     public static function form(Form $form): Form

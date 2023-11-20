@@ -23,7 +23,7 @@
             background-color: #312784;
             color: white;
             text-align: center;
-            
+
 
         }
 
@@ -71,7 +71,7 @@
 
 <body>
     <header>
-        <p style="margin-top: 20px !important;font-size: 35px;line-height: 45px;"><br> Accounting Club <br> Result Card</p>
+        <p style="margin-top: 20px !important;font-size: 35px;line-height: 45px;"><br> Easy English <br> Result Card</p>
 
     </header>
     <footer>
@@ -88,16 +88,16 @@
                         </tr>
                         <tr>
                             <td>Exam Name: </td>
-                            <td>{{ $result->exampaper->name }}</td>
+                            <td>{{ $result->exam_paper->name }}</td>
                         </tr>
                         <tr>
                             <td>Full Mark :</td>
-                            <td>{{ $result->exampaper->questions->count() * $result->exampaper->pmark }} </td>
+                            <td>{{ $result->exam_paper->questions->count() * $result->exam_paper->pmark }} </td>
                         </tr>
                         <tr>
                             <td>Achived Mark : </td>
                             <td>{{ $result->total_mark }} /
-                                {{ $result->exampaper->questions->count() * $result->exampaper->pmark }} </td>
+                                {{ $result->exam_paper->questions->count() * $result->exam_paper->pmark }} </td>
                         </tr>
                         <tr>
                             <td>Total
@@ -108,15 +108,15 @@
                         <tr>
                             <td>Correct Answer :</td>
                             <td>{{ $result->ca }}
-                                ({{ ($result->ca * 100) / $result->exampaper->questions->count() }}%)</td>
+                                ({{ ($result->ca * 100) / $result->exam_paper->questions->count() }}%)</td>
                         </tr>
                         <tr>
                             <td>Wrong Answer :</td>
-                            <td>{{ $result->wa }} ({{ ($result->wa * 100) / $result->exampaper->questions->count() }}%)</td>
+                            <td>{{ $result->wa }} ({{ ($result->wa * 100) / $result->exam_paper->questions->count() }}%)</td>
                         </tr>
                         <tr>
                             <td>Not Answer : </td>
-                            <td>{{ $result->na }} ({{ ($result->na * 100) / $result->exampaper->questions->count() }}%)</td>
+                            <td>{{ $result->na }} ({{ ($result->na * 100) / $result->exam_paper->questions->count() }}%)</td>
                         </tr>
                         <tr>
                             <td>Submitted : </td>
@@ -129,13 +129,13 @@
                         </tr>
                     </table>
 
-                  
+
 
                     <span class="font-weight-300 text-success" style="font-size: 14px;"><i>(
-                            {{ $result->exampaper->pmark }}
+                            {{ $result->exam_paper->pmark }}
                             Mark for Per Correct Answer )</i></span>
                     <span class="font-weight-300 text-danger" style="font-size: 14px;"><i>(
-                            {{ $result->exampaper->nmark }}
+                            {{ $result->exam_paper->nmark }}
                             Mark for Per Negative Answer )</i></span>
 
                 </div>

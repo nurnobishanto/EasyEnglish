@@ -32,7 +32,7 @@
         }
         header span {
             font-size: 20px;
-            
+
         }
 
         footer {
@@ -69,14 +69,14 @@
 <body>
     <header>
         <?php
-        $count = 1;      
+        $count = 1;
         ?>
-        <h2>Accounting Club</h2>
+        <h2>Easy English</h2>
             <span style="font-size: 20px;">
             Exam Name: {{ $paper->name }} <br>
             Full Mark :{{ $paper->questions->count() * $paper->pmark }}<br>
             Total Questions : {{ $paper->questions->count() }}</span>
-        
+
     </header>
     <footer>
         <div>Copyright © <?php echo date('Y'); ?> . All rights reserved.</div>

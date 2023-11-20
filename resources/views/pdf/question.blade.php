@@ -77,11 +77,11 @@
     $count = 1;
     $total = $paper->questions->count();
     $timeMin = $paper->duration;
-    
+
     ?>
     <header>
 
-        <p style="font-size: 35px;">Accounting Club</p>
+        <p style="font-size: 35px;">Easy English</p>
         <div style="text-align: center;font-size: 25px;">{{ $paper->name }}</div>
         <span style="text-align: center;font-size:20px;">
             <span class="text-dark">Time : {{ $timeMin }} Minutes.</span> |
@@ -114,7 +114,7 @@
                         $type = pathinfo($path, PATHINFO_EXTENSION);
                         $data = file_get_contents($path);
                         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                        
+
                         ?>
                         <div>
                             <img style="max-height: 200px;" src="{{ $base64 }}">
@@ -140,7 +140,7 @@
                         $type = pathinfo($path, PATHINFO_EXTENSION);
                         $data = file_get_contents($path);
                         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                        
+
                         ?>
                         <div>
                             <img style="max-height: 200px;" src="{{ $base64 }}">

@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
 class ExamCategoryResource extends Resource
 {
     protected static ?string $model = ExamCategory::class;
-
+    protected static ?string $navigationGroup = 'Exam System';
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?int $navigationSort = 3;
 

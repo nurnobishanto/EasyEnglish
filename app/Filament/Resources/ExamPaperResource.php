@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ExamPaperResource extends Resource
 {
     protected static ?string $model = ExamPaper::class;
-
+    protected static ?string $navigationGroup = 'Exam System';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?int $navigationSort = 4;
 
@@ -105,7 +105,7 @@ class ExamPaperResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\QuestionsRelationManager::class,
         ];
     }
 

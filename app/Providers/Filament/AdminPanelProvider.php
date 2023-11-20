@@ -30,7 +30,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->authGuard('admin')
             ->login()
-            ->sidebarCollapsibleOnDesktop()
+            ->topNavigation()
+            ->sidebarCollapsibleOnDesktop(false)
             ->navigationItems([
                 NavigationItem::make('Analytics')
                     ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)

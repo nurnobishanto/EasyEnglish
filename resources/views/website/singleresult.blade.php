@@ -29,8 +29,8 @@
         <div class="container">
             <a class="btn btn-info" href="{{route('rank', ['id' => $id ])}}">See Rank for this Exam</a>
             <a class="btn btn-warning" href="{{route('question', ['id' => $id ])}}">Download Anwaresheet</a>
-          
-      
+
+
             <div class="row justify-content-center">
                 @foreach ($result as $r)
                 @if($r->user)
@@ -39,14 +39,14 @@
                         <div class="card m-1">
                             <div class="card-body">
                                 <h3>Name : {{ $r->user->name }}</h3>
-                                <p>Exam Name: {{ $r->exampaper->name }}</p>
+                                <p>Exam Name: {{ $r->exam_paper->name }}</p>
                                 <div class="m-2 text-center">
                                     <span class="bg-info p-1">Full Mark :
-                                        {{ $r->exampaper->questions->count() * $r->exampaper->pmark }}
+                                        {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
                                     </span>
 
                                     <span class="bg-success text-light p-1"><strong> Mark : {{ $r->total_mark }} /
-                                            {{ $r->exampaper->questions->count() * $r->exampaper->pmark }}
+                                            {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
                                         </strong></span>
                                 </div>
 
@@ -71,23 +71,23 @@
 
                                 <div class="progress">
                                     <div class="progress-bar bg-success" role="progressbar"
-                                        style="width:{{ ($r->ca * 100) / $r->exampaper->questions->count() }}%">
-                                        Correct ({{ ($r->ca * 100) / $r->exampaper->questions->count() }}%)
+                                        style="width:{{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%">
+                                        Correct ({{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%)
                                     </div>
                                     <div class="progress-bar bg-warning" role="progressbar"
-                                        style="width:{{ ($r->na * 100) / $r->exampaper->questions->count() }}%">
-                                        Avoid ({{ ($r->na * 100) / $r->exampaper->questions->count() }}%)
+                                        style="width:{{ ($r->na * 100) / $r->exam_paper->questions->count() }}%">
+                                        Avoid ({{ ($r->na * 100) / $r->exam_paper->questions->count() }}%)
                                     </div>
                                     <div class="progress-bar bg-danger " role="progressbar"
-                                        style="width:{{ ($r->wa * 100) / $r->exampaper->questions->count() }}%">
-                                        Wrong ({{ ($r->wa * 100) / $r->exampaper->questions->count() }}%)
+                                        style="width:{{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%">
+                                        Wrong ({{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%)
                                     </div>
                                 </div>
                                 <span class="font-weight-300 text-success" style="font-size: 14px;"><i> (
-                                        {{ $r->exampaper->pmark }}
+                                        {{ $r->exam_paper->pmark }}
                                         Mark for Per Correct Answer )</i></span>
                                 <span class="font-weight-300 text-danger" style="font-size: 14px;"><i> (
-                                        {{ $r->exampaper->nmark }}
+                                        {{ $r->exam_paper->nmark }}
                                         Mark for Per Negative Answer )</i></span>
                                         <a class="btn btn-info m-1" href="{{route('resultCardPdf', ['id' => $r->id ])}}" target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i> Download Result Card</a>
                             </div>

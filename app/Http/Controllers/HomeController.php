@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExamPaper;
 use App\Models\Result;
 use App\Models\User;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SEO;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -30,13 +31,13 @@ class HomeController extends Controller
     {
         $profile = User::where('id', Auth::user()->id)->first();
         $activity = Result::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
-        SEO::setTitle('My Profile');
-        SEO::setDescription(setting('site.description'));
+        SEOTools::setTitle('My Profile');
+        SEOTools::setDescription(getSetting('site_description'));
         return view('website.profile', compact(['profile', 'activity']));
     }
     protected function update(Request $data)
     {
-       
+
         $data->validate([
 
             'name' => 'required',
@@ -63,7 +64,7 @@ class HomeController extends Controller
     public function test($id)
     {
 
-        $papaer = Exampaper::where('id', $id)->first();
+        $papaer = ExamPaper::where('id', $id)->first();
         if ($papaer) {
             //   $quistions =  $papaer->quistions;
             // $ecats = Examcategory::where('id',$sub->id)->paginate(6);

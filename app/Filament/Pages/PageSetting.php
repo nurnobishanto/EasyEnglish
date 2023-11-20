@@ -11,8 +11,9 @@ use Filament\Pages\Page;
 
 class PageSetting extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
+    protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 2;
     protected static string $view = 'filament.pages.page-setting';
     public $home_page_title;
     public $home_page_description;

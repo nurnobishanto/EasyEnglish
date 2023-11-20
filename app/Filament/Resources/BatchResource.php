@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
 class BatchResource extends Resource
 {
     protected static ?string $model = Batch::class;
-
+    protected static ?string $navigationGroup = 'Exam System';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
     public static function form(Form $form): Form
