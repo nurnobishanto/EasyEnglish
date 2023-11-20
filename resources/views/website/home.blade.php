@@ -2,20 +2,19 @@
 
 @section('content')
     <!-- Start Main Hero Area -->
-    <div class="main-hero-area" style="background-image: url('{{ asset(getSetting('home-page.background')) }}');">
+    <div class="main-hero-area" style="background-image: url('{{ asset('uploads/'.getSetting('home_page_background')) }}');">
         <div class="container">
             <div class="main-hero-content col-md-6" data-speed="0.05" data-revert="true"
                 style="padding: 5%;background-color:#312784;border-radius:20px">
-                {{-- <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">Creative Digital Agency</span> --}}
+                @if(getSetting('site_tagline'))
+                 <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
+                @endif
                 <h1 class="text-light font-weight-bold" data-aos="fade-right" data-aos-delay="70" data-aos-duration="700"
                     data-aos-once="true">
-
-                    {{ getSetting('home-page.title') }}
-
-
+                    {{ getSetting('home_page_title') }}
                 </h1>
                 <h2 data-aos="fade-right" data-aos-delay="80" data-aos-duration="800" data-aos-once="true">
-                    {{ getSetting('home-page.description') }}
+                    {{ getSetting('home_page_description') }}
                 </h2>
 
                 <ul class="hero-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
@@ -32,7 +31,7 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="expertise-image-wrap" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500"
                         data-aos-once="true">
-                        <img src="{{ asset(getSetting('about-us.image')) }}" alt="image">
+                        <img src="{{ asset('uploads/'.getSetting('about_page_image')) }}" alt="image">
                     </div>
                     <div class="expertise-content black-color" data-aos="fade-right" data-aos-delay="50"
                         data-aos-duration="500" data-aos-once="true">
@@ -43,17 +42,16 @@
                                     <div class="icon">
                                         <i class="ri-thumb-up-fill"></i>
                                     </div>
-                                    <h2> {!! getSetting('about-us.experience') !!}</h2>
-
+                                    <h2> {!! getSetting('about_page_experience') !!}</h2>
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-sm-6">
                                 <div class="expertise-inner-box">
                                     <div class="icon">
-                                        <i class="ri-user-getSettings-fill"></i>
+                                        <i class="fa fa-users"></i>
                                     </div>
-                                    <h2>{!! getSetting('about-us.students') !!}</h2>
+                                    <h2>{!! getSetting('about_page_students') !!}</h2>
                                 </div>
                             </div>
                         </div>
@@ -63,15 +61,11 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="expertise-content black-color" data-aos="fade-right" data-aos-delay="50"
                         data-aos-duration="500" data-aos-once="true">
-                        <span>{{ getSetting('about-us.title') }}</span>
-                        <h3>{{ getSetting('about-us.header') }}</h3>
-                        <p>{{ getSetting('about-us.description') }}</p>
-
-
+                        <span>{{ getSetting('about_page_title') }}</span>
+                        <h3>{{ getSetting('about_page_heading') }}</h3>
+                        <p>{{ getSetting('about_page_description') }}</p>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

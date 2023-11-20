@@ -28,13 +28,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 @foreach ($subjects as $sub)
-                    @if($sub->examcategories->count()>0)
+                    @if($sub->exam_categories->count()>0)
                         <div class="col-lg-4 col-md-6">
                             <div class="single-blog-card">
-                                @if (Voyager::image($sub->image))
+                                @if ($sub->image)
                                     <div class="blog-image">
                                         <a href="{{ Route('subject', ['slug' => $sub->slug]) }}"><img
-                                                src="{{ Voyager::image($sub->image) }}" alt="{{ $sub->name }}"></a>
+                                                src="{{ asset('uploads/'.$sub->image) }}" alt="{{ $sub->name }}"></a>
                                         <div class="blog-content with-padding">
                                             <b>{{ $sub->name }}</b>
                                         </div>

@@ -14,4 +14,7 @@ class ExamCategory extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function exam_papers(){
+        return $this->hasMany(ExamPaper::class);
+    }
 }

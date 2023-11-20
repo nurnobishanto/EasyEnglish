@@ -23,7 +23,7 @@
                           <li><a href="{{route('website.about')}}">About</a></li>
                           <li><a href="{{route('website.contact')}}">Contact</a></li>
                           <li><a href="{{route('blog')}}">Blog</a></li>
-                          <li><a href="{{route('blog')}}">Exam</a></li>
+                          <li><a href="{{route('exam')}}">Exam</a></li>
                           <li><a href="{{route('ebook')}}">E Books</a></li>
                           <li><a href="{{route('notes')}}">Free Note</a></li>
                       </ul>

@@ -33,16 +33,16 @@
                 @foreach ($ecats as $sub)
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-card">
-                            
-                            
-                                @if (Voyager::image($sub->image))
+
+
+                                @if ($sub->image)
                                 <div class="blog-image">
                                     <a href="{{ Route('examcategory', ['slug' => $sub->slug]) }}"><img
-                                            src="{{ Voyager::image($sub->image) }}" alt="{{ $sub->name }}"></a>
+                                            src="{{ asset('uploads/'.$sub->image) }}" alt="{{ $sub->name }}"></a>
                                     <div class="blog-content with-padding">
                                         <b>{{ $sub->name }}</b>
                                     </div>
-                                   </div> 
+                                   </div>
                                 @else
                                     <a class="d-block" href="{{ Route('examcategory', ['slug' => $sub->slug]) }}">
                                         <h2 class="text-light text-center align-middle pt-5 pb-5 p-2"
@@ -51,7 +51,7 @@
                                         </h2>
                                     </a>
                                 @endif
-                            
+
                         </div>
                     </div>
                 @endforeach
