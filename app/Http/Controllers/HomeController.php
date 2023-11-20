@@ -9,6 +9,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -63,7 +64,7 @@ class HomeController extends Controller
     }
     public function test($id)
     {
-
+        Session::forget( "exam_paper_password_{$id}");
         $papaer = ExamPaper::where('id', $id)->first();
         if ($papaer) {
             //   $quistions =  $papaer->quistions;

@@ -37,14 +37,14 @@
 
                                 @if ($sub->image)
                                 <div class="blog-image">
-                                    <a href="{{ Route('examcategory', ['slug' => $sub->slug]) }}"><img
+                                    <a href="{{ route('exam_category', ['slug' => $sub->slug]) }}"><img
                                             src="{{ asset('uploads/'.$sub->image) }}" alt="{{ $sub->name }}"></a>
                                     <div class="blog-content with-padding">
                                         <b>{{ $sub->name }}</b>
                                     </div>
                                    </div>
                                 @else
-                                    <a class="d-block" href="{{ Route('examcategory', ['slug' => $sub->slug]) }}">
+                                    <a class="d-block" href="{{ route('exam_category', ['slug' => $sub->slug]) }}">
                                         <h2 class="text-light text-center align-middle pt-5 pb-5 p-2"
                                             style="background-color: #342986;">
                                             {{ $sub->name }}

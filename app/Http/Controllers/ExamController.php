@@ -21,69 +21,13 @@ class ExamController extends Controller
         $this->middleware('auth');
     }
     public function pass(Request $request){
-        $url = "testpass/".$request->id."/".$request->pass;
-        return redirect($url);
-
+        Session::put( "exam_paper_password_{$request->id}", $request->pass);
+        return redirect()->route('test', ['id' => $request->id]);
     }
-    public function indexpass($id,$pass)
-    {
 
-        $paper = Exampaper::where('id', $id)->where('password', $pass)->first();
-
-        if ($paper) {
-            $limit = 9999;
-            $date = Carbon::now();
-            $date = date('Y-m-d', time());
-            $time = date('H:i:s', time());
-            $currentTime = $date . " " . $time;
-            $paperid = "paperid" . $paper->id;
-
-            $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $paper->id)->get();
-
-            $atmpCount = $result->count();
-            $attmDuration = 0;
-            if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime && date('Y-m-d H:i:s') <= $paper->enddate . ' ' . $paper->endtime){
-                $limit = 1;
-            }else{
-                $limit = 999999;
-            }
-            if ($atmpCount < $limit) {
-                if (Session::has($paperid)) {
-                    $attempt = Session::get($paperid);
-                    $start_date = new DateTime($attempt);
-                    $since_start = $start_date->diff(new DateTime($currentTime));
-                    $seconds = $since_start->days * 24 * 60;
-                    $seconds += $since_start->h * 60;
-                    $seconds += $since_start->i * 60;
-                    $seconds += $since_start->s;
-
-                    $attmDuration = $seconds;
-
-                } else {
-                    Session::put($paperid, $currentTime);
-                }
-                SEOTools::setTitle($paper->name);
-                SEOTools::setDescription(getSetting('site.description'));
-                if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
-                    return view('website.test', compact(['paper', 'attmDuration']));
-                }else{
-                    return view('website.start', compact(['paper']));
-                }
-
-
-            } else {
-
-                return "Limit Cross";
-
-            }
-
-        } else {
-            return "Password Wrong!";
-        }
-    }
     public function index($id)
     {
-
+        Session::forget( "exam_paper_password_{$id}");
         $paper = Exampaper::where('id', $id)->first();
 
         if ($paper) {
@@ -139,7 +83,7 @@ class ExamController extends Controller
     }
     public function checking(Request $request)
     {
-
+        Session::forget( "exam_paper_password_{$request->paperid}");
         $paperid = "paperid" . $request->paperid;
         $id = $request->paperid;
 

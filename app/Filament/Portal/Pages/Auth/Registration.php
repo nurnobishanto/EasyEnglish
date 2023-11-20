@@ -2,6 +2,7 @@
 
 namespace App\Filament\Portal\Pages\Auth;
 
+use App\Models\Batch;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -24,22 +25,10 @@ class Registration extends BaseAuth
                 $this->getRegisterFormComponent(),
                 $this->getPasswordFormComponent(),
                 $this->getConfirmPasswordFormComponent(),
-                $this->getBatchFormComponent(),
                 $this->getCollegeFormComponent(),
+                $this->getBatchFormComponent(),
                 $this->getDivisionFormComponent(),
                 $this->getDistrictFormComponent(),
-                Select::make('division_id')
-                    ->label('Select Division')
-                    ->searchable()
-                    ->options(getDivisionOptions())
-                    ->reactive(),
-
-                Select::make('district_id')
-                    ->label('Select District')
-                    ->reactive()
-                    ->options(function (callable $get, callable $set) {
-                        return getDistrictOptions($get('division_id'));
-                    }),
                 Select::make('upazila')
                     ->label('Select Upazila')
                     ->reactive()
@@ -73,7 +62,7 @@ class Registration extends BaseAuth
     {
         return TextInput::make('name')
             ->label('Full name')
-            ->required();
+            ->required()->columnSpan(2);
     }
 
     protected function getRegisterFormComponent(): Component
@@ -81,7 +70,7 @@ class Registration extends BaseAuth
         return TextInput::make('register')
             ->label('Email or Phone Number')
             ->required()
-            ->autocomplete()
+            ->autocomplete()->columnSpan(2)
             ->autofocus();
     }
 
@@ -108,8 +97,9 @@ class Registration extends BaseAuth
 
     protected function getBatchFormComponent(): Component
     {
-        return TextInput::make('batch')
-            ->label('Batch')
+        return Select::make('batch')
+            ->label('Select Batch')
+            ->options(Batch::all()->pluck('name','id'))
             ->placeholder('Optional');
     }
 
@@ -117,7 +107,7 @@ class Registration extends BaseAuth
     {
         return TextInput::make('college')
             ->label('College')
-            ->placeholder('Optional');
+            ->placeholder('Optional')->columnSpan(2);
     }
 
     protected function getDivisionFormComponent(): Component

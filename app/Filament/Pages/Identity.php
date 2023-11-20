@@ -98,7 +98,7 @@ class Identity extends Page
                         ->label('Site address (site_address)')
                         ->placeholder('Enter Site address'),
                     Textarea::make('site_copyright')
-                        ->label('Site address (site_copyright)')
+                        ->label('Site copyright (site_copyright)')
                         ->placeholder('Enter Site copyright'),
 
                     FileUpload::make('site_logo')

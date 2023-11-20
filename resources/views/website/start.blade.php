@@ -43,13 +43,29 @@
                     <span class="text-danger">Negative Mark : {{ $paper->nmark }}</span><br>
                     <span class="text-success "><strong> Total Mark : {{ $total }} X {{ $paper->pmark }} =
                             {{ $total * $paper->pmark }} </strong></span></p>
+                    @if(session("exam_paper_password_{$paper->id}"))
+                    <strong class="text-danger">{{session("exam_paper_password_{$paper->id}")}}</strong><br>
+                    @endif
                     @if (date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime)
+
                     @if (strlen($paper->password)>0)
-                     <form action="{{ Route('testpass') }}" method="POST">
+                     <form action="{{route('test_pass')}}" method="POST">
                         @csrf
-                        <input required class="" type="password" placeholder="Password" name="pass">
-                        <input  type="text" hidden name="id" value="{{$paper->id}}">
-                        <input type="submit" value="Start" class="btn btn-danger">
+                         <div class="row">
+                             <div class="col-sm-8 col-12">
+                                 <div class="form-group">
+                                     <input required class="form-control" type="password" placeholder="Password" name="pass">
+                                     <input  type="text" hidden name="id" value="{{$paper->id}}">
+                                 </div>
+                             </div>
+                             <div class="col-sm-4 col-12 mt-sm-0 mt-2">
+                                 <div class="form-group">
+                                     <input type="submit" value="Start" class="form-control btn btn-danger">
+                                 </div>
+                             </div>
+                         </div>
+
+
                     </form>
                     @else
                        <a class="btn btn-danger m-2 p-2" href="{{ Route('test', ['id' => $paper->id]) }}"><i

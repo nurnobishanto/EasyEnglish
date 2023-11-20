@@ -67,7 +67,7 @@ class WebsiteController extends Controller
     }
     public function notes()
     {
-        SEOToolsqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqwwwwwwwwww   ::setTitle('Free Notes');
+        SEOTools::setTitle('Free Notes');
         SEOTools::setDescription(getSetting('site_description'));
 
         $notes = FreeNote::orderBy('created_at', 'DESC')->get();
@@ -105,7 +105,7 @@ class WebsiteController extends Controller
             return view('website.404');
         }
     }
-    public function categoryclouds()
+    public function category_clouds()
     {
         SEOTools::setTitle('Catgory Cloud');
         SEOTools::setDescription(getSetting('site_description'));
@@ -146,7 +146,7 @@ class WebsiteController extends Controller
             return view('website.404');
         }
     }
-    public function examcategory($slug)
+    public function exam_category($slug)
     {
 
         $ecat = Examcategory::where('slug', $slug)->first();
