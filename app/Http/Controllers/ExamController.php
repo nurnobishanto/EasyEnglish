@@ -41,7 +41,7 @@ class ExamController extends Controller
             $currentTime = $date . " " . $time;
             $paperid = "paperid" . $paper->id;
 
-            $result = Result::where('user_id', Auth::user()->id)->where('exampaper_id', $paper->id)->get();
+            $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $paper->id)->get();
 
             $atmpCount = $result->count();
             $attmDuration = 0;
@@ -66,7 +66,7 @@ class ExamController extends Controller
                     Session::put($paperid, $currentTime);
                 }
                 SEO::setTitle($paper->name);
-                SEO::setDescription(setting('site.description'));
+                SEO::setDescription(getSetting('site.description'));
                 if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
                     return view('website.test', compact(['paper', 'attmDuration']));
                 }else{
@@ -97,7 +97,7 @@ class ExamController extends Controller
             $currentTime = $date . " " . $time;
             $paperid = "paperid" . $paper->id;
 
-            $result = Result::where('user_id', Auth::user()->id)->where('exampaper_id', $paper->id)->get();
+            $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $paper->id)->get();
 
             $atmpCount = $result->count();
             $attmDuration = 0;
@@ -122,7 +122,7 @@ class ExamController extends Controller
                     Session::put($paperid, $currentTime);
                 }
                 SEO::setTitle($paper->name);
-                SEO::setDescription(setting('site.description'));
+                SEO::setDescription(getSetting('site.description'));
                 if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
                     return view('website.test', compact(['paper', 'attmDuration']));
                 }else{
@@ -151,11 +151,11 @@ class ExamController extends Controller
             Session::forget($paperid);
         } else {
 
-            $result = Result::where('user_id', Auth::user()->id)->where('exampaper_id', $request->paperid)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
+            $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $request->paperid)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
             // return $result;
             SEO::setTitle('My Result');
-            SEO::setDescription(setting('site.description'));
+            SEO::setDescription(getSetting('site.description'));
             return view('website.singleresult', compact(['result', 'id']));
         }
         $paper = Exampaper::where('id', $id)->first();
@@ -198,7 +198,7 @@ class ExamController extends Controller
 
         $result = new Result;
 
-        $result->exampaper_id = $request->paperid;
+        $result->exam_paper_id = $request->paperid;
         $result->user_id = Auth::user()->id;
         $result->total_mark = $mark;
         $result->ca = $correctans;
@@ -207,9 +207,9 @@ class ExamController extends Controller
         $result->duration = $seconds;
         $result->created_at;
         $result->save();
-        $result = Result::where('user_id', Auth::user()->id)->where('exampaper_id', $request->paperid)->orderBy('created_at', 'DESC')->take(1)->get();
+        $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $request->paperid)->orderBy('created_at', 'DESC')->take(1)->get();
         SEO::setTitle('My Result');
-        SEO::setDescription(setting('site.description'));
+        SEO::setDescription(getSetting('site.description'));
         return view('website.result', compact(['result', 'id','request','paper']));
     }
 

@@ -30,19 +30,9 @@ class BatchResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->live()
-                    ->placeholder('Enter Batch name')
                     ->required()
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
-                            return;
-                        }
-
-                        $set('slug', Str::slug($state));
-                    }),
-                TextInput::make('slug')->unique(ignoreRecord: true)
-                    ->placeholder('Enter slug')
-                    ->required(),
+                    ->placeholder('Enter Batch name'),
+                TextInput::make('slug')->unique(ignoreRecord: true)->visibleOn(['edit','view']),
             ]);
     }
 

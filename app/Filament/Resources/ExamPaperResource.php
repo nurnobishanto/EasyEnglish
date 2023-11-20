@@ -32,7 +32,11 @@ class ExamPaperResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->label('Exam Paper Title')->columnSpan('full'),
+                Select::make('batch_id')
+                    ->relationship('batch','name')
+                    ->required()
+                    ->label('Select Batch'),
+                TextInput::make('name')->required()->label('Exam Paper Title'),
                 Textarea::make('description')->label('Exam Paper Description')->columnSpan('full'),
                 Select::make('subject_id')
                     ->relationship('subject', 'name')->required(),

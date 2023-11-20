@@ -4,8 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuestionResource\Pages;
 use App\Filament\Resources\QuestionResource\RelationManagers;
+use App\Models\ExamPaper;
 use App\Models\Question;
+use App\Models\Subject;
 use Filament\Forms;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -31,11 +34,10 @@ class QuestionResource extends Resource
                 TextInput::make('name')->required()->label('Questions Title')->columnSpan('full'),
                 Select::make('subject_id')
                     ->relationship('subject', 'name')->required(),
-                Select::make('exam_papers')
-                    ->multiple()
-                    ->relationship('exam_papers', 'name'),
-                // CheckboxList::make('exampapers')
-                //  ->relationship('exampapers', 'name'),
+
+                 Select::make('exam_papers')
+                     ->multiple()
+                  ->relationship('exam_papers', 'name'),
                 FileUpload::make('image'),
                 Textarea::make('description')->label('Questions Description'),
                 TextInput::make('op1')->required()->label('Option A'),
@@ -58,38 +60,42 @@ class QuestionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('subject_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('subject.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('op1')
+                    ->label('Option A')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('op2')
+                    ->label('Option B')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('op3')
+                    ->label('Option C')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('op4')
+                    ->label('Option D')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('ca')
+                Tables\Columns\SelectColumn::make('ca')->options([
+                    'op1' => 'Option A',
+                    'op2' => 'Option B',
+                    'op3' => 'Option C',
+                    'op4' => 'Option D',
+                ])->label('Correct Ans')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('subject_id')
+                    ->options(Subject::all()->pluck('name','id'))
+                    ->label('Subject'),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
+                Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

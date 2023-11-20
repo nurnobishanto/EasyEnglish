@@ -7,6 +7,7 @@ use App\Models\Ebook;
 use App\Models\Examcategory;
 use App\Models\Exampaper;
 use App\Models\FreeNote;
+use App\Models\Post;
 use App\Models\Result;
 use App\Models\Subject;
 use App\Models\User;
@@ -15,9 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use SEO;
-use Session;
-use TCG\Voyager\Models\Category;
-use TCG\Voyager\Models\Post;
+use Illuminate\Support\Facades\Session;
+
 use \Mpdf\Mpdf as PDF;
 use \Carbon\Carbon;
 

@@ -41,7 +41,7 @@
                             <i class="ri-map-pin-line"></i>
                         </div>
                         <h3>{{ 'Address' }}</h3>
-                        <p>{{ setting('site.address') }}</p>
+                        <p>{{ getSetting('site_address') }}</p>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                             <i class="ri-mail-line"></i>
                         </div>
                         <h3>{{ 'Email Address' }}</h3>
-                        <p><a href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a></p>
+                        <p><a href="mailto:{{ getSetting('site_email') }}">{{ getSetting('site_email') }}</a></p>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                             <i class="ri-phone-line"></i>
                         </div>
                         <h3>{{ 'Phone Number' }}</h3>
-                        <p><a href="tel:{{ setting('site.phone') }}">{{ setting('site.phone') }}</a></p>
+                        <p><a href="tel:{{ getSetting('site_phone') }}">{{ getSetting('site_phone') }}</a></p>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                         @endphp
                     </div>
                 @endif
-                
+
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">

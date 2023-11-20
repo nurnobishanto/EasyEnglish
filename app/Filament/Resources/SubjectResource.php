@@ -21,7 +21,6 @@ use Illuminate\Support\Str;
 class SubjectResource extends Resource
 {
     protected static ?string $model = Subject::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-bookmark';
     protected static ?int $navigationSort = 2;
 
@@ -30,19 +29,9 @@ class SubjectResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->live()
                     ->required()
-                    ->placeholder('Enter Subject name')
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
-                            return;
-                        }
-
-                        $set('slug', Str::slug($state));
-                    })->required(),
-                TextInput::make('slug')->unique(ignoreRecord: true)
-                    ->placeholder('Enter slug')
-                    ->required(),
+                    ->placeholder('Enter Subject name'),
+                TextInput::make('slug')->unique(ignoreRecord: true)->visibleOn(['edit','view']),
             ]);
     }
 
