@@ -19,7 +19,14 @@
               <div class="col-lg-3 col-sm-6">
                   <div class="single-footer-widget ps-5">
                       <h3>Useful Link</h3>
-
+                      <ul class="quick-links">
+                          <li><a href="{{route('website.about')}}">About</a></li>
+                          <li><a href="{{route('website.contact')}}">Contact</a></li>
+                          <li><a href="{{route('blog')}}">Blog</a></li>
+                          <li><a href="{{route('blog')}}">Exam</a></li>
+                          <li><a href="{{route('ebook')}}">E Books</a></li>
+                          <li><a href="{{route('notes')}}">Free Note</a></li>
+                      </ul>
                       {{ menu('footer-link', 'menu.quick-links') }}
 
                   </div>
