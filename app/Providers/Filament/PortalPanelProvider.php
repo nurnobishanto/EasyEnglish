@@ -11,6 +11,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -38,6 +39,11 @@ class PortalPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(false)
             ->userMenuItems([
                 'profile' => MenuItem::make()->url(fn (): string => Profile::getUrl())
+            ])
+            ->navigationItems([
+                NavigationItem::make('Front')
+                    ->url(env('APP_URL'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt'),
             ])
             ->colors([
                 'primary' => Color::Green,

@@ -25,7 +25,7 @@ class QuestionsRelationManager extends RelationManager
                 Select::make('subject_id')
                     ->relationship('subject', 'name')->required(),
                 FileUpload::make('image'),
-                Textarea::make('description')->label('Questions Description'),
+                Textarea::make('description')->label('Questions Description')->columnSpan('full'),
                 TextInput::make('op1')->required()->label('Option A'),
                 TextInput::make('op2')->required()->label('Option B'),
                 TextInput::make('op3')->required()->label('Option C'),
