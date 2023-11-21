@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exampaper;
+use App\Models\ExamPaper;
 use App\Models\Result;
 use App\Models\FreeNote;
 use App\Models\Ebook;
@@ -29,7 +29,7 @@ class ExamController extends Controller
     public function index($id)
     {
 
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
         if ($paper) {
             $limit = 9999;
             $date = Carbon::now();
