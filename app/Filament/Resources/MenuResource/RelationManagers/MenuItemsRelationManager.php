@@ -53,7 +53,9 @@ class MenuItemsRelationManager extends RelationManager
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-            ])
+                Tables\Columns\TextColumn::make('order')
+                    ->sortable(),
+            ])->defaultSort('order','asc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
