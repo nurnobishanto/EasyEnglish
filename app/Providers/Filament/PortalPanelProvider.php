@@ -40,7 +40,7 @@ class PortalPanelProvider extends PanelProvider
                 'profile' => MenuItem::make()->url(fn (): string => Profile::getUrl())
             ])
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Green,
             ])
             ->discoverResources(in: app_path('Filament/Portal/Resources'), for: 'App\\Filament\\Portal\\Resources')
             ->discoverPages(in: app_path('Filament/Portal/Pages'), for: 'App\\Filament\\Portal\\Pages')

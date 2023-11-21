@@ -44,7 +44,7 @@ class PostResource extends Resource
                     ])
                     ->default('draft'),
 
-                Forms\Components\MarkdownEditor::make('body')
+                Forms\Components\RichEditor::make('body')
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),

@@ -8,7 +8,7 @@
         </div>
 
         <div class="widget widget_oleev_posts_thumb">
-            <h3 class="widget-title">'Popular Posts</h3>
+            <h3 class="widget-title">Popular Posts</h3>
             @php
               $position = 0;
              @endphp

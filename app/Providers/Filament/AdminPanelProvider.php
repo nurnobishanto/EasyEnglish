@@ -34,11 +34,9 @@ class AdminPanelProvider extends PanelProvider
             ->topNavigation()
             ->sidebarCollapsibleOnDesktop(false)
             ->navigationItems([
-                NavigationItem::make('Analytics')
-                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-presentation-chart-line')
-                    ->group('Reports')
-                    ->sort(3),
+                NavigationItem::make('Front')
+                    ->url(env('APP_URL'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt'),
             ])
             ->colors([
                 'primary' => Color::Blue,
