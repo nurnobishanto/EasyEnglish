@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 use App\Models\Contact;
 use App\Models\Comment;
-use Mail;
-use SEO;
+use Illuminate\Support\Facades\Mail;
+
 
 class ContactController extends Controller
 {
     public function Contact(){
+        SEOTools::setTitle('Contact');
+        SEOTools::setDescription('Easy English');
         return view('website.contact');
     }
     public function storeContactForm(Request $request)
@@ -37,17 +41,17 @@ class ContactController extends Controller
            'message' => $input['message'],
        ]);
         //  Send mail to admin
-//        Mail::send('contactMail', array(
-//            'type' => $input['type'],
-//            'name' => $input['name'],
-//            'email' => $input['email'],
-//            'phone' => $input['phone'],
-//            'subject' => $input['subject'],
-//            'message' => $input['message'],
-//        ), function($message) use ($request){
-//            $message->from($request->email);
-//            $message->to('info@accountingclub.com', 'Accounting Club')->subject($request->get('subject'));
-//        });
+        Mail::send('contactMail', array(
+            'type' => $input['type'],
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'phone' => $input['phone'],
+            'subject' => $input['subject'],
+            'message' => $input['message'],
+        ), function($message) use ($request){
+            $message->from($request->email);
+            $message->to('info@easyenglishbd.com', 'Easy English BD')->subject($request->get('subject'));
+        });
 
         return redirect()->back()->with(['success' => 'Contact Form Submit Successfully']);
     }
