@@ -5,75 +5,50 @@
 
     <div class="blog-area ptb-100">
         <div class="container">
-            <a class="btn btn-info" href="{{route('rank', ['id' => $data->exam_paper->id ])}}">See Rank for this Exam</a>
-            <a class="btn btn-warning" href="{{route('question', ['id' => $data->exam_paper->id ])}}">Download Anwaresheet</a>
             <div class="row justify-content-center">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <h1 class="text-center">{{ $data->exam_paper->name }}</h1>
                     <p>{!! $data->exam_paper->description !!}</p>
                 </div>
                 <div class="col-md-4">
-
-                        <div class="col-md-12">
-
-                            <div class="card m-1">
-                                <div class="card-body">
-                                    <strong>Name : {{ $data->user->name }}</strong>
-                                    <div class="m-2 text-center">
-                                        <span class="bg-info p-1">Full Mark :
-                                            {{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}
-                                        </span>
-
-                                        <span class="bg-success text-light p-1"><strong> Mark : {{ $data->total_mark }} /
-                                                {{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}
-                                            </strong></span>
-                                    </div>
-
-
-                                    <div class="m-2 text-center">
-                                        <span style="padding: 5px;" class="bg-success text-light">Correct :
-                                            {{ $data->ca }}</span><span style="padding: 5px;"
-                                            class="bg-dark  text-light">Attempt :
-                                            {{ $data->ca + $data->wa }}</span>
-                                    </div>
-                                    <div class="m-2 text-center">
-                                        <span style="padding: 5px;" class="bg-warning">Avoid : {{ $data->na }}
-                                        </span>
-                                        <span style="padding: 5px;" class="bg-danger text-light">Wrong :
-                                            {{ $data->wa }}</span>
-                                    </div>
-
-
-                                    <div style="font-size: 14px;">Submitted : {{ $data->created_at }}</div>
-                                    <div style="font-size: 14px;">Duration : {{ floor($data->duration / 60) }} Minutes
-                                        {{ $data->duration % 60 }} Seconds</div>
-
-
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar"
-                                            style="width:{{ ($data->ca * 100) / $data->exam_paper->questions->count() }}%">
-                                            Correct ({{ ($data->ca * 100) / $data->exam_paper->questions->count() }}%)
-                                        </div>
-                                        <div class="progress-bar bg-warning" role="progressbar"
-                                            style="width:{{ ($data->na * 100) / $data->exam_paper->questions->count() }}%">
-                                            Avoid ({{ ($data->na * 100) / $data->exam_paper->questions->count() }}%)
-                                        </div>
-                                        <div class="progress-bar bg-danger " role="progressbar"
-                                            style="width:{{ ($data->wa * 100) / $data->exam_paper->questions->count() }}%">
-                                            Wrong ({{ ($data->wa * 100) / $data->exam_paper->questions->count() }}%)
-                                        </div>
-                                    </div>
-
-{{--                                    <a class="btn btn-info m-1" href="{{ route('resultCardPdf', ['id' => $data->id]) }}"--}}
-{{--                                        target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i>--}}
-{{--                                        Download Result Card</a>--}}
-                                </div>
-                            </div>
-
-
+                    <div class="card m-1">
+                        <div class="card-header">
+                            <h5 class="card-title">Name : {{ $data->user->name }}</h5>
                         </div>
-
-
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered">
+                                <tr><th>Full Mark :</th><th>{{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}</th></tr>
+                                <tr><th>Your Mark :</th><th>{{ $data->total_mark }} / {{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}</th></tr>
+                                <tr><th>Attempt :</th><th>{{ $data->ca + $data->wa }}</th></tr>
+                                <tr><th>Correct :</th><th>{{ $data->ca }}</th></tr>
+                                <tr><th>Wrong :</th><th>{{ $data->wa }}</th></tr>
+                                <tr><th>Avoid :</th><th>{{ $data->na }}</th></tr>
+                                <tr><th>Submitted :</th><th>{{ date('d M Y, h:m A', strtotime($data->created_at)) }}</th></tr>
+                                <tr><th>Duration :</th><th>{{ floor($data->duration / 60) }} Minutes {{ $data->duration % 60 }} Seconds</th></tr>
+                            </table>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width:{{ round(($data->ca * 100) / $data->exam_paper->questions->count())  }}%;">
+                                        Correct ({{ round(($data->ca * 100) / $data->exam_paper->questions->count()) }}%)
+                                    </div>
+                                    <div class="progress-bar bg-warning" role="progressbar"
+                                        style="width:{{round(($data->na * 100) / $data->exam_paper->questions->count())  }}%">
+                                        Avoid ({{ round(($data->na * 100) / $data->exam_paper->questions->count())  }}%)
+                                    </div>
+                                    <div class="progress-bar bg-danger " role="progressbar"
+                                        style="width:{{ round(($data->wa * 100) / $data->exam_paper->questions->count())  }}%">
+                                        Wrong ({{ round(($data->wa * 100) / $data->exam_paper->questions->count()) }}%)
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn d-block btn-primary m-1" href="{{ route('resultCardPdf', ['id' => $data->id]) }}"
+                               target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i>
+                                Download Result Card</a>
+                            <a class="btn d-block btn-danger m-1" href="{{route('rank', ['id' => $data->exam_paper->id ])}}">See Rank for this Exam</a>
+                            <a class="btn d-block btn-warning m-1" href="{{route('question', ['id' => $data->exam_paper->id ])}}">Download Answer sheet</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-8">
 

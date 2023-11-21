@@ -205,7 +205,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="why-choose-us-video-view" data-speed="0.09" data-revert="true">
-                        <a href="https://www.youtube.com/watch?v=ODfy2YIKS1M" class="video-btn popup-youtube">
+                        <a href="https://www.youtube.com/watch?v=GAuqgOC6eKY" class="video-btn popup-youtube">
                             <i class="flaticon-play-button"></i>
                         </a>
                     </div>
@@ -214,23 +214,13 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="why-choose-us-content wrap-color" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">
                         <span>Why Choose Us</span>
-                        <h3>Our Working Process To Help Your Boost Your Business</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit et fames maecenas amet est scelerisque lectus tortor sit lorem ipsum dolor sit amet consectetur adipiscing elit et fames maecenas amet.</p>
-
+                        <h3>We're your partners in learning</h3>
                         <div class="choose-us-inner-box">
                             <div class="icon">
                                 <i class="flaticon-ad-campaign"></i>
                             </div>
-                            <h4>Advertising & Branding</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit velit sagittis eu viverra pellentesque condimentum.</p>
-                        </div>
-
-                        <div class="choose-us-inner-box">
-                            <div class="icon">
-                                <i class="flaticon-public-relations"></i>
-                            </div>
-                            <h4>Public Relation</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit velit sagittis eu viverra pellentesque condimentum.</p>
+                            <h4>Comprehensive Learning</h4>
+                            <p>Our History resource goes beyond language mechanics, providing a holistic approach to English education</p>
                         </div>
                     </div>
                 </div>

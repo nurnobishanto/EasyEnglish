@@ -58,4 +58,9 @@ class User extends Authenticatable
             $user->user_id = self::generateUniqueUserId();
         });
     }
+
+    public function results(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Result::class);
+    }
 }

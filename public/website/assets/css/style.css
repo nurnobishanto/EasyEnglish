@@ -57,7 +57,7 @@ Default CSS
 :root {
     --main-font-family: 'DM Sans', sans-serif;
     --main-color: rgba(255, 18, 18, 0.93);
-    --gradient-color: linear-gradient(90deg, rgb(0, 68, 0) 50%, rgba(255, 18, 18, 0.93) 100%);
+    --gradient-color: linear-gradient(90deg, rgba(174, 0, 0, 0.78) 50%, rgba(255, 18, 18, 0.85) 100%);
     --white-color: #ffffff;
     --black-color: rgb(0, 0, 0);
     --paragraph-color: #1e1e1e;
@@ -1041,8 +1041,8 @@ Services Area CSS
     height: 0%;
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    background: -webkit-gradient(linear, left top, right top, from(#2E4BE2), to(#1EBBDD));
-    background: linear-gradient(90deg, #2E4BE2 0%, #1EBBDD 100%);
+    background: -webkit-gradient(linear, left top, right top, from(rgba(1, 88, 1, 0.9)), to(rgba(0, 68, 0, 0.9)));
+    background: linear-gradient(90deg, rgba(0, 68, 0, 0.88) 0%, rgba(1, 88, 1, 0.88) 100%);
     z-index: -1;
     opacity: 0;
     visibility: hidden;

@@ -5,6 +5,8 @@ namespace App\Providers\Filament;
 use App\Filament\Portal\Pages\Auth\Login;
 use App\Filament\Portal\Pages\Auth\Profile;
 use App\Filament\Portal\Pages\Auth\Registration;
+use App\Filament\Portal\Widgets\ActivityList;
+use App\Filament\Portal\Widgets\ResultOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
