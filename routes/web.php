@@ -36,7 +36,8 @@ Route::get('/start/{id}', [App\Http\Controllers\WebsiteController::class, 'start
 
 Route::get('/test/{id}', [App\Http\Controllers\ExamController::class, 'index'])->name('test')->middleware('exam_paper_password');
 Route::post('/test-pass', [App\Http\Controllers\ExamController::class, 'pass'])->name('test_pass');
-Route::get('/result/{id}', [App\Http\Controllers\WebsiteController::class, 'result'])->name('result');
+Route::get('/results/{id}', [App\Http\Controllers\WebsiteController::class, 'results'])->name('results');
+Route::get('/result/{result}', [App\Http\Controllers\WebsiteController::class, 'result'])->name('result');
 Route::get('/rank/{id}', [App\Http\Controllers\WebsiteController::class, 'rank'])->name('rank');
 Route::post('/check-test', [App\Http\Controllers\ExamController::class, 'checking'])->name('checking');
 

@@ -30,11 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $profile = User::where('id', Auth::user()->id)->first();
-        $activity = Result::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
-        SEOTools::setTitle('My Profile');
-        SEOTools::setDescription(getSetting('site_description'));
-        return view('website.profile', compact(['profile', 'activity']));
+        return  redirect('portal');
     }
     protected function update(Request $data)
     {

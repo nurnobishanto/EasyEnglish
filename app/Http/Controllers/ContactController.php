@@ -55,7 +55,11 @@ class ContactController extends Controller
     public function storeComment(Request $request)
     {
         $input = $request->all();
-        Comment::create($input);
+        Comment::create([
+            'user_id' => $input['user_id'],
+            'post_id' => $input['post_id'],
+            'comment' => $input['comment'],
+        ]);
         return redirect()->back()->with(['success' => 'Comment Submit Successfully']);
     }
 }

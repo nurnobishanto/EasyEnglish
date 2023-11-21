@@ -6,6 +6,7 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,40 +25,42 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('author_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('category_id')
-                    ->numeric(),
+                Forms\Components\Select::make('author_id')
+                    ->relationship('user','name')
+                    ->required(),
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category','name')
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
+                    ->label('Enter Post title')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
+                TextInput::make('slug')->unique(ignoreRecord: true)->visibleOn(['edit','view']),
+                Forms\Components\Select::make('status')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255)
+                    ->options([
+                        'draft' => 'DRAFT',
+                        'published' => 'PUBLISHED',
+                    ])
                     ->default('draft'),
+
+                Forms\Components\MarkdownEditor::make('body')
+                    ->required()
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('image')
+                    ->image(),
+
+                Forms\Components\Textarea::make('excerpt')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('meta_description')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('meta_keywords')
+                    ->maxLength(65535),
                 Forms\Components\Toggle::make('featured')
                     ->required(),
-                Forms\Components\Textarea::make('body')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('seo_title')
                     ->maxLength(255),
-                Forms\Components\Textarea::make('excerpt')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('meta_description')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('meta_keywords')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
             ]);
     }
 

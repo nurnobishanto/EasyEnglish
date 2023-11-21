@@ -36,9 +36,9 @@
                                     <div class="single-blog-card">
                                         <div class="blog-image">
 
-                                            @if (Voyager::image($post->image))
+                                            @if ($post->image)
                                                 <a href="{{ Route('website.post', ['slug' => $post->slug]) }}"><img
-                                                        src="{{ Voyager::image($post->image) }}"
+                                                        src="{{ asset('uploads/'.$post->image) }}"
                                                         alt="{{ $post->title }}"></a>
                                             @else
                                                 <a href="{{ Route('website.post', ['slug' => $post->slug]) }}"><img

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('excerpt')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
+            $table->integer('view_count')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

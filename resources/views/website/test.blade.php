@@ -71,13 +71,13 @@
                         @foreach($g as $k)
                             <div class="border mt-2 mb-2 p-2">
                                 <h4>{{\App\Models\Question::getSubName($k)}}</h4>
-                                @foreach ($paper->questions->where('subject_id',$k) as $question)
+                                @foreach ($paper->questions->where('subject_id',$k)->shuffle() as $question)
                                     <hr>
                                     <div class="row  m-1">
                                         <input type="text" name="q{{ $count }}" value="{{ $question->id }}" hidden>
                                         <input type="text" name="ca{{ $count }}" value="{{ $question->ca }}" hidden>
                                         {!! $question->description !!}
-                                        <div><strong>{{ $question->name }} </strong></div>
+                                        <div><strong>{{$count}}) {{ $question->name }} </strong></div>
                                         <input hidden value="none" type="radio" name="op{{ $count }}" checked>
                                         @if($question->image)
                                             <div>
@@ -87,7 +87,7 @@
                                         @endif
 
                                         <div class="col-sm-6">
-                                            <div class="bg-info rounded-pill p-2">
+                                            <div class="bg-info rounded p-2">
                                                 <div class="form-check ">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
                                                            id="op{{ $count }}" value="op1">
@@ -97,7 +97,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="bg-info rounded-pill p-2 mt-2">
+                                            <div class="bg-info rounded p-2 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
                                                            id="op{{ $count }}" value="op2">
@@ -109,7 +109,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="bg-info rounded-pill p-2 ">
+                                            <div class="bg-info rounded p-2 ">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
                                                            id="op{{ $count }}" value="op3">
@@ -118,7 +118,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="bg-info rounded-pill p-2 mt-2">
+                                            <div class="bg-info rounded p-2 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
                                                            id="op{{ $count }}" value="op4">

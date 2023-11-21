@@ -35,20 +35,20 @@
                         <div class="article-info-item d-flex justify-content-between align-items-center">
                             <div class="info-content">
 
-                                @if ($post->authorId)
-                                    <img src="{{ Voyager::image($post->authorId->avatar) }}" class="rounded-circle"
-                                        alt="{{ $post->authorId->name }}">
+                                @if ($post->author)
+                                    <img src="{{ asset('uploads/'.$post->author->image) }}" class="rounded-circle"
+                                        alt="{{ $post->author->name }}">
                                     <h4>By <a
-                                            href="{{ Route('website.author', ['slug' => $post->authorId->id]) }}">{{ $post->authorId->name}}</a>
+                                            href="{{ Route('website.author', ['slug' => $post->author->id]) }}">{{ $post->author->name}}</a>
                                     </h4>
                                 @endif
                                 <span> {{ $post->created_at->format('M d, Y')}}</span>
                             </div>
-                         
+
                         </div>
                         <div class="article-image">
                             @if ($post->image)
-                                <img src="{{ Voyager::image($post->image) }}"
+                                <img src="{{  asset('uploads/'.$post->image) }}"
                                     alt="{{ $post->title }}<">
                             @endif
 
@@ -69,7 +69,7 @@
                                 <div class="info-content">
 
                                     @if ($comment->user)
-                                        <img src="{{ Voyager::image($comment->user->avatar) }}" class="rounded-circle"
+                                        <img src="{{ asset('uploads/'.$comment->user->image) }}" class="rounded-circle"
                                             alt="{{ $comment->user->name }}">
                                         <h4>By {{ $comment->user->name }}
                                             <span>{{ $comment->created_at->format('M d, Y') }}</span>

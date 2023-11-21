@@ -6,6 +6,7 @@ use App\Models\Exampaper;
 use App\Models\Result;
 use App\Models\FreeNote;
 use App\Models\Ebook;
+use App\Models\ResultActivity;
 use Artesaos\SEOTools\Facades\SEOTools;
 use DateTime;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class ExamController extends Controller
             $atmpCount = $result->count();
             $attmDuration = 0;
             if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime && date('Y-m-d H:i:s') <= $paper->enddate . ' ' . $paper->endtime){
-                $limit = 1;
+                $limit = 100;
             }else{
                 $limit = 999999;
             }
@@ -98,9 +99,9 @@ class ExamController extends Controller
             // return $result;
             SEOTools::setTitle('My Result');
             SEOTools::setDescription(getSetting('site.description'));
-            return view('website.singleresult', compact(['result', 'id']));
+            return view('website.results', compact(['result', 'id']));
         }
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
         $date = Carbon::now();
         $date = date('Y-m-d', time());
         $time = date('H:i:s', time());
@@ -122,37 +123,50 @@ class ExamController extends Controller
         $notans = 0;
         $wrongans = 0;
         $correctans = 0;
-
+        $result = Result::create([
+            'exam_paper_id' => $request->paperid,
+            'user_id' => Auth::user()->id,
+            'total_mark' => 0,
+            'ca' => 0,
+            'na' => 0,
+            'wa' => 0,
+            'duration' => $seconds,
+        ]);
         for ($c = 1; $c <= $request->total; $c++) {
+            $qid= "q" . $c;
             $ca = "ca" . $c;
             $sop = "op" . $c;
+            $status = null;
             if ($request->$sop == $request->$ca) {
                 $mark = $mark + $pm;
                 $correctans = $correctans + 1;
+                $status = 'Correct';
             } elseif ($request->$sop == "none") {
                 $notans = $notans + 1;
             } else {
                 $mark = $mark - $nm;
                 $wrongans = $wrongans + 1;
+                $status = 'Wrong';
             }
+            ResultActivity::create([
+                'result_id' => $result->id,
+                'question_id' => $request->$qid,
+                'attempt' => $request->$sop,
+                'status' => $status,
+            ]);
 
         }
 
-        $result = new Result;
 
-        $result->exam_paper_id = $request->paperid;
-        $result->user_id = Auth::user()->id;
         $result->total_mark = $mark;
         $result->ca = $correctans;
         $result->na = $notans;
         $result->wa = $wrongans;
-        $result->duration = $seconds;
-        $result->created_at;
-        $result->save();
-        $result = Result::where('user_id', Auth::user()->id)->where('exam_paper_id', $request->paperid)->orderBy('created_at', 'DESC')->take(1)->get();
+        $result->update();
+        $data = $result;
         SEOTools::setTitle('My Result');
         SEOTools::setDescription(getSetting('site.description'));
-        return view('website.result', compact(['result', 'id','request','paper']));
+        return view('website.result', compact(['data']));
     }
 
     public function download(Request $request)

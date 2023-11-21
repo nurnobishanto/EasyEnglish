@@ -5,94 +5,94 @@
 
     <div class="blog-area ptb-100">
         <div class="container">
-            <a class="btn btn-info" href="{{route('rank', ['id' => $id ])}}">See Rank for this Exam</a>
-            <a class="btn btn-warning" href="{{route('question', ['id' => $id ])}}">Download Anwaresheet</a>
+            <a class="btn btn-info" href="{{route('rank', ['id' => $data->exam_paper->id ])}}">See Rank for this Exam</a>
+            <a class="btn btn-warning" href="{{route('question', ['id' => $data->exam_paper->id ])}}">Download Anwaresheet</a>
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="text-center">{{ $paper->name }}</h1>
-                    <p>{!! $paper->description !!}</p>
+                    <h1 class="text-center">{{ $data->exam_paper->name }}</h1>
+                    <p>{!! $data->exam_paper->description !!}</p>
                 </div>
                 <div class="col-md-4">
-                    @foreach ($result as $r)
+
                         <div class="col-md-12">
 
                             <div class="card m-1">
                                 <div class="card-body">
-                                    <strong>Name : {{ $r->user->name }}</strong>
+                                    <strong>Name : {{ $data->user->name }}</strong>
                                     <div class="m-2 text-center">
                                         <span class="bg-info p-1">Full Mark :
-                                            {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
+                                            {{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}
                                         </span>
 
-                                        <span class="bg-success text-light p-1"><strong> Mark : {{ $r->total_mark }} /
-                                                {{ $r->exam_paper->questions->count() * $r->exam_paper->pmark }}
+                                        <span class="bg-success text-light p-1"><strong> Mark : {{ $data->total_mark }} /
+                                                {{ $data->exam_paper->questions->count() * $data->exam_paper->pmark }}
                                             </strong></span>
                                     </div>
 
 
                                     <div class="m-2 text-center">
                                         <span style="padding: 5px;" class="bg-success text-light">Correct :
-                                            {{ $r->ca }}</span><span style="padding: 5px;"
+                                            {{ $data->ca }}</span><span style="padding: 5px;"
                                             class="bg-dark  text-light">Attempt :
-                                            {{ $r->ca + $r->wa }}</span>
+                                            {{ $data->ca + $data->wa }}</span>
                                     </div>
                                     <div class="m-2 text-center">
-                                        <span style="padding: 5px;" class="bg-warning">Avoid : {{ $r->na }}
+                                        <span style="padding: 5px;" class="bg-warning">Avoid : {{ $data->na }}
                                         </span>
                                         <span style="padding: 5px;" class="bg-danger text-light">Wrong :
-                                            {{ $r->wa }}</span>
+                                            {{ $data->wa }}</span>
                                     </div>
 
 
-                                    <div style="font-size: 14px;">Submitted : {{ $r->created_at }}</div>
-                                    <div style="font-size: 14px;">Duration : {{ floor($r->duration / 60) }} Minutes
-                                        {{ $r->duration % 60 }} Seconds</div>
+                                    <div style="font-size: 14px;">Submitted : {{ $data->created_at }}</div>
+                                    <div style="font-size: 14px;">Duration : {{ floor($data->duration / 60) }} Minutes
+                                        {{ $data->duration % 60 }} Seconds</div>
 
 
                                     <div class="progress">
                                         <div class="progress-bar bg-success" role="progressbar"
-                                            style="width:{{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%">
-                                            Correct ({{ ($r->ca * 100) / $r->exam_paper->questions->count() }}%)
+                                            style="width:{{ ($data->ca * 100) / $data->exam_paper->questions->count() }}%">
+                                            Correct ({{ ($data->ca * 100) / $data->exam_paper->questions->count() }}%)
                                         </div>
                                         <div class="progress-bar bg-warning" role="progressbar"
-                                            style="width:{{ ($r->na * 100) / $r->exam_paper->questions->count() }}%">
-                                            Avoid ({{ ($r->na * 100) / $r->exam_paper->questions->count() }}%)
+                                            style="width:{{ ($data->na * 100) / $data->exam_paper->questions->count() }}%">
+                                            Avoid ({{ ($data->na * 100) / $data->exam_paper->questions->count() }}%)
                                         </div>
                                         <div class="progress-bar bg-danger " role="progressbar"
-                                            style="width:{{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%">
-                                            Wrong ({{ ($r->wa * 100) / $r->exam_paper->questions->count() }}%)
+                                            style="width:{{ ($data->wa * 100) / $data->exam_paper->questions->count() }}%">
+                                            Wrong ({{ ($data->wa * 100) / $data->exam_paper->questions->count() }}%)
                                         </div>
                                     </div>
 
-                                    <a class="btn btn-info m-1" href="{{ route('resultCardPdf', ['id' => $r->id]) }}"
-                                        target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i>
-                                        Download Result Card</a>
+{{--                                    <a class="btn btn-info m-1" href="{{ route('resultCardPdf', ['id' => $data->id]) }}"--}}
+{{--                                        target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i>--}}
+{{--                                        Download Result Card</a>--}}
                                 </div>
                             </div>
 
 
                         </div>
-                    @endforeach
+
 
                 </div>
                 <div class="col-md-8">
 
                     <?php
                     $count = 1;
-                    $total = $paper->questions->count();
-                    $timeMin = $paper->duration;
+                    $total = $data->exam_paper->questions->count();
+                    $timeMin = $data->exam_paper->duration;
                     $timeSec = $timeMin * 60;
 
                     ?>
-                    <input type="number" name="total" value="{{ $paper->questions->count() }}" hidden>
+                    <input type="number" name="total" value="{{ $data->exam_paper->questions->count() }}" hidden>
                     <span class="text-dark">Time : {{ $timeMin }} Minutes.</span><br>
                     <span class="text-primary">Total Questions : {{ $total }} </span><br>
-                    <span class="text-success">Postive Mark For Every Question : {{ $paper->pmark }}</span><br>
-                    <span class="text-danger">Negative Mark For Every Question : {{ $paper->nmark }}</span><br>
-                    <span class="text-success "><strong> Total Mark : {{ $total }} X {{ $paper->pmark }} =
-                            {{ $total * $paper->pmark }} </strong></span><br>
+                    <span class="text-success">Postive Mark For Every Question : {{ $data->exam_paper->pmark }}</span><br>
+                    <span class="text-danger">Negative Mark For Every Question : {{ $data->exam_paper->nmark }}</span><br>
+                    <span class="text-success "><strong> Total Mark : {{ $total }} X {{ $data->exam_paper->pmark }} =
+                            {{ $total * $data->exam_paper->pmark }} </strong></span><br>
                     <?php $g = [];?>
-                    @foreach($paper->questions as $q)
+                    @foreach($data->exam_paper->questions as $q)
                             <?php
                             if (!in_array($q->subject_id, $g)) {
                                 array_push($g, $q->subject_id);
@@ -104,65 +104,39 @@
                         <div class="border mt-2 mb-2 p-2">
                             <h4>{{\App\Models\Question::getSubName($k)}}</h4>
                         </div>
-                        @foreach ($paper->questions->where('subject_id',$k) as $question)
-                                <?php
-                                $ca = 'ca' . $count;
-                                $sop = 'op' . $count;
-                                $cans = $request->$ca;
-                                $sans = $request->$sop;
-                                $rowClass = $cans === $sans ? 'bg-success text-light' : ($sans === 'none' ? 'bg-warning text-dark' : 'bg-danger text-light');
-                                ?>
+                        @foreach ($data->exam_paper->questions->where('subject_id',$k) as $question)
+                                @php
+
+                                $cans = $question->ca;
+                                $activity = \App\Models\ResultActivity::where('result_id',$data->id)->where('question_id',$question->id)->first();
+                                $sans = $activity->attempt;
+                                $rowClass = $cans === $sans ? 'border-5 border border-success' : ($sans === 'none' ? ' border-5 border border-warning ' : 'border-5 border border-danger');
+                                @endphp
                                 <div class="row border m-1 {{ $rowClass }}">
-
-                                <div><strong><?php echo $count; ?>) {{ $question->name }} </strong></div>
-
-
-                                {!! $question->description !!}
-                                @if ($question->image)
                                     <div>
-                                        <img style="max-height:250px;" src="{{ asset('uploads/'.$question->image) }}"
-                                             alt="{{ $question->name }}">
+                                        @if ($question->image)
+                                            <div>
+                                                <img style="max-height:250px;" src="{{ asset('uploads/'.$question->image) }}"
+                                                     alt="{{ $question->name }}">
+                                            </div>
+                                        @endif
+                                        <div>{!! $question->description !!}</div>
+                                        <strong>{{$count}}) {{ $question->name }} </strong>
                                     </div>
-                                @endif
                                 <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                               id="op{{ $count }}" value="op1" <?php if ($question->$sans == $question->op1) {
-                                                                                   ?> checked <?php
-                                                                                              } ?>>
-                                        <label class="form-check-label" for="op{{ $count }}">
-                                            {{ $question->op1}}
-                                        </label>
-
+                                    <div class="@if($question->$cans == $question->op1) border border-2 border-success @endif @if(($question->$sans == $question->op1) && ($question->$cans == $question->op1) ) bg-success text-light @elseif(($question->$sans == $question->op1) && ($question->$cans != $question->op1)) bg-danger text-light @else bg-light text-dark @endif  rounded p-2 ">
+                                        <strong>i) {{ $question->op1 }} </strong>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                               id="op{{ $count }}" value="op2" <?php if ($question->$sans == $question->op2) {
-                                                                                   ?> checked <?php
-                                                                                              } ?>>
-                                        <label class="form-check-label" for="op{{ $count }}">
-                                            {{ $question->op2 }}
-                                        </label>
+                                    <div class="@if($question->$cans == $question->op2) border border-2 border-success @endif  mt-2 @if(($question->$sans == $question->op2) && ($question->$cans == $question->op2)) bg-success text-light @elseif(($question->$sans == $question->op2) && ($question->$cans != $question->op2)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
+                                        <strong>i) {{ $question->op2 }} </strong>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                               id="op{{ $count }}" value="op3" <?php if ($question->$sans == $question->op3) {
-                                                                                   ?> checked <?php
-                                                                                              } ?>>
-                                        <label class="form-check-label" for="op{{ $count }}">
-                                            {{ $question->op3 }}
-                                        </label>
+                                    <div class="@if($question->$cans == $question->op3) border border-2 border-success @endif @if(($question->$sans == $question->op3) && ($question->$cans == $question->op3)) bg-success text-light @elseif(($question->$sans == $question->op3) && ($question->$cans != $question->op3)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
+                                        <strong>i) {{ $question->op3 }} </strong>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                               id="op{{ $count }}" value="op4" <?php if ($question->$sans == $question->op4) {
-                                                                                   ?> checked <?php
-                                                                                              } ?>>
-                                        <label class="form-check-label" for="op{{ $count }}">
-                                            {{ $question->op4 }}
-                                        </label>
+                                    <div class="@if($question->$cans == $question->op4) border border-2 border-success @endif  mt-2 @if(($question->$sans == $question->op4) && ($question->$cans == $question->op4)) bg-success text-light @elseif(($question->$sans == $question->op4) && ($question->$cans != $question->op4)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
+                                        <strong>i) {{ $question->op4 }} </strong>
                                     </div>
 
                                 </div>

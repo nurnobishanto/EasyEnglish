@@ -15,10 +15,10 @@
             @foreach ($poularpost as $item)
                 <article class="item">
                 <a href="{{Route('website.post',['slug'=>$item->slug])}}" class="thumb">
-                    @if (Voyager::image( $item->image ))
-                        <span class="fullimage cover" style="background-image: url({{ Voyager::image( $item->thumbnail('small') )}})" role="img"></span>
+                    @if ($item->image )
+                        <span class="fullimage cover" style="background-image: url({{ asset('uploads/'. $item->image )}})" role="img"></span>
                     @endif
-                    
+
                 </a>
                 <div class="info">
                     <h4 class="title usmall">
@@ -37,7 +37,7 @@
 
         <div class="widget widget_explore_topics">
             <h3 class="widget-title">Category Clouds</h3>
-            
+
             <ul class="topics-list">
                 @foreach ($allcategories as $category)
                 <li>
@@ -46,7 +46,7 @@
                         <span><a href="{{Route('website.category',['slug'=>$category->slug])}}">({{$category->posts->count()}})</a></span>
                     </div>
                 </li>
-                    
+
                 @endforeach
             </ul>
         </div>

@@ -117,7 +117,7 @@ class WebsiteController extends Controller
     {
 
         $category = Category::where('slug', $slug)->first();
-        $categoryposts = Post::where('category_id', $category->id)->paginate(6);
+        $categoryposts = Post::where('category_id', $category->id)->where('status','published')->paginate(6);
         SEOTools::setTitle($category->name);
         SEOTools::setDescription(getSetting('site_description'));
         return view('website.category', compact(['categoryposts', 'category']));
@@ -126,7 +126,7 @@ class WebsiteController extends Controller
     {
 
         $author = User::where('id', $slug)->first();
-        $authorposts = Post::where('author_id', $author->id)->paginate(6);
+        $authorposts = Post::where('author_id', $author->id)->where('status','published')->paginate(6);
         SEOTools::setTitle($author->name);
         SEOTools::setDescription(getSetting('site_description'));
         return view('website.author', compact(['authorposts', 'author']));
@@ -163,7 +163,7 @@ class WebsiteController extends Controller
         }
     }
 
-    public function result($id)
+    public function results($id)
     {
 
         $result = Result::where('exam_paper_id', $id)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
@@ -171,7 +171,18 @@ class WebsiteController extends Controller
         // return $result;
         SEOTools::setTitle('Results');
         SEOTools::setDescription(getSetting('site_description'));
-        return view('website.singleresult', compact(['result', 'id']));
+        return view('website.results', compact(['result', 'id']));
+
+    }
+    public function result($result)
+    {
+
+        $data = Result::find($result);
+
+        // return $result;
+        SEOTools::setTitle('Results');
+        SEOTools::setDescription(getSetting('site_description'));
+        return view('website.result', compact('data'));
 
     }
     public function rank($id)

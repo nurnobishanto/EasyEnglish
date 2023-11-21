@@ -31,9 +31,9 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-card">
                             <div class="blog-image">
-                                @if (Voyager::image($post->image))
+                                @if ($post->image)
                                     <a href="{{ Route('website.post', ['slug' => $post->slug]) }}"><img
-                                            src="{{ Voyager::image($post->image) }}" alt="{{ $post->title }}"></a>
+                                            src="{{ asset('uploads/'.$post->image) }}" alt="{{ $post->title }}"></a>
                                 @else
                                     <a href="{{ Route('website.post', ['slug' => $post->slug]) }}"><img
                                             src="{{ asset('website') }}/assets/images/blog/blog.jpg"
@@ -43,8 +43,8 @@
                             <div class="blog-content with-padding">
 
                                 <span>By
-                                    @if ($post->authorId)
-                                        <a href="{{ Route('website.author', ['slug' => $post->authorId->id]) }}">{{ $post->authorId->name }}</a>
+                                    @if ($post->author)
+                                        <a href="{{ Route('website.author', ['slug' => $post->author->id]) }}">{{ $post->author->name }}</a>
                                     @endif
                                 </span>
 

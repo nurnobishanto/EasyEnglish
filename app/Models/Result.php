@@ -17,4 +17,8 @@ class Result extends Model
     {
         return $this->belongsTo(ExamPaper::class);
     }
+    public function result_activity(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ResultActivity::class);
+    }
 }
