@@ -2,25 +2,32 @@
 
 @section('content')
     <!-- Start Main Hero Area -->
-    <div class="main-hero-area" style="background-image: url('{{ asset('uploads/'.getSetting('home_page_background')) }}');">
+    <div class="main-hero-area" >
         <div class="container">
-            <div class="main-hero-content col-md-6" data-speed="0.05" data-revert="true"
-                style="padding: 5%;background-color:#004400;border-radius:20px">
-                @if(getSetting('site_tagline'))
-                 <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
-                @endif
-                <h1 class="text-light font-weight-bold" data-aos="fade-right" data-aos-delay="70" data-aos-duration="700"
-                    data-aos-once="true">
-                    {{ getSetting('home_page_title') }}
-                </h1>
-                <h2 data-aos="fade-right" data-aos-delay="80" data-aos-duration="800" data-aos-once="true">
-                    {{ getSetting('home_page_description') }}
-                </h2>
+            <div class="row justify-content-center gap-md-3">
+                <div class="main-hero-content col-md-5" data-speed="0.05" data-revert="true"
+                     style="padding: 5%;background-color:rgba(1,56,1,0.9);border-radius:20px">
+                    @if(getSetting('site_tagline'))
+                        <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
+                    @endif
+                    <h1 class="text-light font-weight-bold" data-aos="fade-right" data-aos-delay="70" data-aos-duration="700"
+                        data-aos-once="true">
+                        {{ getSetting('home_page_title') }}
+                    </h1>
+                    <p class="text-light" data-aos="fade-right" data-aos-delay="80" data-aos-duration="800" data-aos-once="true">
+                        {{ getSetting('home_page_description') }}
+                    </p>
 
-                <ul class="hero-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
-                    <li><a href="{{ Route('exam') }}" class="btn btn-light">START LEARING</a></li>
-                </ul>
+                    <ul class="hero-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
+                        <li><a href="{{ Route('exam') }}" class="btn btn-light">START LEARING</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{asset('uploads/'.getSetting('home_page_background'))}}">
+                </div>
             </div>
+
+
         </div>
     </div>
     <!-- End Main Hero Area -->
@@ -205,7 +212,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="why-choose-us-video-view" data-speed="0.09" data-revert="true">
-                        <a href="https://www.youtube.com/watch?v=GAuqgOC6eKY" class="video-btn popup-youtube">
+                        <a href="https://www.youtube.com/watch?v=Bi3-cftfb9s" class="video-btn popup-youtube">
                             <i class="flaticon-play-button"></i>
                         </a>
                     </div>
