@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Ebook;
 use App\Models\ExamCategory;
-use App\Models\Exampaper;
+use App\Models\ExamPaper;
 use App\Models\FreeNote;
 use App\Models\Post;
 use App\Models\Result;
@@ -190,7 +190,7 @@ class WebsiteController extends Controller
 
         $result = Result::where('exam_paper_id', $id)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
         SEOTools::setTitle('Rank');
         SEOTools::setDescription(getSetting('site_description'));
         return view('website.rank', compact(['result', 'id', 'paper']));
@@ -200,7 +200,7 @@ class WebsiteController extends Controller
     public function generatePDFquestion($id)
     {
 
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
         $date = [
             'paper' => $paper,
         ];
@@ -253,7 +253,7 @@ class WebsiteController extends Controller
 
         $result = Result::where('exam_paper_id', $id)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
 
         $date = [
             'paper' => $paper,
@@ -356,7 +356,7 @@ class WebsiteController extends Controller
     }
     public function clone($id)
     {
-        $old_ep = Exampaper::find($id);
+        $old_ep = ExamPaper::find($id);
         $new_ep = $old_ep->replicate();
         $new_ep->push();
         $new_ep->name = $old_ep->name." - copy";
@@ -373,7 +373,7 @@ class WebsiteController extends Controller
     public function start($id)
     {
 
-        $paper = Exampaper::where('id', $id)->first();
+        $paper = ExamPaper::where('id', $id)->first();
 
         if ($paper) {
             $date = Carbon::now();
