@@ -59,7 +59,7 @@
                                             <a class="btn btn-danger"
                                                href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
                                            <a class="btn btn-info"
-                                               href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>
+                                               href="{{ Route('results', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                                     <i class="ri-play-circle-fill"></i> Start
                                                 </a>
 
-                                                <a class="btn btn-info" href="{{ Route('result', ['id' => $item->id]) }}">
+                                                <a class="btn btn-info" href="{{ Route('results', ['id' => $item->id]) }}">
                                                     <i class="ri-file-list-3-fill"></i> Result
                                                 </a>
                                             @else
@@ -106,7 +106,7 @@
                                                         <i class="ri-play-circle-fill"></i> Start
                                                     </a>
                                                     <!-- Uncomment the line below if you have a 'result' route -->
-                                                    <a class="btn btn-info" href="{{ Route('result', ['id' => $item->id]) }}">
+                                                    <a class="btn btn-info" href="{{ Route('results', ['id' => $item->id]) }}">
                                                         <i class="ri-file-list-3-fill"></i> Result
                                                     </a>
                                                 @else
@@ -130,10 +130,9 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table-bordered table table-striped">
-                                            <tr>
-                                                <th>Start</th>
-                                                <td>{{ $item->startdate }} {{ $item->starttime }}</td>
-                                            </tr>
+                                            <tr><th>Start</th><td>{{ $item->startdate }} {{ $item->starttime }}</td></tr>
+                                            <tr><th>Questions</th><td>{{ $item->questions->count() }} </td></tr>
+                                            <tr><th>Duration</th><td>{{ $item->duration }} Min</td></tr>
                                         </table>
                                     </div>
                                     <div class="card-footer">
@@ -168,8 +167,7 @@
                                         <td>
                                             <a class="btn btn-danger"
                                                href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
-                                            <!--<a class="btn btn-info"-->
-                                            <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
+                                            <a class="btn btn-info"   href="{{ Route('results', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>
                                         </td>
                                     </tr>
                                 @endforeach
