@@ -23,7 +23,7 @@ if (!function_exists('getUpcomingExamPapers')) {
     {
         return DB::table('exam_papers')
             ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
-            ->whereRaw('STR_TO_DATE(CONCAT(startdate, " ", starttime), "%Y-%m-%d %H:%i:%s") > NOW()')
+            ->whereRaw('CONCAT(startdate, " ", starttime) >= ?', [now()->toDateTimeString()])
             ->get();
     }
 }
