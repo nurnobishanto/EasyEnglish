@@ -10,7 +10,7 @@
 
             <div class="row justify-content-center">
                 @foreach ($result as $data)
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4">
                         <div class="card m-1">
                             <div class="card-header">
                                 <h5 class="card-title">Name : {{ $data->user->name }}</h5>
