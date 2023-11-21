@@ -1,27 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
 
-                <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                    data-aos-once="true">
-                    <h2>About Us</h2>
-
-                    <ul>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li>About Us</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
     <!-- Start About US Area -->
     <div class="expertise-area-with-white-color ptb-100">
         <div class="container">
@@ -68,76 +48,97 @@
         </div>
     </div>
     <!-- End About Us Area -->
+    <!-- Start Funfact Area -->
+    <div class="fun-fact-area bg-three pt-100 pb-75" style="background-color: #004400">
+        <div class="container">
+            <div class="section-title">
+                <span>Our Funfact</span>
+                <h2>Our Resource History</h2>
+            </div>
 
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\User::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Happy Students</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="ri-stack-line"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\Subject::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Subject</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-newspaper"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\ExamPaper::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Exam Paper</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-question-circle"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\Question::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Questions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Funfact Area -->
 
     <!-- Start Team Area -->
     <div class="team-area-without-color pt-100 pb-75">
         <div class="container">
             <div class="section-title">
-                <span>{{ getSetting('team.title') }}</span>
-                <h2>{{ getSetting('team.heading') }}</h2>
-                <p>{{ getSetting('team.description') }}</p>
+                <span>Our Teachers</span>
+                <h2>Meet our respected teachers</h2>
             </div>
 
             <div class="row justify-content-center">
-                @if (getSetting('team.mname1'))
+                @foreach($teachers as $teacher)
                     <div class="col-lg-3 col-sm-6">
-                        <div class="single-team-item">
+                        <div class="single-team-item card">
                             <div class="team-image">
-                                 @if (getSetting('team.ming1'))
-                                 <img src="{{ Voyager::image(getSetting('team.ming1')) }}" alt="Member Image">
-                                 @endif
-
-
+                                 <img src="{{asset('uploads/'.$teacher->image)}}" alt="{{$teacher->name}}">
                             </div>
-                            <div class="team-content">
-                                <h3>{{ getSetting('team.mname1') }}</h3>
-                                <span>{{ getSetting('team.mtitle1') }}</span>
+                            <div class="team-content text-center">
+                                <h3>{{$teacher->name}}</h3>
+                                <span>{{$teacher->tagline}}</span>
                             </div>
                         </div>
                     </div>
-                @endif
-                @if (getSetting('team.mname2'))
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-team-item">
-                            <div class="team-image">
-                                @if (getSetting('team.ming2'))
-                                 <img src="{{ Voyager::image(getSetting('team.ming2')) }}" alt="Member Image">
-                                @endif
-
-                            </div>
-                            <div class="team-content">
-                                <h3>{{ getSetting('team.mname2') }}</h3>
-                                <span>{{ getSetting('team.mtitle2') }}</span>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
-                @if (getSetting('team.mname3'))
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-team-item">
-                            <div class="team-image">
-                                @if (getSetting('team.ming3'))
-                                 <img src="{{ Voyager::image(getSetting('team.ming3')) }}" alt="Member Image">
-                                @endif
-
-                            </div>
-                            <div class="team-content">
-                                <h3>{{ getSetting('team.mname3') }}</h3>
-                                <span>{{ getSetting('team.mtitle3') }}</span>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
+                @endforeach
 
             </div>
         </div>
 
-        <div class="team-shape-1" data-speed="0.08" data-revert="true">
-            <img src="assets/images/team/shape-1.png" alt="Oleev">
-        </div>
     </div>
     <!-- End Team Area -->
 @endsection

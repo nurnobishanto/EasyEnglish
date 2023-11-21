@@ -27,9 +27,8 @@ class ExamController extends Controller
 
     public function index($id)
     {
-        Session::forget( "exam_paper_password_{$id}");
-        $paper = Exampaper::where('id', $id)->first();
 
+        $paper = Exampaper::where('id', $id)->first();
         if ($paper) {
             $limit = 9999;
             $date = Carbon::now();
@@ -67,17 +66,19 @@ class ExamController extends Controller
                 if(date('Y-m-d H:i:s') >= $paper->startdate . ' ' . $paper->starttime){
                     return view('website.test', compact(['paper', 'attmDuration']));
                 }else{
+                    Session::forget( "exam_paper_password_{$id}");
                     return view('website.start', compact(['paper']));
                 }
 
 
             } else {
-
+                Session::forget( "exam_paper_password_{$id}");
                 return "Limit Cross";
 
             }
 
         } else {
+            Session::forget( "exam_paper_password_{$id}");
             return view('website.404');
         }
     }

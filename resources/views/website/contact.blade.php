@@ -1,35 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col">
-                    <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                        data-aos-once="true">
-                        <h2>{{ 'Contact Us' }}</h2>
-
-                        <ul>
-                            <li>
-                                <a href="{{ route('website') }}">Home</a>
-                            </li>
-                            <li>Contact Us</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
-
     <!-- Start Contact Information Area -->
     <div class="contact-information-area pt-100 pb-75">
         <div class="container">
             <div class="section-title">
-                <span>Title</span>
+                <span>Contact us</span>
                 <h2>Heading</h2>
                 <p>Description</p>
             </div>
@@ -88,7 +64,7 @@
 
 
 
-            <form class="contactForm" class="col" action="{{ route('contactform.store') }}" method="POST">
+            <form class="contactForm" class="col" action="{{ route('contact_form.store') }}" method="POST">
                 @csrf
                 @if (Session::has('success'))
                     <div class="alert alert-success">
@@ -103,11 +79,12 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
                             <select name="type" class="form-select">
-
-                                <option value="1">Option 1</option>
-                                <option value="1">Option 1</option>
-
-
+                                <option value="">Select contact type</option>
+                                <option value="Admission">Admission</option>
+                                <option value="General Contact">General Contact</option>
+                                <option value="English Special Batch">English Special Batch</option>
+                                <option value="HSC Special Batch">HSC Special Batch</option>
+                                <option value="HSC Batch">HSC Batch</option>
                             </select>
                             @if ($errors->has('type'))
                                 <span class="text-danger">{{ $errors->first('type') }}</span>

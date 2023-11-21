@@ -1,34 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-
-                <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                    data-aos-once="true">
-                    <h2>{{ $sub->name }}</h2>
-
-                    <ul>
-                        <li>
-                            <a href="{{ route('website') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('exam') }}">Exam</a>
-                        </li>
-                        <li>{{ $sub->name }}</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
 
     <!-- Start Blog Area -->
-    <div class="blog-area ptb-100">
+    <div class="blog-area pt-5 pb-4">
         <div class="container">
+            <h2 class="text-center">Select Exam Category</h2>
+            <hr>
             <div class="row justify-content-center">
                 @foreach ($ecats as $sub)
                     <div class="col-lg-4 col-md-6">
@@ -45,10 +23,10 @@
                                    </div>
                                 @else
                                     <a class="d-block" href="{{ route('exam_category', ['slug' => $sub->slug]) }}">
-                                        <h2 class="text-light text-center align-middle pt-5 pb-5 p-2"
-                                            style="background-color: #342986;">
+                                        <h4 class="text-light text-center align-middle pt-5 pb-5 p-2 rounded-pill"
+                                            style="background-color: #004400;">
                                             {{ $sub->name }}
-                                        </h2>
+                                        </h4>
                                     </a>
                                 @endif
 

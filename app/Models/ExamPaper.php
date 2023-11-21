@@ -19,7 +19,7 @@ class ExamPaper extends Model
     }
     public function questions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Question::class,'exam_paper_questions','question_id');
+        return $this->belongsToMany(Question::class,'exam_paper_questions',);
     }
     public function batch(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

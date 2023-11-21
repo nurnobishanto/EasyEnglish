@@ -1,15 +1,73 @@
 <?php
-// app/helpers.php
+
+use App\Models\ExamPaper;
+use Illuminate\Support\Collection;
 
 use App\Models\Menu;
 use App\Models\Setting;
+use Illuminate\Support\Facades\DB;
+
+
+if (!function_exists('getRunningExamPapers')) {
+    function getRunningExamPapers()
+    {
+       return DB::table('exam_papers')
+            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
+            ->whereRaw('STR_TO_DATE(CONCAT(startdate, " ", starttime), "%Y-%m-%d %H:%i:%s") <= NOW()')
+            ->whereRaw('STR_TO_DATE(CONCAT(enddate, " ", endtime), "%Y-%m-%d %H:%i:%s") >= NOW()')
+            ->get();
+    }
+}
+if (!function_exists('getUpcomingExamPapers')) {
+    function getUpcomingExamPapers(): Collection
+    {
+        return DB::table('exam_papers')
+            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
+            ->whereRaw('STR_TO_DATE(CONCAT(startdate, " ", starttime), "%Y-%m-%d %H:%i:%s") > NOW()')
+            ->get();
+    }
+}
+if (!function_exists('getTodayExamPapers')) {
+    function getTodayExamPapers(): Collection
+    {
+        return DB::table('exam_papers')
+            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
+            ->whereRaw('CURDATE() BETWEEN STR_TO_DATE(CONCAT(startdate, " ", starttime), "%Y-%m-%d %H:%i:%s") AND STR_TO_DATE(CONCAT(enddate, " ", endtime), "%Y-%m-%d %H:%i:%s")')
+            ->get();
+    }
+}
+if (!function_exists('isExamRunning')) {
+    function isExamRunning($exam)
+    {
+        $startTime = $exam->startdate . ' ' . $exam->starttime;
+        $endTime = $exam->enddate . ' ' . $exam->endtime;
+
+        return now() >= $startTime && now() <= $endTime;
+    }
+}
+if (!function_exists('isExamStarted')) {
+    function isExamStarted($exam)
+    {
+        $startTime = $exam->startdate . ' ' . $exam->starttime;
+
+        return now() >= $startTime;
+    }
+}
+if (!function_exists('getPreviousExamPapers')) {
+    function getPreviousExamPapers(): Collection
+    {
+        return DB::table('exam_papers')
+            ->selectRaw('*, CONCAT(enddate, " ", endtime) AS end_datetime')
+            ->whereRaw('NOW() > STR_TO_DATE(CONCAT(enddate, " ", endtime), "%Y-%m-%d %H:%i:%s")')
+            ->get();
+    }
+}
 if (!function_exists('menu')) {
     function menu($slug, $type = null, array $options = [])
     {
         return (new App\Models\Menu)->display($slug, $type, $options);
     }
 }
-
 if (!function_exists('getPostOffices')) {
     function getPostOffices($upazila)
     {

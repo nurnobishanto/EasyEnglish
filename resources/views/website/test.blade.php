@@ -1,41 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-
-                <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                    data-aos-once="true">
-                    <h2>{{ $paper->name }}</h2>
-
-                    <ul>
-                        <li>
-                            <a href="{{ route('website') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('exam') }}">Exam</a>
-                        </li>
-                        <li>{{ $paper->name }}</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
     <div class="blog-area ptb-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <h1 class="text-center">{{ $paper->name }}</h1>
-                    <p>{!! $paper->description !!}</p>
+
                 </div>
-                <div class="col-md-4">
-                    <div class="coming-soon-content">
-                        <h2 class="text-center">Time Remaing</h2>
+                <div class="col-md-2  fixed-bottom">
+                    <div class="coming-soon-content ">
+                        <h4 class="text-center">Time Remaining</h4>
                         <div id="timer" class="flex-wrap d-flex justify-content-center">
 
                             <div id="countdownMin" class="align-items-center flex-column d-flex justify-content-center">
@@ -73,7 +48,7 @@
                                 timeleft -= 1;
                             }, 1000);
                         </script>
-
+                        <p>{!! $paper->description !!}</p>
                         <input type="number" name="paperid" value="{{ $paper->id }}" hidden>
                         <input type="number" name="pmark" value="{{ $paper->pmark }}" hidden>
                         <input type="number" name="nmark" value="{{ $paper->nmark }}" hidden>
@@ -97,53 +72,63 @@
                             <div class="border mt-2 mb-2 p-2">
                                 <h4>{{\App\Models\Question::getSubName($k)}}</h4>
                                 @foreach ($paper->questions->where('subject_id',$k) as $question)
-                                    <div class="row  border m-1">
+                                    <hr>
+                                    <div class="row  m-1">
                                         <input type="text" name="q{{ $count }}" value="{{ $question->id }}" hidden>
                                         <input type="text" name="ca{{ $count }}" value="{{ $question->ca }}" hidden>
                                         {!! $question->description !!}
-                                        <div> <strong>{{ $question->name }} </strong></div>
-
+                                        <div><strong>{{ $question->name }} </strong></div>
                                         <input hidden value="none" type="radio" name="op{{ $count }}" checked>
-
                                         @if($question->image)
                                             <div>
-                                                <img style="width: 360px;" src="{{ Voyager::image($question->image) }}"
+                                                <img style="width: 360px;" src="{{ asset('uploads/'.$question->image) }}"
                                                      alt="{{ $question->name }}">
                                             </div>
                                         @endif
 
-                                        <div class="col-md-6">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                       id="op{{ $count }}" value="op1">
+                                        <div class="col-sm-6">
+                                            <div class="bg-info rounded-pill p-2">
+                                                <div class="form-check ">
+                                                    <input class="form-check-input" type="radio" name="op{{ $count }}"
+                                                           id="op{{ $count }}" value="op1">
 
-                                                <label class="form-check-label" for="op{{ $count }}">
-                                                    {{ $question->op1 }}
-                                                </label>
+                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                        {{ $question->op1 }}
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                       id="op{{ $count }}" value="op2">
-                                                <label class="form-check-label" for="op{{ $count }}">
-                                                    {{ $question->op2 }}
-                                                </label>
+                                            <div class="bg-info rounded-pill p-2 mt-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="op{{ $count }}"
+                                                           id="op{{ $count }}" value="op2">
+                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                        {{ $question->op2 }}
+                                                    </label>
+                                                </div>
                                             </div>
+
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                       id="op{{ $count }}" value="op3">
-                                                <label class="form-check-label" for="op{{ $count }}">
-                                                    {{ $question->op3 }}
-                                                </label>
+                                        <div class="col-sm-6">
+                                            <div class="bg-info rounded-pill p-2 ">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="op{{ $count }}"
+                                                           id="op{{ $count }}" value="op3">
+                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                        {{ $question->op3 }}
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                       id="op{{ $count }}" value="op4">
-                                                <label class="form-check-label" for="op{{ $count }}">
-                                                    {{ $question->op4 }}
-                                                </label>
+                                            <div class="bg-info rounded-pill p-2 mt-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="op{{ $count }}"
+                                                           id="op{{ $count }}" value="op4">
+                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                        {{ $question->op4 }}
+                                                    </label>
+                                                </div>
+
                                             </div>
+
 
                                         </div>
                                     </div>

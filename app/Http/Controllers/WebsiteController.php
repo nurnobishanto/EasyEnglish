@@ -11,6 +11,7 @@ use App\Models\FreeNote;
 use App\Models\Post;
 use App\Models\Result;
 use App\Models\Subject;
+use App\Models\Teacher;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -54,8 +55,8 @@ class WebsiteController extends Controller
     {
         SEOTools::setTitle('About Us');
         SEOTools::setDescription(getSetting('site_description'));
-
-        return view('website.about');
+        $teachers = Teacher::all();
+        return view('website.about',compact('teachers'));
     }
     public function ebook()
     {

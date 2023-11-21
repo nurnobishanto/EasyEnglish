@@ -1,34 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
 
-                <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                    data-aos-once="true">
-                    <h2>{{ $ecat->name }}</h2>
-
-                    <ul>
-                        <li>
-                            <a href="{{ route('website') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('exam') }}">Exam</a>
-                        </li>
-                        <li>{{ $ecat->name }}</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
     <div class="blog-area ptb-100">
         <div class="container">
-            <div class="row justify-content-center">
-                <span class="bg-danger p-1 text-light"><?php echo 'Today : ' . date('l, d M Y , h:i A'); ?></span>
+            <strong class="d-inline btn btn-success" ><?php echo 'Today : ' . date('l, d M Y , h:i A'); ?></strong>
+            <div class="row justify-content-center mt-5">
                 <ul class="nav nav-tabs nav-pills nav-justified" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="running-tab" data-bs-toggle="tab" data-bs-target="#running"
@@ -54,115 +31,118 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade" id="running" role="tabpanel" aria-labelledby="running-tab">
 
-                        <h2 class="mt-5">Runnng Exam List </h2>
-
-                        <table id="table" class="table table-striped table-bordered table-sm mt-5" cellspacing="0"
-                            width="100%">
-                            <thead>
-                                <tr>
-                                    <td>#ID</td>
-                                    <td>Title</td>
-                                    <td>Start Date Time</td>
-                                    <td>End Date Time</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($examLists as $item)
-                                    @if (date('Y-m-d H:i:s') >= $item->startdate . ' ' . $item->starttime && date('Y-m-d H:i:s') <= $item->enddate . ' ' . $item->endtime)
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->startdate . ' ' . $item->starttime }}</td>
-                                            <td>{{ $item->enddate }}, {{ $item->endtime }} </td>
-                                            <td>
-                                                <a class="btn btn-danger"
-                                                    href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
-                                                <!--<a class="btn btn-info"-->
-                                                <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                        <h2 class="mt-5">Running Exam List </h2>
+                        <div class="row justify-content-center">
+                            @foreach (getRunningExamPapers() as $item)
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title"><td>{{ $item->name }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped table-bordered">
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <td>{{ $item->duration }} Minute</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Start</th>
+                                                    <td>{{ $item->startdate }} {{ $item->starttime }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>End</th>
+                                                    <td>{{ $item->enddate }} {{ $item->endtime }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a class="btn btn-danger"
+                                               href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
+                                           <a class="btn btn-info"
+                                               href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="tab-pane fade show active" id="today" role="tabpanel" aria-labelledby="today-tab">
                         <h2 class="mt-5">Today Exam List</h2>
-                        <table id="table1" class="table table-striped table-bordered table-sm mt-5" cellspacing="0"
-                            width="100%">
-                            <thead>
-                                <tr>
-                                    <td>#ID</td>
-                                    <td>Title</td>
-                                    <td>Start</td>
-                                    <td>End</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($examLists as $item)
-                                    @if (date('Y-m-d') === $item->startdate || (date('Y-m-d') === $item->enddate) || (date('Y-m-d H:i:s') >= $item->startdate . ' ' . $item->starttime && date('Y-m-d H:i:s') <= $item->enddate . ' ' . $item->endtime))
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->startdate . ' ' . $item->starttime }}</td>
-                                            <td>{{ $item->enddate }}, {{ $item->endtime }} </td>
-                                            <td>
-                                                @if (date('Y-m-d H:i:s') >= $item->startdate . ' ' . $item->starttime && date('Y-m-d H:i:s') <= $item->enddate . ' ' . $item->endtime)
-                                                    <a class="btn btn-danger"
-                                                        href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
-                                                     <!--<a class="btn btn-danger"-->
-                                                     <!--       href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>    -->
+                        <div class="row justify-content-center">
+                            @foreach (getTodayExamPapers() as $item)
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title"><td>{{ $item->name }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped table-bordered">
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <td>{{ $item->duration }} Minute</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Start</th>
+                                                    <td>{{ $item->startdate }} {{ $item->starttime }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>End</th>
+                                                    <td>{{ $item->enddate }} {{ $item->endtime }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="card-footer">
+                                            @if (isExamRunning($item))
+                                                <a class="btn btn-danger" href="{{ Route('start', ['id' => $item->id]) }}">
+                                                    <i class="ri-play-circle-fill"></i> Start
+                                                </a>
+
+                                                <a class="btn btn-info" href="{{ Route('result', ['id' => $item->id]) }}">
+                                                    <i class="ri-file-list-3-fill"></i> Result
+                                                </a>
+                                            @else
+                                                @if (isExamStarted($item))
+                                                    <a class="btn btn-danger" href="{{ Route('start', ['id' => $item->id]) }}">
+                                                        <i class="ri-play-circle-fill"></i> Start
+                                                    </a>
+                                                    <!-- Uncomment the line below if you have a 'result' route -->
+                                                    <a class="btn btn-info" href="{{ Route('result', ['id' => $item->id]) }}">
+                                                        <i class="ri-file-list-3-fill"></i> Result
+                                                    </a>
                                                 @else
-                                                    @if (date('Y-m-d H:i:s') >= $item->startdate . ' ' . $item->starttime)
-                                                        <a class="btn btn-danger"
-                                                            href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
-                                                        <!--<a class="btn btn-danger"-->
-                                                        <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
-                                                    @else
-
                                                     <span>Not Started Yet</span>
-                                                    @endif
                                                 @endif
-
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                         <h2 class="mt-5">Upcoming Exam List</h2>
-                        <table id="table2" class="table table-striped table-bordered table-sm mt-5" cellspacing="0"
-                            width="100%">
-                            <thead>
-                                <tr>
-                                    <td>#ID</td>
-                                    <td>Title</td>
-                                    <td>Date</td>
-                                    <td>Time</td>
+                        <div class="row justify-content-center">
+                            @foreach (getUpcomingExamPapers() as $item)
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title"><td>{{ $item->name }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table-bordered table table-striped">
+                                            <tr>
+                                                <th>Start</th>
+                                                <td>{{ $item->startdate }} {{ $item->starttime }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer">
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($examLists as $item)
-                                    @if (date('Y-m-d H:i:s') < $item->startdate . ' ' . $item->starttime)
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->startdate }}</td>
-                                            <td>{{ $item->starttime }}</td>
-
-                                        </tr>
-                                    @endif
-                                @endforeach
-
-                            </tbody>
-                        </table>
                     </div>
                     <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="previous-tab">
                         <h2 class="mt-5">Previous Exam List</h2>
@@ -178,8 +158,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($examLists as $item)
-                                    @if (date('Y-m-d H:i:s') > $item->enddate . ' ' . $item->endtime )
+                                @foreach ( getPreviousExamPapers() as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->name }}</td>
@@ -192,7 +171,6 @@
                                                 <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
                                             </td>
                                         </tr>
-                                    @endif
                                 @endforeach
 
                             </tbody>

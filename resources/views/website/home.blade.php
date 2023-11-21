@@ -5,7 +5,7 @@
     <div class="main-hero-area" style="background-image: url('{{ asset('uploads/'.getSetting('home_page_background')) }}');">
         <div class="container">
             <div class="main-hero-content col-md-6" data-speed="0.05" data-revert="true"
-                style="padding: 5%;background-color:#312784;border-radius:20px">
+                style="padding: 5%;background-color:#004400;border-radius:20px">
                 @if(getSetting('site_tagline'))
                  <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
                 @endif
@@ -24,200 +24,214 @@
         </div>
     </div>
     <!-- End Main Hero Area -->
-    <!-- Start About US Area -->
-    <div class="expertise-area-with-white-color ptb-100">
+    <!-- Start Funfact Area -->
+    <div class="fun-fact-area bg-three pt-100 pb-75" style="background-color: #004400">
         <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="expertise-image-wrap" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500"
-                        data-aos-once="true">
-                        <img src="{{ asset('uploads/'.getSetting('about_page_image')) }}" alt="image">
-                    </div>
-                    <div class="expertise-content black-color" data-aos="fade-right" data-aos-delay="50"
-                        data-aos-duration="500" data-aos-once="true">
+            <div class="section-title">
+                <span>Our Funfact</span>
+                <h2>Our Resource History</h2>
+            </div>
 
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="expertise-inner-box">
-                                    <div class="icon">
-                                        <i class="ri-thumb-up-fill"></i>
-                                    </div>
-                                    <h2> {!! getSetting('about_page_experience') !!}</h2>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="expertise-inner-box">
-                                    <div class="icon">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                    <h2>{!! getSetting('about_page_students') !!}</h2>
-                                </div>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
                         </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\User::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Happy Students</p>
                     </div>
-
                 </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="expertise-content black-color" data-aos="fade-right" data-aos-delay="50"
-                        data-aos-duration="500" data-aos-once="true">
-                        <span>{{ getSetting('about_page_title') }}</span>
-                        <h3>{{ getSetting('about_page_heading') }}</h3>
-                        <p>{{ getSetting('about_page_description') }}</p>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="ri-stack-line"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\Subject::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Subject</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-newspaper"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\ExamPaper::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Exam Paper</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-funfact-box">
+                        <div class="icon">
+                            <i class="fa fa-question-circle"></i>
+                        </div>
+                        <h3>
+                            <span class="odometer" data-count="{{\App\Models\Question::count()}}">00</span>
+                            <span class="small-text">+</span>
+                        </h3>
+                        <p>Total Questions</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End About Us Area -->
+    <!-- End Funfact Area -->
 
-
-    <div class="testimonials-area ptb-100">
+    <!-- Start Services Area -->
+    <div class="services-area bg-F9F5F4 pt-100 pb-75">
         <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-4 text-center">
-                    <div class="team-box-content black-color" data-aos="fade-right" data-aos-delay="50"
-                        data-aos-duration="500" data-aos-once="true">
-                        <span>{{ getSetting('home-page.servicetitle') }}</span>
-                        <h2>{{ getSetting('home-page.serviceheading') }}</h2>
-                        <p style="font-weight:bold;">{{ getSetting('home-page.servicedescription') }}</p>
-                        <div class="team-btn">
-                            <a href="{{ route('exam') }}" class="default-btn">View More</a>
+            <div class="section-title">
+                <span>Our Services</span>
+                <h2>What We Offer</h2>
+                <p>with our capabilities, we provide several options so that you can choose which one will be suitable for use in your company</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
+                        <div class="icon">
+                            <i class="fab fa-skyatlas"></i>
+                        </div>
+                        <h3>
+                            <a href="">HSC BATCH</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="fab fa-skyatlas"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
 
-                    <div class="single-services-card">
-
-                        <div class="icon color-two">
-                            <i class="ri-hand-coin-fill"></i>
-                        </div>
-                        <h3>
-                            <a href="{{ route('exam') }}">
-                                @if (getSetting('home-page.hsc'))
-                                    {{ getSetting('home-page.hsc') }}
-                                @else
-                                    HSC BATCH
-                                @endif
-
-                            </a>
-                        </h3>
-                        <p>{{ getSetting('home-page.hscdetails') }}</p>
-
-
-                    </div>
-
-                    <div class="single-services-card">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
                         <div class="icon">
-                            <i class="ri-shield-user-fill"></i>
+                            <i class="fas fa-diagnoses"></i>
                         </div>
                         <h3>
-                            <a href="{{ route('exam') }}">
-                                @if (getSetting('home-page.accountingbatch'))
-                                    {{ getSetting('home-page.accountingbatch') }}
-                                @else
-                                    ACCOUNTING BATCH
-                                @endif
-                            </a>
+                            <a href="">ONLINE EXAM</a>
                         </h3>
-                        <p>{{ getSetting('home-page.accountingbatchdetails') }}</p>
-
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="fas fa-diagnoses"></i>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="single-services-card">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
                         <div class="icon">
-                            <i class="ri-file-list-3-fill"></i>
+                            <i class="fas fa-award"></i>
                         </div>
                         <h3>
-                            <a href="{{ route('exam') }}">
-                                @if (getSetting('home-page.onlineexam'))
-                                    {{ getSetting('home-page.onlineexam') }}
-                                @else
-                                    ONLINE EXAM
-                                @endif
-
-                            </a>
+                            <a href="">HSC Special Batch</a>
                         </h3>
-                        <p>{{ getSetting('home-page.onlineexamdetails') }}</p>
-
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
                     </div>
-                    <div class="single-services-card">
-                        <div class="icon color-two">
-                            <i class="ri-line-chart-fill"></i>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
+                        <div class="icon">
+                            <i class="fab fa-wpforms"></i>
                         </div>
                         <h3>
-                            <a href="{{ route('exam') }}">
-                                @if (getSetting('home-page.course'))
-                                    {{ getSetting('home-page.course') }}
-                                @else
-                                    Cources
-                                @endif
-                            </a>
+                            <a href="">Admission Batch</a>
                         </h3>
-                        <p>{{ getSetting('home-page.coursedetails') }}.</p>
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="fab fa-wpforms"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
+                        <div class="icon">
+                            <i class="ri-code-line"></i>
+                        </div>
+                        <h3>
+                            <a href="">SSC Batch</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="ri-code-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
+                        <div class="icon">
+                            <i class="fab fa-hive"></i>
+                        </div>
+                        <h3>
+                            <a href="">Special English Batch</a>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
+{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <div class="back-icon">
+                            <i class="fab fa-hive"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Services Area -->
 
     <!-- Start Why Choose Us Area -->
-    <div class="why-choose-us-area ptb-100">
+    <div class="why-choose-us-area-with-video ptb-100">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12">
-                    <div class="why-choose-us-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                        data-aos-once="true">
-                        <span>{{ getSetting('home-page.featuretitle') }}</span>
-                        <h3>{{ getSetting('home-page.featureheading') }}</h3>
-                        <p>{{ getSetting('home-page.featuredetails') }}</p>
-
-                        @if (getSetting('home-page.feature1'))
-                            <div class="choose-us-inner-box">
-                                <div class="icon">
-                                    <i class="ri-check-fill"></i>
-                                </div>
-                                <h4> {{ getSetting('home-page.feature1') }}</h4>
-                            </div>
-                        @endif
-                        @if (getSetting('home-page.feature2'))
-                            <div class="choose-us-inner-box">
-                                <div class="icon">
-                                    <i class="ri-check-fill"></i>
-                                </div>
-                                <h4> {{ getSetting('home-page.feature2') }}</h4>
-                            </div>
-                        @endif
-                        @if (getSetting('home-page.feature3'))
-                            <div class="choose-us-inner-box">
-                                <div class="icon">
-                                    <i class="ri-check-fill"></i>
-                                </div>
-                                <h4> {{ getSetting('home-page.feature3') }}</h4>
-                            </div>
-                        @endif
-                        @if (getSetting('home-page.feature4'))
-                            <div class="choose-us-inner-box">
-                                <div class="icon">
-                                    <i class="ri-check-fill"></i>
-                                </div>
-                                <h4> {{ getSetting('home-page.feature4') }}</h4>
-                            </div>
-                        @endif
-
-                        <div class="team-btn">
-                            <a href="{{ route('exam') }}" class="default-btn">View More</a>
-                        </div>
+                    <div class="why-choose-us-video-view" data-speed="0.09" data-revert="true">
+                        <a href="https://www.youtube.com/watch?v=ODfy2YIKS1M" class="video-btn popup-youtube">
+                            <i class="flaticon-play-button"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12">
-                    <div class="why-choose-us-image" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500"
-                        data-aos-once="true">
-                        <img src="{{ asset(getSetting('home-page.featureimage')) }}" alt="Featire Image">
+                    <div class="why-choose-us-content wrap-color" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">
+                        <span>Why Choose Us</span>
+                        <h3>Our Working Process To Help Your Boost Your Business</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit et fames maecenas amet est scelerisque lectus tortor sit lorem ipsum dolor sit amet consectetur adipiscing elit et fames maecenas amet.</p>
+
+                        <div class="choose-us-inner-box">
+                            <div class="icon">
+                                <i class="flaticon-ad-campaign"></i>
+                            </div>
+                            <h4>Advertising & Branding</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit velit sagittis eu viverra pellentesque condimentum.</p>
+                        </div>
+
+                        <div class="choose-us-inner-box">
+                            <div class="icon">
+                                <i class="flaticon-public-relations"></i>
+                            </div>
+                            <h4>Public Relation</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit velit sagittis eu viverra pellentesque condimentum.</p>
+                        </div>
                     </div>
                 </div>
             </div>

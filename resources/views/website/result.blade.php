@@ -1,31 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Start Page Banner Area -->
-    <div class="page-banner-area">
-        <div class="container">
 
-            <div class="row align-items-center justify-content-center">
-
-                <div class="page-banner-content" data-aos="fade-right" data-aos-delay="50" data-aos-duration="500"
-                    data-aos-once="true">
-                    <h2>{{ $paper->name }}</h2>
-
-                    <ul>
-                        <li>
-                            <a href="{{ route('website') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('exam') }}">Exam</a>
-                        </li>
-                        <li>{{ $paper->name }}</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Page Banner Area -->
 
     <div class="blog-area ptb-100">
         <div class="container">
