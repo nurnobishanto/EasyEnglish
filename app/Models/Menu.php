@@ -27,7 +27,7 @@ class Menu extends Model
             $model->slug = $count > 0 ? "{$slug}-{$count}" : $slug;
         });
     }
-    public function items()
+    public function menu_items()
     {
         return $this->hasMany(MenuItem::class);
     }

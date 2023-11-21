@@ -1,32 +1,24 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\MenuResource\RelationManagers;
 
-use App\Filament\Resources\MenuItemResource\Pages;
-use App\Filament\Resources\MenuItemResource\RelationManagers;
-use App\Models\MenuItem;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MenuItemResource extends Resource
+class MenuItemsRelationManager extends RelationManager
 {
-    protected static ?string $model = MenuItem::class;
-    protected static ?string $navigationGroup = 'Settings';
-    protected static ?int $navigationSort = 4;
-    protected static ?string $navigationIcon = 'heroicon-o-bars-2';
+    protected static string $relationship = 'menu_items';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('menu_id')->label('Select Menu')
-                    ->relationship('menu', 'name')->required(),
                 Select::make('parent_id')
                     ->label('Select parent Item')
                     ->relationship('parent', 'title'),
@@ -48,13 +40,11 @@ class MenuItemResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('menu.name')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->numeric()
                     ->sortable(),
@@ -66,6 +56,9 @@ class MenuItemResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
+            ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -83,30 +76,6 @@ class MenuItemResource extends Resource
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
-            ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListMenuItems::route('/'),
-            'create' => Pages\CreateMenuItem::route('/create'),
-            'edit' => Pages\EditMenuItem::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
             ]);
     }
 }

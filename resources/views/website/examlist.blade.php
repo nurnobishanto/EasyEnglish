@@ -146,35 +146,38 @@
                     </div>
                     <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="previous-tab">
                         <h2 class="mt-5">Previous Exam List</h2>
-                        <table id="table3" class="table table-striped table-bordered table-sm mt-5"
-                            cellspacing="0" width="100%">
-                            <thead>
+                        <div class="table-responsive">
+                            <table id="table3" class="table table-striped table-bordered table-sm mt-5"
+                                   cellspacing="0" width="100%">
+                                <thead>
                                 <tr>
-                                    <td>#ID</td>
-                                    <td>Title</td>
-                                    <td>Start</td>
-                                    <td>End</td>
-                                    <td>Action</td>
+                                    <th>#ID</th>
+                                    <th>Title</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Action</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 @foreach ( getPreviousExamPapers() as $item)
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->startdate . ' ' . $item->starttime }}</td>
-                                            <td>{{ $item->enddate }}, {{ $item->endtime }} </td>
-                                            <td>
-                                                <a class="btn btn-danger"
-                                                    href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
-                                                <!--<a class="btn btn-info"-->
-                                                <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->startdate . ' ' . $item->starttime }}</td>
+                                        <td>{{ $item->enddate }}, {{ $item->endtime }} </td>
+                                        <td>
+                                            <a class="btn btn-danger"
+                                               href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
+                                            <!--<a class="btn btn-info"-->
+                                            <!--    href="{{ Route('result', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>-->
+                                        </td>
+                                    </tr>
                                 @endforeach
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
 
 
 

@@ -11,7 +11,7 @@
                           @endif
 
                       </div>
-                      <p>{{ getSetting('site_description') }}</p>
+                      <p>{!! getSetting('site_description') !!}  </p>
 
                   </div>
               </div>
@@ -47,7 +47,7 @@
                           @if (getSetting('site_address'))
                               <li>
                                   <i class="ri-map-pin-line text-light"></i>
-                                  {{ getSetting('site_address') }}
+                                  {!! getSetting('site_address')  !!}
                               </li>
                           @endif
                           @if (getSetting('site_phone'))
