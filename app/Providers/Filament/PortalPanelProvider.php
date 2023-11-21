@@ -32,6 +32,8 @@ class PortalPanelProvider extends PanelProvider
             ->login(Login::class)
             ->registration(Registration::class)
             ->passwordReset()
+            ->topNavigation()
+            ->sidebarCollapsibleOnDesktop(false)
             ->userMenuItems([
                 'profile' => MenuItem::make()->url(fn (): string => Profile::getUrl())
             ])
@@ -45,8 +47,7 @@ class PortalPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Portal/Widgets'), for: 'App\\Filament\\Portal\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+
             ])
             ->middleware([
                 EncryptCookies::class,
