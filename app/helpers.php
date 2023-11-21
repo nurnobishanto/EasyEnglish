@@ -13,8 +13,8 @@ if (!function_exists('getRunningExamPapers')) {
     {
        return DB::table('exam_papers')
            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
-           ->where('start_datetime', '<=', now()->toDateString())
-           ->where('end_datetime', '>=', now()->toDateString())
+           ->whereRaw('CONCAT(startdate, " ", starttime) <= ?', [now()->toDateTimeString()])
+           ->whereRaw('CONCAT(enddate, " ", endtime) >= ?', [now()->toDateTimeString()])
            ->get();
     }
 }
