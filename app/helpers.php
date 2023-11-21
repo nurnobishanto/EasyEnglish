@@ -30,10 +30,7 @@ if (!function_exists('getUpcomingExamPapers')) {
 if (!function_exists('getTodayExamPapers')) {
     function getTodayExamPapers(): Collection
     {
-        return DB::table('exam_papers')
-            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
-            ->whereRaw('CURDATE() BETWEEN STR_TO_DATE(CONCAT(startdate, " ", starttime), "%Y-%m-%d %H:%i:%s") AND STR_TO_DATE(CONCAT(enddate, " ", endtime), "%Y-%m-%d %H:%i:%s")')
-            ->get();
+        return ExamPaper::whereDate('startdate', '=', now()->toDateString())->get();
     }
 }
 if (!function_exists('isExamRunning')) {
