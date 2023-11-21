@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Ebook;
-use App\Models\Examcategory;
+use App\Models\ExamCategory;
 use App\Models\Exampaper;
 use App\Models\FreeNote;
 use App\Models\Post;
@@ -138,7 +138,7 @@ class WebsiteController extends Controller
         $sub = subject::where('slug', $slug)->first();
 
         if ($sub) {
-            // $ecats = Examcategory::where('subject_id',$sub->id)->paginate(6);
+            // $ecats = ExamCategory::where('subject_id',$sub->id)->paginate(6);
             $ecats = $sub->exam_categories;
             SEOTools::setTitle($sub->name);
             SEOTools::setDescription(getSetting('site_description'));
@@ -150,7 +150,7 @@ class WebsiteController extends Controller
     public function exam_category($slug)
     {
 
-        $ecat = Examcategory::where('slug', $slug)->first();
+        $ecat = ExamCategory::where('slug', $slug)->first();
         if ($ecat) {
             $examLists = $ecat->exam_papers;
             SEOTools::setTitle($ecat->name);

@@ -26,7 +26,7 @@
                                 <tr><th>Submitted :</th><th>{{ date('d M Y, h:m A', strtotime($data->created_at)) }}</th></tr>
                                 <tr><th>Duration :</th><th>{{ floor($data->duration / 60) }} Minutes {{ $data->duration % 60 }} Seconds</th></tr>
                             </table>
-                                <div class="progress">
+                                <div class="progress" style="height: 50px">
                                     <div class="progress-bar bg-success" role="progressbar"
                                         style="width:{{ round(($data->ca * 100) / $data->exam_paper->questions->count())  }}%;">
                                         Correct ({{ round(($data->ca * 100) / $data->exam_paper->questions->count()) }}%)
