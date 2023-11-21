@@ -109,7 +109,7 @@
                         <?php
                         $file = str_replace('\\', '/', $question->image);
                         //  $imgurl = ENV('APP_URL') . '/' . 'storage/' . $file;
-                        $imgurl = 'storage/' . $file;
+                        $imgurl = 'uploads/' . $file;
                         $path = $imgurl;
                         $type = pathinfo($path, PATHINFO_EXTENSION);
                         $data = file_get_contents($path);
@@ -135,7 +135,7 @@
                         <?php
                         $file = str_replace('\\', '/', $question->explain_img);
                         //  $imgurl = ENV('APP_URL') . '/' . 'storage/' . $file;
-                        $imgurl = 'storage/' . $file;
+                        $imgurl = 'uploads/' . $file;
                         $path = $imgurl;
                         $type = pathinfo($path, PATHINFO_EXTENSION);
                         $data = file_get_contents($path);

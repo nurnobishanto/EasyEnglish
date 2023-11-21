@@ -218,7 +218,7 @@ class WebsiteController extends Controller
             'margin_footer' => '2',
         ]);
 
-        $document->SetWatermarkText('Accountingclubbd.com');
+        $document->SetWatermarkText('EasyEnglishBD.com');
         $document->showWatermarkText = true;
 
         $document->allow_charset_conversion = true; // Set by default to TRUE
@@ -274,7 +274,7 @@ class WebsiteController extends Controller
             'margin_footer' => '2',
         ]);
 
-        $document->SetWatermarkText('Accountingclubbd.com');
+        $document->SetWatermarkText('EasyEnglishBD.com');
         $document->showWatermarkText = true;
 
         $document->allow_charset_conversion = true; // Set by default to TRUE
@@ -325,7 +325,7 @@ class WebsiteController extends Controller
             'margin_footer' => '2',
         ]);
 
-        $document->SetWatermarkText('Accountingclubbd.com');
+        $document->SetWatermarkText('EasyEnglishBD.com');
         $document->showWatermarkText = true;
 
         $document->allow_charset_conversion = true; // Set by default to TRUE
