@@ -20,7 +20,7 @@
             right: 0px;
             height: 120px;
             /** Extra personal styles **/
-            background-color: #312784;
+            background-color: #004400;
             color: white;
             text-align: center;
 
@@ -45,7 +45,7 @@
             font-size: 15px !important;
             color: white !important;
             /** Extra personal styles **/
-            background-color: #312784;
+            background-color: rgba(1, 88, 1, 0.97);
             text-align: center;
 
         }
