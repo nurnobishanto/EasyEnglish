@@ -29,7 +29,8 @@ return new class extends Migration
             $table->time('starttime')->nullable();
             $table->time('endtime')->nullable()->default('23:59:59');
             $table->string('password')->nullable();
-            $table->integer('limit')->nullable();
+            $table->integer('limit')->default(5);
+            $table->integer('max_limit')->default(50);
             $table->timestamps();
             $table->softDeletes();
         });
