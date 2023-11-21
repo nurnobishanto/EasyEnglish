@@ -131,7 +131,6 @@
                                     <div class="card-body">
                                         <table class="table-bordered table table-striped">
                                             <tr><th>Start</th><td>{{ $item->startdate }} {{ $item->starttime }}</td></tr>
-                                            <tr><th>Questions</th><td>{{ $item->questions->count() }} </td></tr>
                                             <tr><th>Duration</th><td>{{ $item->duration }} Min</td></tr>
                                         </table>
                                     </div>
