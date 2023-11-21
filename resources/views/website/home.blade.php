@@ -2,35 +2,35 @@
 
 @section('content')
     <!-- Start Main Hero Area -->
-    <div class="main-hero-area" >
+    <div class="main-banner-wrap-area">
         <div class="container">
-            <div class="row justify-content-center gap-md-3">
-                <div class="main-hero-content col-md-5" data-speed="0.05" data-revert="true"
-                     style="padding: 5%;background-color:rgba(1,56,1,0.9);border-radius:20px">
-                    @if(getSetting('site_tagline'))
-                        <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
-                    @endif
-                    <h1 class="text-light font-weight-bold" data-aos="fade-right" data-aos-delay="70" data-aos-duration="700"
-                        data-aos-once="true">
-                        {{ getSetting('home_page_title') }}
-                    </h1>
-                    <p class="text-light" data-aos="fade-right" data-aos-delay="80" data-aos-duration="800" data-aos-once="true">
-                        {{ getSetting('home_page_description') }}
-                    </p>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="main-banner-wrap-content" data-speed="0.05" data-revert="true">
+                        @if(getSetting('site_tagline'))
+                            <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
 
-                    <ul class="hero-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
-                        <li><a href="{{ Route('exam') }}" class="btn btn-light">START LEARING</a></li>
-                    </ul>
+                        @endif
+                        <h1 data-aos="fade-right" data-aos-delay="70" data-aos-duration="700" data-aos-once="true">{{ getSetting('home_page_title') }}</h1>
+                        <p data-aos="fade-right" data-aos-delay="580" data-aos-duration="800" data-aos-once="true">{{ getSetting('home_page_description') }}</p>
+
+                        <div class="banner-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
+                            <a href="{{ route('exam') }}" class="default-btn">Take Exam</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <img src="{{asset('uploads/'.getSetting('home_page_background'))}}">
+
+                <div class="col-lg-6 col-md-12" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">
+                    <div class="main-banner-wrap-image" data-speed="0.05" data-revert="true">
+                        <img src="{{asset('uploads/'.getSetting('home_page_background'))}}">
+
+                    </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     <!-- End Main Hero Area -->
+
     <!-- Start Funfact Area -->
     <div class="fun-fact-area bg-three pt-100 pb-75" style="background-color: #004400">
         <div class="container">
