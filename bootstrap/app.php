@@ -15,16 +15,23 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
+$environmentFile = '.env'; // Default environment file
+
+$domain = $_SERVER['HTTP_HOST'] ?? '';
+
+if ($domain === 'easyenglishbd.com' || $domain ==='www.easyenglishbd.com') {
+    $environmentFile = '.env.easyenglishbd';
+}
+elseif ($domain === 'localhost' || $domain === '127.0.0.1' || $domain === '127.0.0.1:8000') {
+    $environmentFile = '.env.local';
+}
+
+$envFilePath = $app->basePath($environmentFile);
+
+if (file_exists($envFilePath)) {
+    $dotenv = Dotenv\Dotenv::createMutable($app->basePath(), $environmentFile);
+    $dotenv->load();
+}
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
