@@ -3,13 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
     protected $fillable = [
@@ -62,5 +66,20 @@ class User extends Authenticatable
     public function results(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Result::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        if($this->image){
+            return asset('uploads/'.$this->image);
+        }else{
+            return asset('website/assets/images/'.$this->gender.'.png');
+        }
+
     }
 }

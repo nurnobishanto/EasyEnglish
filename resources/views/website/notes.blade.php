@@ -27,44 +27,43 @@
     <div class="blog-area ptb-100">
         <div class="container">
             <div class="row justify-content-center">
-                <table id="table" class="table table-striped table-border">
-                    <thead class="table">
+                <div class="table-responsive ">
+                    <table id="table" class="table table-bordered table-striped">
+                        <thead class="table text-center" >
                         <tr>
-                            <th>SL</th>
-                            
-                            <th>Book Name</th>
+                            <th width="10px">SL</th>
+                            <th width="120px">Image</th>
+                            <th width="200px">Book Name</th>
                             <th>Details</th>
-                            <th>Action</th>
+                            <th width="200px">Action</th>
+                            <th width="20px">Count</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody >
                         @foreach ($notes as $ebook)
                             <tr>
                                 <td>{{ $ebook->id }}</td>
-                            
+                                <td><img src="{{ asset('uploads/'.$ebook->image )}}" class="img img-thumbnail" style="max-width: 120px"></td>
                                 <td>{{ $ebook->name }}</td>
-                                <td>{{ $ebook->Details }}</td>
+                                <td>{!! $ebook->details !!}  </td>
                                 <td>
-                                    <form action="{{ route('download') }}" method="post" name="questionPaper">
-                                    @csrf
-                                    <input type="text" name="url" value="{{ Storage::url(json_decode($ebook->file)[0]->download_link) }}" hidden>
-                                    <input type="text" name="type" value="note" hidden>
-                                    <input type="number" name="id" value="{{ $ebook->id }}" hidden>
-                                     <input class="btn btn-primary m-1" type="submit" value="Download ( {{$ebook->count}} )">
-                                    </form>
+                                    @if($ebook->file)
+                                    <a href="{{asset('uploads/'.$ebook->file)}}" onclick="incrementCount({{ $ebook->id }},'FreeNote')" class="btn btn-danger">Download</a>
+                                    @endif
+                                    @if($ebook->link)
+                                    <a href="{{$ebook->link}}" onclick="incrementCount({{ $ebook->id }},'FreeNote')" class="btn btn-success">Download</a>
+                                    @endif
                                 </td>
+                                <td>{{$ebook->count}}</td>
                             </tr>
                         @endforeach
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-
-
+                </div>
             </div>
-
-            {{-- {{ $notes->links('vendor.pagination.custom') }} --}}
         </div>
     </div>
-    <!-- End Blog Area -->
+
 @endsection

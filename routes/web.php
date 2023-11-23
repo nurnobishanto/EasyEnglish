@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::post('/increment-download-count',[\App\Http\Controllers\ContactController::class,'incrementDownloadCount'])->name('incrementDownloadCount');
 Route::get('/login',function (){ return redirect('portal/login'); })->name('login');
 Route::get('/register',function (){ return redirect('portal/register'); })->name('register');
 Route::get('/', [App\Http\Controllers\WebsiteController::class, 'index'])->name('website');

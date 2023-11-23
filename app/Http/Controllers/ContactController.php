@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Ebook;
+use App\Models\FreeNote;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
@@ -65,5 +67,28 @@ class ContactController extends Controller
             'comment' => $input['comment'],
         ]);
         return redirect()->back()->with(['success' => 'Comment Submit Successfully']);
+    }
+    public function incrementDownloadCount(Request $request)
+    {
+        $id = $request->input('id');
+        $model = $request->input('model');
+        if ($model == 'Ebook'){
+            $data = Ebook::find($id);
+            if ($data) {
+                // Increment count
+                $data->increment('count');
+                return response()->json(['success' => true, 'count' => $data->count]);
+            }
+        }
+        elseif ($model == 'FreeNote'){
+            $data = FreeNote::find($id);
+            if ($data) {
+                // Increment count
+                $data->increment('count');
+                return response()->json(['success' => true, 'count' => $data->count]);
+            }
+        }
+
+        return response()->json(['error' => 'Ebook not found'], 404);
     }
 }

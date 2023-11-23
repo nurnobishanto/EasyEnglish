@@ -36,8 +36,13 @@
                             <div class="info-content">
 
                                 @if ($post->author)
+                                    @if($post->author->image)
                                     <img src="{{ asset('uploads/'.$post->author->image) }}" class="rounded-circle"
                                         alt="{{ $post->author->name }}">
+                                    @else
+                                    <img src="{{ asset('website/assets/images/admin.jpg') }}" class="rounded-circle"
+                                             alt="{{ $post->author->name }}">
+                                    @endif
                                     <h4>By <a
                                             href="{{ Route('website.author', ['slug' => $post->author->id]) }}">{{ $post->author->name}}</a>
                                     </h4>
@@ -69,9 +74,20 @@
                                 <div class="info-content">
 
                                     @if ($comment->user)
+                                        @if($comment->user->image)
                                         <img src="{{ asset('uploads/'.$comment->user->image) }}" class="rounded-circle"
                                             alt="{{ $comment->user->name }}">
+                                        @else
+                                            <img src="{{ asset('website/assets/images/'.$comment->user->gender.'.png') }}" class="rounded-circle"
+                                                 alt="{{ $comment->user->name }}">
+                                        @endif
                                         <h4>By {{ $comment->user->name }}
+                                            <span>{{ $comment->created_at->format('M d, Y') }}</span>
+                                        </h4>
+                                    @else
+                                        <img src="{{ asset('website/assets/images/unknown.png') }}" class="rounded-circle"
+                                             alt="Unknown">
+                                        <h4>By Unknown User
                                             <span>{{ $comment->created_at->format('M d, Y') }}</span>
                                         </h4>
                                     @endif

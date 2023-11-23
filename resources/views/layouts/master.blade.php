@@ -33,20 +33,14 @@
     <link rel="stylesheet" href="{{ asset('website') }}/assets/css/footer.css">
     <link rel="stylesheet" href="{{ asset('website') }}/assets/css/responsive.css">
     <!-- CSS -->
-
-    <link href=https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/css/dataTables.bootstrap.min.css
-        rel=stylesheet>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <!-- jQuery -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+
 
     <!-- Share JS -->
-    <script src="{{ asset('js/share.js') }}"></script>
+{{--    <script src="{{ asset('js/share.js') }}"></script>--}}
 
 
 
@@ -54,12 +48,7 @@
     <link rel="icon" type="image/png" href="{{ asset('uploads/'.getSetting('site_favicon')) }}">
      {!! SEO::generate() !!}
     <style>
-        .paginate_button  {
-            padding: 5px;
-            background-color: rgb(255, 230, 0);
-            color: white!important;
-            margin: 2px;
-        }
+
         .contactForm {
             max-width: 1050px;
             margin: auto;
@@ -102,22 +91,7 @@
          }
     </style>
 		<!-- Meta Pixel Code -->
-	<script>
-	  !function(f,b,e,v,n,t,s)
-	  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-	  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-	  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-	  n.queue=[];t=b.createElement(e);t.async=!0;
-	  t.src=v;s=b.getElementsByTagName(e)[0];
-	  s.parentNode.insertBefore(t,s)}(window, document,'script',
-	  'https://connect.facebook.net/en_US/fbevents.js');
-	  fbq('init', '717079566520087');
-	  fbq('track', 'PageView');
-	</script>
-	<noscript><img height="1" width="1" style="display:none"
-	  src="https://www.facebook.com/tr?id=717079566520087&ev=PageView&noscript=1"
-	/></noscript>
-	<!-- End Meta Pixel Code -->
+
 </head>
 
 <body>
@@ -132,24 +106,7 @@
     </div>
     <!-- End Go Top Area -->
 
-    <script>
 
-        $(document).ready(function() {
-            $('#table').DataTable();
-        });
-        $(document).ready(function() {
-            $('#table1').DataTable();
-        });
-        $(document).ready(function() {
-            $('#table2').DataTable();
-        });
-        $(document).ready(function() {
-            $('#table3').DataTable();
-        });
-        $(document).ready(function() {
-            $('#table4').DataTable();
-        });
-    </script>
 
     <!-- Links of JS files -->
     <script data-cfasync="false" src=""></script>
@@ -170,11 +127,39 @@
     <script src="{{ asset('website') }}/assets/js/wow.min.js"></script>
     <script src="{{ asset('website') }}/assets/js/main.js"></script>
 
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+    <!-- jQuery -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.min.js></script>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/dataTables.bootstrap.min.js></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-
+    <script>
+        function incrementCount(id,model) {
+            // Make an AJAX request to increment the count
+            $.ajax({
+                url: '{{route('incrementDownloadCount')}}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    model: model,
+                },
+                success: function(response) {
+                    // Handle success if needed
+                },
+                error: function(error) {
+                    console.error('Error incrementing count:', error);
+                }
+            });
+        }
+        $(document).ready(function() {
+            $('#table').DataTable();
+            $('#table1').DataTable();
+            $('#table2').DataTable();
+            $('#table3').DataTable();
+            $('#table4').DataTable();
+        });
+    </script>
 </body>
 
 

@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Filament\Portal\Pages\Auth;
+namespace App\Filament\Portal\Pages;
 
+use App\Models\Batch;
+use Filament\Facades\Filament;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Panel;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
 class Profile extends Page
@@ -18,17 +19,26 @@ class Profile extends Page
 
     protected static string $view = 'filament.portal.pages.profile';
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 9;
 
     public $user_id;
     public $name;
     public $email;
     public $phone_number;
+    public $gender;
+    public $batch;
+    public $college;
 
     public $current_password;
     public $new_password;
     public $new_password_confirmation;
     public $division_id;
+    public $district_id;
+    public $upazila;
+    public $postCode;
+    public $postOffice;
+
+
 
     public function mount()
     {
@@ -36,12 +46,22 @@ class Profile extends Page
             'user_id' => auth()->user()->user_id,
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,
-            'division_id' => auth()->user()->division_id,
             'phone_number' => auth()->user()->phone_number,
+            'gender' => auth()->user()->gender,
+            'batch' => auth()->user()->batch,
+            'college' => auth()->user()->college,
+            'division_id' => auth()->user()->division_id,
+            'district_id' => auth()->user()->district_id,
+            'upazila' => auth()->user()->upazila,
+            'postOffice' => auth()->user()->postOffice,
+            'postCode' => auth()->user()->postCode,
+
         ]);
     }
     public function submit()
     {
+
+
         $rules = [
             'name' => 'required|string|max:255',
             'email' => [
@@ -63,18 +83,26 @@ class Profile extends Page
         }
 
         $this->validate($rules);
-        $state = array_filter([
+        $data = array_filter([
             'user_id' => $this->user_id,
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
+            'gender' => $this->gender,
+
+            'batch' => $this->batch,
+            'college' => $this->college,
             'division_id' => $this->division_id,
+            'district_id' => $this->district_id,
+            'upazila' => $this->upazila,
+            'postCode' => $this->postCode,
+            'postOffice' => $this->postOffice,
             'password' => $this->new_password ? Hash::make($this->new_password) : null,
         ]);
 
         $user = auth()->user();
 
-        $user->update($state);
+        $user->update($data);
 
         if ($this->new_password) {
             $this->updateSessionPassword($user);
@@ -92,6 +120,7 @@ class Profile extends Page
             'password_hash_' . auth()->getDefaultDriver() => $user->getAuthPassword(),
         ]);
     }
+
     protected function getFormSchema(): array
     {
         return [
@@ -117,6 +146,15 @@ class Profile extends Page
                         ->required()
                         ->unique('users,phone_number')
                         ->tel(),
+                    Select::make('gender')->label('Select Gender')
+                        ->options(['male' => 'Male','female' => 'Female'])->required(),
+                    Select::make('batch')
+                        ->label('Select Batch')
+                        ->options(Batch::all()->pluck('name','id'))
+                        ->placeholder('Optional'),
+                    TextInput::make('college')
+                        ->label('College')
+                        ->placeholder('Optional'),
                     Select::make('division_id')
                         ->label('Select Division')
                         ->searchable()
@@ -175,6 +213,8 @@ class Profile extends Page
                                 ->autocomplete('new-password'),
                         ]),
                 ]),
+
         ];
     }
+
 }

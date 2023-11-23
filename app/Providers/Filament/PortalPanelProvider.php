@@ -3,10 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Portal\Pages\Auth\Login;
-use App\Filament\Portal\Pages\Auth\Profile;
 use App\Filament\Portal\Pages\Auth\Registration;
-use App\Filament\Portal\Widgets\ActivityList;
-use App\Filament\Portal\Widgets\ResultOverview;
+use App\Filament\Portal\Pages\Profile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -16,7 +14,6 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -52,6 +49,7 @@ class PortalPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Portal/Pages'), for: 'App\\Filament\\Portal\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                Profile::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Portal/Widgets'), for: 'App\\Filament\\Portal\\Widgets')
             ->widgets([

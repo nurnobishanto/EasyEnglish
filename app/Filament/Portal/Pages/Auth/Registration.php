@@ -5,6 +5,7 @@ namespace App\Filament\Portal\Pages\Auth;
 use App\Models\Batch;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Registration extends BaseAuth
 {
+
     public function form(Form $form): Form
     {
         return $form
@@ -26,6 +28,8 @@ class Registration extends BaseAuth
                 $this->getPasswordFormComponent(),
                 $this->getConfirmPasswordFormComponent(),
                 $this->getCollegeFormComponent(),
+                Select::make('gender')->label('Select Gender')
+                    ->options(['male' => 'Male','female' => 'Female'])->required(),
                 $this->getBatchFormComponent(),
                 $this->getDivisionFormComponent(),
                 $this->getDistrictFormComponent(),
@@ -47,7 +51,8 @@ class Registration extends BaseAuth
                     ->options(function (callable $get, callable $set) {
                         return getPostCodes($get('upazila'));
                     }),
-            ])->columns([
+            ])
+            ->columns([
                 'default' => 1,
                 'sm' => 2,
                 'md' => 2,
@@ -64,7 +69,6 @@ class Registration extends BaseAuth
             ->label('Full name')
             ->required()->columnSpan(2);
     }
-
     protected function getRegisterFormComponent(): Component
     {
         return TextInput::make('register')
@@ -73,7 +77,6 @@ class Registration extends BaseAuth
             ->autocomplete()->columnSpan(2)
             ->autofocus();
     }
-
     protected function getPasswordFormComponent(): Component
     {
         return TextInput::make('password')
@@ -85,7 +88,6 @@ class Registration extends BaseAuth
             ->same('passwordConfirmation')
             ->validationAttribute(__('filament-panels::pages/auth/register.form.password.validation_attribute'));
     }
-
     protected function getConfirmPasswordFormComponent(): Component
     {
         return TextInput::make('passwordConfirmation')
@@ -94,7 +96,6 @@ class Registration extends BaseAuth
             ->required()
             ->dehydrated(false);
     }
-
     protected function getBatchFormComponent(): Component
     {
         return Select::make('batch')
@@ -102,14 +103,12 @@ class Registration extends BaseAuth
             ->options(Batch::all()->pluck('name','id'))
             ->placeholder('Optional');
     }
-
     protected function getCollegeFormComponent(): Component
     {
         return TextInput::make('college')
             ->label('College')
             ->placeholder('Optional')->columnSpan(2);
     }
-
     protected function getDivisionFormComponent(): Component
     {
         return
@@ -117,9 +116,9 @@ class Registration extends BaseAuth
                 ->label('Select Division')
                 ->searchable()
                 ->options(getDivisionOptions())
-                ->reactive();
+                ->reactive()->columnSpanFull();
     }
- protected function getDistrictFormComponent(): Component
+    protected function getDistrictFormComponent(): Component
     {
         return
             Select::make('district_id')
@@ -130,7 +129,6 @@ class Registration extends BaseAuth
                 });
 
     }
-
     public function register(): ?RegistrationResponse
     {
         try {
@@ -156,10 +154,14 @@ class Registration extends BaseAuth
             'name'            => $data['name'],
             $loginType        => $data['register'],
             'password'        => $data['password'],
+            'gender'          => $data['gender'] ?? null,
             'batch'           => $data['batch'] ?? null,
             'college'         => $data['college'] ?? null,
-            'division_id'        => $data['division_id'] ?? null,
-            'district_id'        => $data['district_id'] ?? null,
+            'division_id'     => $data['division_id'] ?? null,
+            'district_id'     => $data['district_id'] ?? null,
+            'upazila'         => $data['upazila'] ?? null,
+            'postOffice'      => $data['postOffice'] ?? null,
+            'postCode'        => $data['postCode'] ?? null,
         ];
         $user = $this->getUserModel()::create($newData);
 
