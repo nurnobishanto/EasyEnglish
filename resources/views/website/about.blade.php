@@ -39,9 +39,9 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="expertise-content black-color" data-aos="fade-right" data-aos-delay="50"
                          data-aos-duration="500" data-aos-once="true">
-                        <span>{{ getSetting('about_page_title') }}</span>
-                        <h3>{{ getSetting('about_page_heading') }}</h3>
-                        <p>{{ getSetting('about_page_description') }}</p>
+                        <span>{!! getSetting('about_page_title') !!}  </span>
+                        <h3>{!! getSetting('about_page_heading') !!} </h3>
+                        <p>{!! getSetting('about_page_description') !!} </p>
                     </div>
                 </div>
             </div>

@@ -16,10 +16,10 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="main-banner-wrap-content" data-speed="0.05" data-revert="true">
                         @if(getSetting('site_tagline'))
-                            <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
+                            <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{!! getSetting('site_tagline') !!}</span>
                         @endif
-                        <h1 data-aos="fade-right" data-aos-delay="70" data-aos-duration="700" data-aos-once="true">{{ getSetting('home_page_title') }}</h1>
-                        <p data-aos="fade-right" data-aos-delay="580" data-aos-duration="800" data-aos-once="true">{{ getSetting('home_page_description') }}</p>
+                        <h1 data-aos="fade-right" data-aos-delay="70" data-aos-duration="700" data-aos-once="true">{!! getSetting('home_page_title') !!}  </h1>
+                        <p data-aos="fade-right" data-aos-delay="580" data-aos-duration="800" data-aos-once="true">{!! getSetting('home_page_description')  !!} </p>
 
                         <div class="banner-btn" data-aos="fade-right" data-aos-delay="90" data-aos-duration="900" data-aos-once="true">
                             <a href="{{ route('exam') }}" class="default-btn">Take Exam</a>
@@ -121,14 +121,27 @@
                         <h3>
                             <a href="">HSC BATCH</a>
                         </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <p>HSC এর সকল বিভাগের Bangla, English & ICT আর কমার্স এর সকল বিষয়  । আমরা সমস্ত সাবজেক্ট একদম বেসিক থেকে গড়ে উঠাই যার দ্বারা HSC-তে ভালো রেজাল্ট এবং ভার্সিটিতে চান্স পাওয়ার ক্ষেত্রে অনেকাংশে এগিয়ে থাকবা ।</p>
                         <div class="back-icon">
                             <i class="fab fa-skyatlas"></i>
                         </div>
                     </div>
                 </div>
-
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box">
+                        <div class="icon">
+                            <i class="ri-code-line"></i>
+                        </div>
+                        <h3>
+                            <a href="">SSC Batch</a>
+                        </h3>
+                        <p>একদম SSC Level থেকে গড়ে তোলার জন্য আমাদের রয়েছে SSC Special Batch. যেখানে আমরা একদম শূন্য থেকে তোমাকে গড়ে তুলবো যার মাধ্যমে SSC তে পাবে Golden A+.বেসিক ক্লিয়ার থাকার কারণে মজা উপভোগ করবা HSC তে ।
+                        </p>
+                        <div class="back-icon">
+                            <i class="ri-code-line"></i>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-services-box">
                         <div class="icon">
@@ -137,8 +150,7 @@
                         <h3>
                             <a href="">ONLINE EXAM</a>
                         </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <p>আমাদের রয়েছে প্রতিটি সাবজেক্ট এর প্রতিটি অধ্যায়ের উপর পরীক্ষা । আর এই সমস্ত পরীক্ষা তুমি বার বার দেওয়ার মাধ্যমে নিজেকে বোর্ড পরীক্ষার উপযোগী করে তুলতে পারবা ।</p>
                         <div class="back-icon">
                             <i class="fas fa-diagnoses"></i>
                         </div>
@@ -153,8 +165,7 @@
                         <h3>
                             <a href="">HSC Special Batch</a>
                         </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <p>HSC বোর্ড পরীক্ষার শেষ মুহূর্তের বিশেষ প্রস্তুতির জন্য আমাদের থাকবে বোর্ড পরীক্ষা ৩ মাস পূর্বে  Test Paper & Model Test Solved course.</p>
                         <div class="back-icon">
                             <i class="fas fa-award"></i>
                         </div>
@@ -169,29 +180,14 @@
                         <h3>
                             <a href="">Admission Batch</a>
                         </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <p>ঢাকা বিশ্ববিদ্যালয় সহ যেকোনো পাবলিক বিশ্ববিদ্যালয়ের ভর্তির যুদ্ধে তোমাকে প্রস্তুত করার জন্য আমাদের রয়েছে (B-মানবিক), (C-কমার্স) Unit এর পূর্ণাঙ্গ কোর্স.</p>
                         <div class="back-icon">
                             <i class="fab fa-wpforms"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-services-box">
-                        <div class="icon">
-                            <i class="ri-code-line"></i>
-                        </div>
-                        <h3>
-                            <a href="">SSC Batch</a>
-                        </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
-                        <div class="back-icon">
-                            <i class="ri-code-line"></i>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="col-lg-4 col-md-6">
                     <div class="single-services-box">
@@ -201,8 +197,7 @@
                         <h3>
                             <a href="">Special English Batch</a>
                         </h3>
-                        <p>Lorem ipsum dolor sit amet consec tetur adip iscing elit non in pretium blandit loremm ipdum pronibh ultrna some.</p>
-{{--                        <a href="" class="services-btn">Learn More</a>--}}
+                        <p>তুমি যদি আমাদের কাছে শুধু English সাবজেক্টটি পরতে চাও তার ব্যবস্থাও রয়েছে</p>
                         <div class="back-icon">
                             <i class="fab fa-hive"></i>
                         </div>
@@ -228,13 +223,12 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="why-choose-us-content wrap-color" data-aos="fade-left" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">
                         <span>Why Choose Us</span>
-                        <h3>We're your partners in learning</h3>
+                        <h3>যে জায়গাটিতে Easy English ব্যতিক্রম</h3>
                         <div class="choose-us-inner-box">
                             <div class="icon">
                                 <i class="flaticon-ad-campaign"></i>
                             </div>
-                            <h4>Comprehensive Learning</h4>
-                            <p>Our History resource goes beyond language mechanics, providing a holistic approach to English education</p>
+                            <p>তুমি SSC এর Student হও অথবা  HSC অথবা Admission Test তোমাকে আগে আমরা বেসিকটা ক্লিয়ার করিয়ে নিব এরপর মূল গ্রামারে প্রবেশ করাবো এতে তোমার কাছে English বা অন্যান্য বিষয়টা অত্যন্ত সহজ হয়ে যাবে । কারণ Engish Subject টি কিন্তু Hard নয় এটা Easy একটা সাবজেক্ট কিন্তু সমস্যা হল সামনে Hard Process এর মাধ্যমে উপস্থাপন করা হচ্ছে বিধায় তুমি Hard মনে করছো তুমি আমাদের Process অবলম্বন করো আশা করি তোমার কাছে English Subject টি Easy ই লাগবে । আর তাই তো আমাদের নাম Easy English.</p>
                         </div>
                     </div>
                 </div>
