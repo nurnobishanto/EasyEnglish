@@ -33,8 +33,8 @@
 
                         <h2 class="mt-5">Running Exam List </h2>
                         <div class="row justify-content-center">
-                            @foreach (getRunningExamPapers() as $item)
-                                <div class="col-md-4 col-sm-6">
+                            @foreach (getRunningExamPapers($ecat->id) as $item)
+                                <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title"><td>{{ $item->name }}</h5>
@@ -69,8 +69,8 @@
                     <div class="tab-pane fade show active" id="today" role="tabpanel" aria-labelledby="today-tab">
                         <h2 class="mt-5">Today Exam List</h2>
                         <div class="row justify-content-center">
-                            @foreach (getTodayExamPapers() as $item)
-                                <div class="col-md-4 col-sm-6">
+                            @foreach (getTodayExamPapers($ecat->id) as $item)
+                                <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title"><td>{{ $item->name }}</h5>
@@ -122,8 +122,8 @@
                     <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                         <h2 class="mt-5">Upcoming Exam List</h2>
                         <div class="row justify-content-center">
-                            @foreach (getUpcomingExamPapers() as $item)
-                            <div class="col-md-4 col-sm-6">
+                            @foreach (getUpcomingExamPapers($ecat->id) as $item)
+                            <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><td>{{ $item->name }}</h5>
@@ -164,7 +164,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ( getPreviousExamPapers() as $item)
+                                @foreach ( getPreviousExamPapers($ecat->id) as $item)
                                     <tr>
                                         <td width="6%">{{ $item->id }}</td>
                                         <td width="40%">{{ $item->name }}</td>

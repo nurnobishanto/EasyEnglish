@@ -151,11 +151,13 @@ class WebsiteController extends Controller
     {
 
         $ecat = ExamCategory::where('slug', $slug)->first();
+
         if ($ecat) {
+
             $examLists = $ecat->exam_papers;
             SEOTools::setTitle($ecat->name);
             SEOTools::setDescription(getSetting('site_description'));
-            return view('website.examlist', compact(['examLists', 'ecat']));
+            return view('website.examlist', compact(['ecat']));
         } else {
             SEOTools::setTitle('404');
             SEOTools::setDescription(getSetting('site_description'));

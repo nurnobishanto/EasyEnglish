@@ -18,28 +18,30 @@ if (!function_exists('formatDateTime')) {
     }
 }
 if (!function_exists('getRunningExamPapers')) {
-    function getRunningExamPapers()
+    function getRunningExamPapers($id)
     {
        return DB::table('exam_papers')
            ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
            ->whereRaw('CONCAT(startdate, " ", starttime) <= ?', [now()->toDateTimeString()])
            ->whereRaw('CONCAT(enddate, " ", endtime) >= ?', [now()->toDateTimeString()])
+           ->whereRaw('exam_category_id = '.$id)
            ->get();
     }
 }
 if (!function_exists('getUpcomingExamPapers')) {
-    function getUpcomingExamPapers(): Collection
+    function getUpcomingExamPapers($id): Collection
     {
         return DB::table('exam_papers')
             ->selectRaw('*, CONCAT(startdate, " ", starttime) AS start_datetime, CONCAT(enddate, " ", endtime) AS end_datetime')
             ->whereRaw('CONCAT(startdate, " ", starttime) >= ?', [now()->toDateTimeString()])
+            ->whereRaw('exam_category_id = '.$id)
             ->get();
     }
 }
 if (!function_exists('getTodayExamPapers')) {
-    function getTodayExamPapers(): Collection
+    function getTodayExamPapers($id): Collection
     {
-        return ExamPaper::whereDate('startdate', '=', now()->toDateString())->get();
+        return ExamPaper::where('exam_category_id',$id)->whereDate('startdate', '=', now()->toDateString())->get();
     }
 }
 if (!function_exists('isExamRunning')) {
@@ -60,11 +62,12 @@ if (!function_exists('isExamStarted')) {
     }
 }
 if (!function_exists('getPreviousExamPapers')) {
-    function getPreviousExamPapers(): Collection
+    function getPreviousExamPapers($id): Collection
     {
         return DB::table('exam_papers')
             ->selectRaw('*, CONCAT(enddate, " ", endtime) AS end_datetime')
             ->whereRaw('NOW() > STR_TO_DATE(CONCAT(enddate, " ", endtime), "%Y-%m-%d %H:%i:%s")')
+            ->whereRaw('exam_category_id = '.$id)
             ->get();
     }
 }
