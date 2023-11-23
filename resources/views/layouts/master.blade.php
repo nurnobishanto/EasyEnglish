@@ -156,8 +156,23 @@
             $('#table').DataTable();
             $('#table1').DataTable();
             $('#table2').DataTable();
-            $('#table3').DataTable();
+
             $('#table4').DataTable();
+
+            var table = $('#examListTable').DataTable({
+                // Your DataTable options here
+            });
+
+            // Add filter select for status column
+            table.column(5).data().unique().sort().each(function(value, index) {
+                $('#status-filter').append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Apply the filter on change
+            $('#status-filter').on('change', function() {
+                var selectedStatus = $(this).val();
+                table.column(5).search(selectedStatus).draw();
+            });
         });
     </script>
 </body>

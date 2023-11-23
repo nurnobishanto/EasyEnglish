@@ -44,6 +44,33 @@ if (!function_exists('getTodayExamPapers')) {
         return ExamPaper::where('exam_category_id',$id)->whereDate('startdate', '=', now()->toDateString())->get();
     }
 }
+if (!function_exists('isTodayExam')) {
+    function isTodayExam($exam)
+    {
+        $examStartDate = Carbon::parse($exam->startdate)->toDateString();
+        $today = now()->toDateString();
+
+        return $examStartDate === $today;
+    }
+}
+if (!function_exists('isUpcomingExam')) {
+    function isUpcomingExam($exam)
+    {
+        $startDateTime = Carbon::parse($exam->startdate . ' ' . $exam->starttime);
+        $now = now();
+
+        return $now->lessThan($startDateTime);
+    }
+}
+if (!function_exists('isPreviousExam')) {
+    function isPreviousExam($exam)
+    {
+        $endDateTime = Carbon::parse($exam->enddate . ' ' . $exam->endtime);
+        $now = now();
+
+        return $now->greaterThan($endDateTime);
+    }
+}
 if (!function_exists('isExamRunning')) {
     function isExamRunning($exam)
     {
@@ -57,7 +84,6 @@ if (!function_exists('isExamStarted')) {
     function isExamStarted($exam)
     {
         $startTime = $exam->startdate . ' ' . $exam->starttime;
-
         return now() >= $startTime;
     }
 }
