@@ -70,7 +70,7 @@
                         <h2 class="mt-5">Today Exam List</h2>
                         <div class="row justify-content-center">
                             @foreach (getTodayExamPapers() as $item)
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title"><td>{{ $item->name }}</h5>
@@ -123,7 +123,7 @@
                         <h2 class="mt-5">Upcoming Exam List</h2>
                         <div class="row justify-content-center">
                             @foreach (getUpcomingExamPapers() as $item)
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title"><td>{{ $item->name }}</h5>
