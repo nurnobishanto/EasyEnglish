@@ -28,23 +28,24 @@ class EbookResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->placeholder('Enter Subject name'),
-                TextInput::make('slug')->unique(ignoreRecord: true)->visibleOn(['edit','view']),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('free'),
-                Forms\Components\Textarea::make('link')
-                    ->maxLength(65535)
+                    ->placeholder('Enter E-Book name')->columnSpanFull(),
+                TextInput::make('slug')
+                    ->unique(ignoreRecord: true)
+                    ->visibleOn(['edit','view'])
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('file')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+                Forms\Components\Select::make('type')
+                    ->options([
+                        'free' => 'Free',
+                        'paid' => 'Paid',
+                    ])
+                    ->required(),
+                Forms\Components\TextInput::make('link')->url(),
+                Forms\Components\FileUpload::make('file')
+                    ->acceptedFileTypes(['application/pdf']),
+                Forms\Components\FileUpload::make('image')
+                    ->image(),
                 Forms\Components\Textarea::make('details')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
-                    ->maxLength(65535)
+                    ->maxLength(250)
                     ->columnSpanFull(),
             ]);
     }
@@ -53,29 +54,29 @@ class EbookResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\BadgeColumn::make('type'),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
+                Tables\Columns\TextColumn::make('count')->label('Download Count')
                     ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('type')
+                    ->options([
+                    'free' => 'Free',
+                    'paid' => 'Paid',
+                ]),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
+                Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

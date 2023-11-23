@@ -34,7 +34,7 @@
                         <h2 class="mt-5">Running Exam List </h2>
                         <div class="row justify-content-center">
                             @foreach (getRunningExamPapers() as $item)
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title"><td>{{ $item->name }}</h5>
@@ -47,11 +47,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Start</th>
-                                                    <td>{{ $item->startdate }} {{ $item->starttime }}</td>
+                                                    <td>{!! formatDateTime($item->startdate.' '.$item->starttime) !!}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>End</th>
-                                                    <td>{{ $item->enddate }} {{ $item->endtime }}</td>
+                                                    <td>{!! formatDateTime($item->enddate.' '.$item->endtime) !!} </td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -83,11 +83,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Start</th>
-                                                    <td>{{ $item->startdate }} {{ $item->starttime }}</td>
+                                                    <td>{!! formatDateTime($item->startdate.' '.$item->starttime) !!}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>End</th>
-                                                    <td>{{ $item->enddate }} {{ $item->endtime }}</td>
+                                                    <td>{!! formatDateTime($item->enddate.' '.$item->endtime) !!} </td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -130,7 +130,14 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table-bordered table table-striped">
-                                            <tr><th>Start</th><td>{{ $item->startdate }} {{ $item->starttime }}</td></tr>
+                                            <tr>
+                                                <th>Start</th>
+                                                <td>{!! formatDateTime($item->startdate.' '.$item->starttime) !!}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>End</th>
+                                                <td>{!! formatDateTime($item->enddate.' '.$item->endtime) !!} </td>
+                                            </tr>
                                             <tr><th>Duration</th><td>{{ $item->duration }} Min</td></tr>
                                         </table>
                                     </div>
@@ -149,21 +156,21 @@
                                    cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>#ID</th>
-                                    <th>Title</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Action</th>
+                                    <th width="6%">#ID</th>
+                                    <th width="40%">Title</th>
+                                    <th width="18%">Start</th>
+                                    <th width="18%">End</th>
+                                    <th width="18%">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ( getPreviousExamPapers() as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->startdate . ' ' . $item->starttime }}</td>
-                                        <td>{{ $item->enddate }}, {{ $item->endtime }} </td>
-                                        <td>
+                                        <td width="6%">{{ $item->id }}</td>
+                                        <td width="40%">{{ $item->name }}</td>
+                                        <td width="18%">{!! formatDateTime($item->startdate.' '.$item->starttime) !!}</td>
+                                        <td width="18%">{!! formatDateTime($item->enddate.' '.$item->endtime) !!} </td>
+                                        <td width="18%">
                                             <a class="btn btn-danger"
                                                href="{{ Route('start', ['id' => $item->id]) }}"><i class="ri-play-circle-fill"></i> Start</a>
                                             <a class="btn btn-info"   href="{{ Route('results', ['id' => $item->id]) }}"><i class="ri-file-list-3-fill"></i> Result</a>

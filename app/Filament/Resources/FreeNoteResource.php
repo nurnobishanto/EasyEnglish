@@ -28,15 +28,15 @@ class FreeNoteResource extends Resource
                 TextInput::make('slug')->unique(ignoreRecord: true)->visibleOn(['edit','view'])->columnSpanFull(),
                 TextInput::make('name')
                     ->required()
-                    ->placeholder('Enter Subject name'),
+                    ->placeholder('Enter Fre note name'),
 
                 Forms\Components\TextInput::make('link')->url(),
                 Forms\Components\FileUpload::make('file')
                     ->acceptedFileTypes(['application/pdf']),
                 Forms\Components\FileUpload::make('image')
                     ->image(),
-                Forms\Components\RichEditor::make('details')
-                    ->maxLength(65535)
+                Forms\Components\Textarea::make('details')
+                    ->maxLength(250)
                     ->columnSpanFull(),
 
             ]);

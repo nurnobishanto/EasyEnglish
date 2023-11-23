@@ -27,7 +27,7 @@
     <div class="blog-area ptb-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="table-responsive ">
+                <div class="table-responsive">
                     <table id="table" class="table table-bordered table-striped">
                         <thead class="table text-center" >
                         <tr>
@@ -40,21 +40,21 @@
                         </tr>
                         </thead>
                         <tbody >
-                        @foreach ($notes as $ebook)
+                        @foreach ($notes as $note)
                             <tr>
-                                <td>{{ $ebook->id }}</td>
-                                <td><img src="{{ asset('uploads/'.$ebook->image )}}" class="img img-thumbnail" style="max-width: 120px"></td>
-                                <td>{{ $ebook->name }}</td>
-                                <td>{!! $ebook->details !!}  </td>
+                                <td>{{ $note->id }}</td>
+                                <td><img src="{{ asset('uploads/'.$note->image )}}" class="img img-thumbnail" style="max-width: 120px"></td>
+                                <td>{{ $note->name }}</td>
+                                <td>{!! $note->details !!}  </td>
                                 <td>
-                                    @if($ebook->file)
-                                    <a href="{{asset('uploads/'.$ebook->file)}}" onclick="incrementCount({{ $ebook->id }},'FreeNote')" class="btn btn-danger">Download</a>
+                                    @if($note->file)
+                                    <a href="{{asset('uploads/'.$note->file)}}" onclick="incrementCount({{ $note->id }},'FreeNote')" class="btn btn-danger">Download</a>
                                     @endif
-                                    @if($ebook->link)
-                                    <a href="{{$ebook->link}}" onclick="incrementCount({{ $ebook->id }},'FreeNote')" class="btn btn-success">Download</a>
+                                    @if($note->link)
+                                    <a href="{{$note->link}}" onclick="incrementCount({{ $note->id }},'FreeNote')" class="btn btn-success">Download</a>
                                     @endif
                                 </td>
-                                <td>{{$ebook->count}}</td>
+                                <td>{{$note->count}}</td>
                             </tr>
                         @endforeach
 

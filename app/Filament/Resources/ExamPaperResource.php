@@ -51,6 +51,11 @@ class ExamPaperResource extends Resource
                 TimePicker::make('starttime')->required(),
                 DatePicker::make('enddate')->required(),
                 TimePicker::make('endtime')->required(),
+                Select::make('questions')
+                    ->searchable()
+                    ->columnSpanFull()
+                    ->multiple()
+                    ->relationship('questions','name')
             ]);
     }
 

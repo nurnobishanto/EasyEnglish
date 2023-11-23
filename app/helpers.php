@@ -1,13 +1,22 @@
 <?php
 
 use App\Models\ExamPaper;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
 use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
-
+if (!function_exists('formatDateTime')) {
+    function formatDateTime($dateTime): string
+    {
+        $dateTime = Carbon::parse($dateTime);
+        $formattedDate = $dateTime->format('jS M y, g:i a');
+        $timeDifference = $dateTime->diffForHumans();
+        return "$timeDifference <br>($formattedDate)";
+    }
+}
 if (!function_exists('getRunningExamPapers')) {
     function getRunningExamPapers()
     {

@@ -100,7 +100,7 @@ class ResultResource extends Resource
                 Tables\Filters\SelectFilter::make('user_id')
                     ->options(User::all()->pluck('name','id'))
                     ->searchable()
-                    ->label('Exam Paper'),
+                    ->label('Select Student'),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
