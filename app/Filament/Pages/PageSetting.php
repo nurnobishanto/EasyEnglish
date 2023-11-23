@@ -29,6 +29,7 @@ class PageSetting extends Page
     public function mount()
     {
         $this->form->fill([
+            'update_headline' => getSetting('update_headline'),
             'home_page_title' => getSetting('home_page_title'),
             'home_page_description' => getSetting('home_page_description'),
             'home_page_background' => getSetting('home_page_background'),
