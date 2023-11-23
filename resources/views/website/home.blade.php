@@ -109,7 +109,7 @@
             <div class="section-title">
                 <span>Our Services</span>
                 <h2>What We Offer</h2>
-                <p>with our capabilities, we provide several options so that you can choose which one will be suitable for use in your company</p>
+                <p>আমরা Easy English পরিবার এতটুকু কথা দিতে পারি যে, কোনো স্টুডেন্ট যদি SSC থেকেই আমাদের সাথে লেগে থাকে তাহলে ইংশা আল্লাহ সে ‍SSC- তে Golden A+ & HSC- তে Golden A+ & Admission এ যেকোনো একটা পাবলিক বিশ্ববিদ্যালয়ে চান্স পাবেই পাবে। ইংশা আল্লাহ।</p>
             </div>
 
             <div class="row justify-content-center">
