@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -82,7 +83,7 @@ class PageSetting extends Page
                         ->label('Home Update Headline (update_headline)')
                         ->placeholder('Enter Update Headline')
                         ->columnSpan(2),
-                    Textarea::make('home_page_description')
+                    RichEditor::make('home_page_description')
                         ->label('Home Page description (home_page_description)')
                         ->placeholder('Enter Home Page description'),
 
@@ -105,7 +106,7 @@ class PageSetting extends Page
                     TextInput::make('about_page_heading')
                         ->label('About Page Heading (about_page_heading)')
                         ->placeholder('Enter About Page Heading '),
-                    Textarea::make('about_page_description')
+                    RichEditor::make('about_page_description')
                         ->label('About Page Description (about_page_description)')
                         ->placeholder('Enter About Page Description ')
                         ->columnSpan(2),
