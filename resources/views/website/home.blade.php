@@ -2,14 +2,35 @@
 
 @section('content')
     <!-- Start Main Hero Area -->
+    <style>
+        .marquee-container {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            line-height: 20px;
+            font-size: 18px
+        }
+    </style>
     <div class="main-banner-wrap-area">
         <div class="container">
+            @if(getSetting('update_headline'))
+            <div class="mb-2">
+                <h5 class="p-2 m-0 d-inline rounded bg-danger text-light" >Headline</h5>
+                <div class="marquee-container">
+                    <span class="marquee-text">
+                        <marquee>{!! getSetting('update_headline') !!}</marquee>
+                    </span>
+                </div>
+            </div>
+            @endif
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="main-banner-wrap-content" data-speed="0.05" data-revert="true">
                         @if(getSetting('site_tagline'))
                             <span data-aos="fade-right" data-aos-delay="50" data-aos-duration="500" data-aos-once="true">{{getSetting('site_tagline')}}</span>
-
                         @endif
                         <h1 data-aos="fade-right" data-aos-delay="70" data-aos-duration="700" data-aos-once="true">{{ getSetting('home_page_title') }}</h1>
                         <p data-aos="fade-right" data-aos-delay="580" data-aos-duration="800" data-aos-once="true">{{ getSetting('home_page_description') }}</p>

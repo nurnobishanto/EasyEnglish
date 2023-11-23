@@ -11,7 +11,11 @@ class ExamPaperPasswordMiddleware
     public function handle(Request $request, Closure $next)
     {
         $examPaperId = $request->route('id');
-        $password = ExamPaper::find($examPaperId)->password;
+        if (!$examPaperId){
+            abort(404);
+        }
+        $exam = ExamPaper::find($examPaperId);
+        $password = $exam->password??null;
 
         // Check if the ExamPaper has a password
         if ($password !== null) {

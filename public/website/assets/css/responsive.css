@@ -524,18 +524,19 @@
     padding-bottom: 100px;
   }
   .coming-soon-content {
-    padding: 30px 25px;
+    padding: 5px;
   }
   .coming-soon-content #timer {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .coming-soon-content #timer div {
-    width: 100px;
-    height: 105px;
+    width: 80px;
+    border-radius: 20px;
+    height: 40px;
     margin-left: 5px;
     margin-right: 5px;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 12px;
+    margin-top: 5px;
   }
   .coming-soon-content h2 {
     font-size: 22px;

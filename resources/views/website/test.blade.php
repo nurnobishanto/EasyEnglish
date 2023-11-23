@@ -8,7 +8,7 @@
                     <h1 class="text-center">{{ $paper->name }}</h1>
 
                 </div>
-                <div class="col-md-2  fixed-bottom">
+                <div class=" col-lg-2 col-md-6 col-sm-6  fixed-bottom">
                     <div class="coming-soon-content ">
                         <h4 class="text-center">Time Remaining</h4>
                         <div id="timer" class="flex-wrap d-flex justify-content-center">
@@ -109,7 +109,7 @@
 
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="bg-info rounded p-2 ">
+                                            <div class="bg-info rounded p-2 mt-sm-0 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
                                                            id="op{{ $count }}" value="op3">

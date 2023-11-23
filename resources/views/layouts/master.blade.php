@@ -73,7 +73,6 @@
             border-radius: 10px;
             overflow: hidden;
             text-align: center;
-            padding: 25px !important;
             -webkit-box-shadow: 0 0 1.25rem rgba(108, 118, 134, 0.1);
             box-shadow: 0 0 1.25rem rgba(108, 118, 134, 0.1);
             margin: 0 auto 0 0;
