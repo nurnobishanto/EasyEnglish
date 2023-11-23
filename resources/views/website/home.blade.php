@@ -2,28 +2,14 @@
 
 @section('content')
     <!-- Start Main Hero Area -->
-    <style>
-        .marquee-container {
-            display: inline-block;
-            overflow: hidden;
-        }
 
-        .marquee-text {
-            white-space: nowrap;
-            line-height: 20px;
-            font-size: 18px
-        }
-    </style>
     <div class="main-banner-wrap-area">
         <div class="container">
             @if(getSetting('update_headline'))
-            <div class="mb-2">
-                <h5 class="p-2 m-0 d-inline rounded bg-danger text-light" >Headline</h5>
-                <div class="marquee-container">
-                    <span class="marquee-text">
-                        <marquee>{!! getSetting('update_headline') !!}</marquee>
-                    </span>
-                </div>
+            <div class="mb-5 bg-secondary">
+                <h6 style="z-index: 5" class="p-2 position-absolute rounded bg-danger text-light" >Headline</h6>
+                <marquee class="text-light" style="font-size: 18px;line-height: 28px">{!! getSetting('update_headline') !!}</marquee>
+
             </div>
             @endif
             <div class="row align-items-center justify-content-center">
