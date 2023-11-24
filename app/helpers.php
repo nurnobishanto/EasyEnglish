@@ -7,7 +7,32 @@ use Illuminate\Support\Collection;
 use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
+if (!function_exists('getResultAttemptDetails')) {
+    function getResultAttemptDetails($result)
+    {
+        $resultId = $result->id;
+        $attempts = \App\Models\Result::where('user_id', $result->user_id)
+                ->where('exam_paper_id', $result->exam_paper_id)
+                ->orderBy('created_at', 'asc')
+                ->get();
 
+            $attemptDetails = $attempts->map(function ($item) {
+                return [
+                    'result_id' => $item->id,
+                    'mark' => $item->mark,
+                    'created_at' => $item->created_at,
+                ];
+            });
+
+            $totalAttempts = count($attempts);
+            $currentAttempt = $attempts->search(function ($item) use ($resultId) {
+                    return $item->id == $resultId;
+                }) + 1;
+
+            return "Total Exam Attempts: $totalAttempts and this result from attempt number $currentAttempt";
+
+    }
+}
 if (!function_exists('formatDateTime')) {
     function formatDateTime($dateTime): string
     {

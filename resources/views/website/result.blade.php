@@ -23,6 +23,7 @@
                                 <tr><th>Avoid :</th><th>{{ $data->na }}</th></tr>
                                 <tr><th>Submitted :</th><th>{{ date('d M Y, h:m A', strtotime($data->created_at)) }}</th></tr>
                                 <tr><th>Duration :</th><th>{{ floor($data->duration / 60) }} Minutes {{ $data->duration % 60 }} Seconds</th></tr>
+                                <tr><td colspan="2">{{getResultAttemptDetails($data)}}</td></tr>
                             </table>
                                 <div class="progress" style="height: 50px">
                                     <div class="progress-bar bg-success" role="progressbar"
