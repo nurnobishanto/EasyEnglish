@@ -180,6 +180,9 @@ class WebsiteController extends Controller
     {
 
         $data = Result::find($result);
+        if (!$data){
+            return  view('website.404');
+        }
 
         // return $result;
         SEOTools::setTitle('Results');

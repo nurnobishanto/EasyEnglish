@@ -123,7 +123,9 @@
                                     @endif
                                     <span class="text-success">Correct Answer: {{ $question->$cans }}</span> <br>
                                 </strong>
+                                @if($question->explain)
                                 <div>Explain : {{$question->explain}}</div>
+                                @endif
                                 @if($question->explain_img)
                                 <img src="{{asset('uploads/'.$question->explain_img)}}" style="max-height:250px;">
                                 @endif
