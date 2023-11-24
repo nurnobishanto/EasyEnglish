@@ -189,10 +189,12 @@ class WebsiteController extends Controller
     }
     public function rank($id)
     {
-
+        $paper = ExamPaper::where('id', $id)->first();
+        if (!$paper){
+            return  view('website.404');
+        }
         $result = Result::where('exam_paper_id', $id)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
-        $paper = ExamPaper::where('id', $id)->first();
         SEOTools::setTitle('Rank');
         SEOTools::setDescription(getSetting('site_description'));
         return view('website.rank', compact(['result', 'id', 'paper']));
