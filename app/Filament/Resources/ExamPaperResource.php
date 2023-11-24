@@ -68,6 +68,7 @@ class ExamPaperResource extends Resource
                 TextColumn::make('duration'),
                 //  TextColumn::make('pmark'),
                 TextColumn::make('password'),
+                TextColumn::make('results_count')->counts('results')->sortable()->label('Attempt'),
             ])
             ->filters([
                 SelectFilter::make('exam_category')->relationship('exam_category', 'name'),

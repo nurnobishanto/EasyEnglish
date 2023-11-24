@@ -28,7 +28,7 @@ class ActivityList extends BaseWidget
     {
         return [
             TextColumn::make('exam_paper.exam_category.name')->searchable(),
-            TextColumn::make('exam_paper.name')->searchable()->placeholder('Exam Paper Name'),
+            TextColumn::make('exam_paper.name')->searchable(),
             TextColumn::make('total_mark')->searchable(),
             TextColumn::make('ca')->label('Correct Ans')->searchable(),
             TextColumn::make('na')->label('Not Ans')->searchable(),

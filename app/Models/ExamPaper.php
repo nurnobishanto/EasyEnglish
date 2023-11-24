@@ -25,4 +25,8 @@ class ExamPaper extends Model
     {
         return $this->belongsTo(Batch::class);
     }
+    public function results(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Result::class,'exam_paper_id');
+    }
 }
