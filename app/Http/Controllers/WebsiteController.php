@@ -167,7 +167,10 @@ class WebsiteController extends Controller
 
     public function results($id)
     {
-
+        $exam_paper = ExamPaper::find($id);
+        if (!$exam_paper){
+            return  view('website.404');
+        }
         $result = Result::where('exam_paper_id', $id)->orderBy('total_mark', 'DESC')->orderBy('duration', 'ASC')->orderBy('created_at', 'ASC')->get();
 
         // return $result;
@@ -180,7 +183,7 @@ class WebsiteController extends Controller
     {
 
         $data = Result::find($result);
-        if (!$data){
+        if (!$data && !$data->exam_paper){
             return  view('website.404');
         }
 
