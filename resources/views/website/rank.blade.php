@@ -29,14 +29,14 @@
         <div class="container">
             <div class="row justify-content-center">
                 <?php
-                
+
                 $count = 1;
-                
+
                 ?>
-                <h3>Exam Name: {{ $paper->name }}</h3>
-                <p>Full Mark :
-                    {{ $paper->questions->count() * $paper->pmark }} <br>
-                    Total Questions : {{ $paper->questions->count() }}
+                <h3>Exam Name: {{ $paper->name }} ({{$paper->id}})</h3>
+                <p> Full Mark :{{ $paper->questions->count() * $paper->pmark }} <br>
+                    Total Questions : {{ $paper->questions->count() }} <br>
+                    Total Attempt: {{ $result->count() }} Students <br>
                 </p>
 
                 <table id="table" class="table table-striped table-bordered table-sm mt-5" cellspacing="0"
@@ -60,7 +60,7 @@
                         @if($r->user)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $r->user->name }}</td>
+                                <td>{{ $r->user->name }}{{$r->user->user_id}}</td>
                                 <td>{{ $r->ca }}</td>
                                 <td>{{ $r->na }}</td>
                                 <td>{{ $r->wa }}</td>

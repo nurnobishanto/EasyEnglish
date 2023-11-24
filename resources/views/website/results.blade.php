@@ -5,7 +5,7 @@
     <div class="blog-area ptb-100">
         <div class="container">
             <a class="btn btn-info" href="{{route('rank', ['id' => $id ])}}">See Rank for this Exam</a>
-            <a class="btn btn-warning" href="{{route('question', ['id' => $id ])}}">Download Anwaresheet</a>
+            <a class="btn btn-warning" href="{{route('question', ['id' => $id ])}}">Download Answer</a>
 
 
             <div class="row justify-content-center">
@@ -45,7 +45,7 @@
                                 <a class="btn d-block btn-primary m-1" href="{{ route('resultCardPdf', ['id' => $data->id]) }}"
                                    target="_blank" rel="noopener noreferrer"><i class="ri-download-2-line"></i>
                                     Download Result Card</a>
-                                <a class="btn d-block btn-warning m-1" href="{{route('result', ['result' => $data->id ])}}"> Answer sheet</a>
+                                <a class="btn d-block btn-warning m-1" href="{{route('result', ['result' => $data->id ])}}"> See Attempt</a>
                             </div>
                         </div>
                     </div>

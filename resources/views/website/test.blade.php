@@ -90,9 +90,9 @@
                                             <div class="bg-info rounded p-2">
                                                 <div class="form-check ">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                           id="op{{ $count }}" value="op1">
+                                                           id="op1{{ $count }}" value="op1">
 
-                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                    <label class="form-check-label" for="op1{{ $count }}">
                                                         {{ $question->op1 }}
                                                     </label>
                                                 </div>
@@ -100,8 +100,8 @@
                                             <div class="bg-info rounded p-2 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                           id="op{{ $count }}" value="op2">
-                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                           id="op2{{ $count }}" value="op2">
+                                                    <label class="form-check-label" for="op2{{ $count }}">
                                                         {{ $question->op2 }}
                                                     </label>
                                                 </div>
@@ -112,8 +112,8 @@
                                             <div class="bg-info rounded p-2 mt-sm-0 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                           id="op{{ $count }}" value="op3">
-                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                           id="op3{{ $count }}" value="op3">
+                                                    <label class="form-check-label" for="op3{{ $count }}">
                                                         {{ $question->op3 }}
                                                     </label>
                                                 </div>
@@ -121,8 +121,8 @@
                                             <div class="bg-info rounded p-2 mt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="op{{ $count }}"
-                                                           id="op{{ $count }}" value="op4">
-                                                    <label class="form-check-label" for="op{{ $count }}">
+                                                           id="op4{{ $count }}" value="op4">
+                                                    <label class="form-check-label" for="op4{{ $count }}">
                                                         {{ $question->op4 }}
                                                     </label>
                                                 </div>

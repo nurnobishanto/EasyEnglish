@@ -103,20 +103,24 @@
                                         <strong>i) {{ $question->op1 }} </strong>
                                     </div>
                                     <div class="@if($question->$cans == $question->op2) border border-2 border-success @endif  mt-2 @if(($question->$sans == $question->op2) && ($question->$cans == $question->op2)) bg-success text-light @elseif(($question->$sans == $question->op2) && ($question->$cans != $question->op2)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
-                                        <strong>i) {{ $question->op2 }} </strong>
+                                        <strong>ii) {{ $question->op2 }} </strong>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="@if($question->$cans == $question->op3) border border-2 border-success @endif @if(($question->$sans == $question->op3) && ($question->$cans == $question->op3)) bg-success text-light @elseif(($question->$sans == $question->op3) && ($question->$cans != $question->op3)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
-                                        <strong>i) {{ $question->op3 }} </strong>
+                                        <strong>iii) {{ $question->op3 }} </strong>
                                     </div>
                                     <div class="@if($question->$cans == $question->op4) border border-2 border-success @endif  mt-2 @if(($question->$sans == $question->op4) && ($question->$cans == $question->op4)) bg-success text-light @elseif(($question->$sans == $question->op4) && ($question->$cans != $question->op4)) bg-danger text-light @else bg-light text-dark  @endif  rounded p-2 ">
-                                        <strong>i) {{ $question->op4 }} </strong>
+                                        <strong>iv) {{ $question->op4 }} </strong>
                                     </div>
 
                                 </div>
                                 <strong>
+                                    @if($question->$sans)
                                     <span>Your Answer: {{ $question->$sans }}</span><br>
+                                    @else
+                                        You didn't attempt
+                                    @endif
                                     <span>Correct Answer: {{ $question->$cans }}</span>
                                 </strong>
                                 <br>
