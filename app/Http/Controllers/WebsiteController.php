@@ -183,7 +183,7 @@ class WebsiteController extends Controller
     {
 
         $data = Result::find($result);
-        if (!$data && !$data->exam_paper){
+        if (!$data || !$data->exam_paper){
             return  view('website.404');
         }
 
