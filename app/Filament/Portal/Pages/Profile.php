@@ -19,7 +19,8 @@ class Profile extends Page
 
     protected static string $view = 'filament.portal.pages.profile';
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
-    protected static ?int $navigationSort = 9;
+    protected static ?string $navigationGroup = 'Profile';
+    protected static ?int $navigationSort = 1;
 
     public $user_id;
     public $name;

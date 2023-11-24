@@ -12,7 +12,8 @@ class ProfilePhoto extends Page
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     protected static string $view = 'filament.portal.pages.profile-photo';
-    protected static ?int $navigationSort = 10;
+    protected static ?string $navigationGroup = 'Profile';
+    protected static ?int $navigationSort = 2;
     public $image;
     public function mount()
     {
@@ -44,4 +45,5 @@ class ProfilePhoto extends Page
         ];
 
     }
+
 }
