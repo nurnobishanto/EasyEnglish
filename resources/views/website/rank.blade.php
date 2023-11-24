@@ -37,44 +37,48 @@
                 <p> Full Mark :{{ $paper->questions->count() * $paper->pmark }} <br>
                     Total Questions : {{ $paper->questions->count() }} <br>
                     Total Attempt: {{ $result->count() }} Students <br>
+                    <a class="btn btn-warning d-inline" href="{{route('rankpdf', ['id' => $id ])}}"><i class="fa fa-download"></i> PDF Download</a>
                 </p>
 
-                <table id="table" class="table table-striped table-bordered table-sm mt-5" cellspacing="0"
-                    width="100%">
-                    <thead>
+                <div class="table-responsive border p-1">
+                    <table id="table" class="table table-bordered mt-5">
+                        <thead class="bg-success text-light">
                         <tr>
-                            <td>SL</td>
-                            <td>Name</td>
-                            <td>Correct</td>
-                            <td>Not ans</td>
-                            <td>Wrong </td>
-                            <td>Attempt</td>
-                            <td>Mark</td>
-                            <td>Duration</td>
-                            <td>Submitted</td>
-
+                            <th>SL</th>
+                            <th>Name</th>
+                            <th>Correct</th>
+                            <th>Not ans</th>
+                            <th>Wrong </th>
+                            <th>Attempt</th>
+                            <th>Mark</th>
+                            <th>Duration</th>
+                            <th>Submitted</th>
+                            <th>Comment</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         @foreach ($result as $r)
-                        @if($r->user)
-                            <tr>
-                                <td>{{ $count++ }}</td>
-                                <td>{{ $r->user->name }} ({{$r->user->user_id}})</td>
-                                <td>{{ $r->ca }}</td>
-                                <td>{{ $r->na }}</td>
-                                <td>{{ $r->wa }}</td>
-                                <td>{{ $r->ca + $r->wa }}</td>
-                                <td>{{ $r->total_mark }}</td>
-                                <td>{{ floor($r->duration / 60) }} Min
-                                    {{ $r->duration % 60 }} Sec</td>
-                                <td>{{ date_format($r->created_at,"d M, Y H:i a") }}</td>
-                            </tr>
-                        @endif
+                            @if($r->user)
+                                <tr>
+                                    <td>{{ $count++ }}</td>
+                                    <td>{{ $r->user->name }} ({{$r->user->user_id}})</td>
+                                    <td>{{ $r->ca }}</td>
+                                    <td>{{ $r->na }}</td>
+                                    <td>{{ $r->wa }}</td>
+                                    <td>{{ $r->ca + $r->wa }}</td>
+                                    <td>{{ $r->total_mark }}</td>
+                                    <td>{{ floor($r->duration / 60) }} Min
+                                        {{ $r->duration % 60 }} Sec</td>
+                                    <td>{{ date_format($r->created_at,"d M, Y H:i a") }}</td>
+                                    <td class="small small-text">{{getResultAttemptDetails($r)}}</td>
+                                </tr>
+                            @endif
                         @endforeach
-                    </tbody>
-                </table>
-                <a class="btn btn-warning" href="{{route('rankpdf', ['id' => $id ])}}">PDF Download</a>
+                        </tbody>
+                    </table>
+                </div>
+
+
 
                 <span class="font-weight-300 text-success" style="font-size: 12px;"><i> (
                         {{ $paper->pmark }}
