@@ -60,7 +60,7 @@
                         @if($r->user)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $r->user->name }}{{$r->user->user_id}}</td>
+                                <td>{{ $r->user->name }} ({{$r->user->user_id}})</td>
                                 <td>{{ $r->ca }}</td>
                                 <td>{{ $r->na }}</td>
                                 <td>{{ $r->wa }}</td>
