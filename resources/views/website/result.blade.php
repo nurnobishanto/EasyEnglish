@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
-
     <div class="blog-area ptb-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -86,6 +84,7 @@
                                 $activity = \App\Models\ResultActivity::where('result_id',$data->id)->where('question_id',$question->id)->first();
                                 $sans = $activity->attempt;
                                 $rowClass = $cans === $sans ? 'border-5 border border-success' : ($sans === 'none' ? ' border-5 border border-warning ' : 'border-5 border border-danger');
+                                $textClass = $cans === $sans ? 'text-success' : ($sans === 'none' ? 'text-warning ' : 'text-danger');
                                 @endphp
                                 <div class="row border m-1 {{ $rowClass }}">
                                     <div>
@@ -117,21 +116,18 @@
                                 </div>
                                 <strong>
                                     @if($question->$sans)
-                                    <span>Your Answer: {{ $question->$sans }}</span><br>
+                                    <span class="{{$textClass}}">Your Answer: {{ $question->$sans }}</span><br>
                                     @else
-                                        You didn't attempt
+                                    <span class="{{$textClass}}">You didn't attempt</span>  <br>
                                     @endif
-                                    <span>Correct Answer: {{ $question->$cans }}</span>
+                                    <span class="text-success">Correct Answer: {{ $question->$cans }}</span> <br>
                                 </strong>
-                                <br>
                                 <div>Explain : {{$question->explain}}</div>
-                                    @if($question->explain_img)
+                                @if($question->explain_img)
                                 <img src="{{asset('uploads/'.$question->explain_img)}}" style="max-height:250px;">
-                                    @endif
+                                @endif
 
                             </div>
-
-
                                 <?php $count = $count + 1; ?>
                         @endforeach
                     @endforeach
