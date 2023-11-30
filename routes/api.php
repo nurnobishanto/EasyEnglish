@@ -31,4 +31,8 @@ Route::get('/migrate', function (){
     \Illuminate\Support\Facades\Artisan::call('migrate');
     return \Illuminate\Support\Facades\Artisan::output();
 });
+Route::get('/optimize', function (){
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    return \Illuminate\Support\Facades\Artisan::output();
+});
 
