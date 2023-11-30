@@ -64,7 +64,7 @@
                           @endif
 
                       </ul>
-                                            <ul class="widget-social">
+                      <ul class="widget-social">
                           @if (getSetting('site_facebook'))
                               <li>
                                   <a href="{{ getSetting('site_facebook') }}" target="_blank">
