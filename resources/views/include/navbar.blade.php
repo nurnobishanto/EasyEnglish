@@ -55,7 +55,7 @@
 
         <a class="navbar-brand" href="{{ url('/') }}">
             @if (getSetting('site_logo'))
-                <img style="max-height: 80px" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
+                <img style="max-height: 80px;max-height: 130px" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
             @else
                 {{ getSetting('site_title') }}
             @endif
@@ -64,9 +64,9 @@
         <div class="text-end  d-flex">
             <div class="mx-2 d-md-none d-sm-block">
                 @guest
-                    <a class="nav-link btn btn-success text-light" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"> </i> {{ __('Login') }}</a>
+                    <a class="nav-link btn btn-success text-light" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"></i></a>
                 @else
-                    <a class="nav-link btn btn-danger text-light" href="{{ route('profile') }}"><i class="fa fa-user"> </i> {{ __('Profile') }}</a>
+                    <a class="nav-link btn btn-danger text-light" href="{{ route('profile') }}"><i class="fa fa-user"></i></a>
                 @endguest
             </div>
 
@@ -84,7 +84,7 @@
 
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto d-md-flex d-sm-none ">
+            <ul class="navbar-nav ms-auto">
                 @guest
                         <li class="nav-item m-1">
                             <a class="nav-link btn btn-success text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
