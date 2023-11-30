@@ -61,8 +61,8 @@
             @endif
         </a>
 
-        <div class="text-end d-sm-none d-flex">
-            <div class="mx-2">
+        <div class="text-end  d-flex">
+            <div class="mx-2 d-md-none d-sm-block">
                 @guest
                     <a class="nav-link btn btn-success text-light" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"> </i> {{ __('Login') }}</a>
                 @else
@@ -84,7 +84,7 @@
 
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto d-md-flex d-sm-none ">
                 @guest
                         <li class="nav-item m-1">
                             <a class="nav-link btn btn-success text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
