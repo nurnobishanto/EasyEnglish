@@ -1,7 +1,7 @@
 <div class="top-bar" style="background-color: #004400">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-8 col-sm-6">
                 <div class="single-footer-widget text-sm-start text-center mb-2">
                     <ul class="widget-social mt-2">
                         <li><a href="tel:{{getSetting('site_phone')}}"><i class="fa fa-phone-alt"> </i> {{getSetting('site_phone')}}</a></li>
@@ -12,7 +12,7 @@
                 </div>
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-4 col-sm-6">
                 <div class="single-footer-widget text-sm-end text-center  mb-2">
                     <ul class="widget-social mt-2">
                         @if (getSetting('site_facebook'))
@@ -51,20 +51,31 @@
     </div>
 </div>
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
+    <div class="container ">
 
         <a class="navbar-brand" href="{{ url('/') }}">
             @if (getSetting('site_logo'))
-                <img width="120" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
+                <img style="max-height: 80px" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
             @else
                 {{ getSetting('site_title') }}
             @endif
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="text-end d-sm-none d-flex">
+            <div class="mx-2">
+                @guest
+                    <a class="nav-link btn btn-success text-light" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"> </i> {{ __('Login') }}</a>
+                @else
+                    <a class="nav-link btn btn-danger text-light" href="{{ route('profile') }}"><i class="fa fa-user"> </i> {{ __('Profile') }}</a>
+                @endguest
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
@@ -83,17 +94,8 @@
                             <a class="nav-link btn btn-danger text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </div>
+                    <li class="nav-item m-1">
+                        <a class="nav-link btn btn-danger text-light" href="{{ route('profile') }}"><i class="fa fa-user"> </i> {{ __('Profile') }}</a>
                     </li>
                 @endguest
             </ul>

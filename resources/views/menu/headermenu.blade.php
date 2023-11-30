@@ -21,7 +21,7 @@
                aria-expanded="false"
                @endif
                href="{{ $item->url }}"
-               target="{{ $item->target }}">
+               target="{{ $item->target?'_blank':'_self' }}">
                 {!! $item->icon_class !!}
                 <span>{{ $item->title }}</span>
             </a>

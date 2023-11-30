@@ -9,7 +9,7 @@
             }
         @endphp
         <li>
-            <a class="dropdown-item" href="{{ $item->url }}" target="{{ $item->target }}">
+            <a class="dropdown-item" href="{{ $item->url }}" target="{{ $item->target?'_blank':'_self' }}">
                 {!! $item->icon_class !!}
                 <span>{{ $item->title }}</span>
             </a>
