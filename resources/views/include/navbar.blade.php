@@ -55,7 +55,7 @@
 
         <a class="navbar-brand" href="{{ url('/') }}">
             @if (getSetting('site_logo'))
-                <img style="max-height: 80px;max-height: 130px" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
+                <img style="max-height: 80px;max-width: 130px" src="{{ asset('uploads/'.getSetting('site_logo')) }}" alt="{{ getSetting('site_title') }}">
             @else
                 {{ getSetting('site_title') }}
             @endif
