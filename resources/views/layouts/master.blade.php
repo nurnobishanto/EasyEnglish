@@ -38,20 +38,7 @@
 
     @laravelPWA
     <style>
-        .top-bar a {
-            color: white; /* Default color */
-            text-decoration: none; /* Remove underline */
-            transition: color 0.3s; /* Smooth transition for color change */
-        }
 
-        .top-bar a:hover {
-            color: red; /* Hover color */
-        }
-        .top-bar .single-footer-widget .widget-social li a i{
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
-        }
         .contactForm {
             max-width: 1050px;
             margin: auto;
