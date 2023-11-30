@@ -6,15 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEBPYXHLBB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QEBPYXHLBB');
-</script>
 
     <!-- Links of CSS files -->
     <link rel="stylesheet" href="{{ asset('website') }}/assets/css/bootstrap.min.css">
@@ -42,11 +33,10 @@
     <!-- Share JS -->
 {{--    <script src="{{ asset('js/share.js') }}"></script>--}}
 
-
-
-
     <link rel="icon" type="image/png" href="{{ asset('uploads/'.getSetting('site_favicon')) }}">
      {!! SEO::generate() !!}
+
+    @laravelPWA
     <style>
 
         .contactForm {
