@@ -29,5 +29,9 @@ class Subject extends Model
     {
         return $this->hasMany(ExamCategory::class);
     }
+    public function exams(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ExamPaper::class);
+    }
 
 }

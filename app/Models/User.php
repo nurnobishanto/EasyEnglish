@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar
+class User extends Authenticatable implements FilamentUser, HasAvatar, JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
     protected $fillable = [
@@ -80,5 +81,14 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
             return asset('website/assets/images/'.$this->gender.'.png');
         }
 
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
