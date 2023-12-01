@@ -801,6 +801,16 @@ class ComposerStaticInite1913143ef9f6b5da61ef224aa22046e
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'Ultrono\\Sitemap' => 
+            array (
+                0 => __DIR__ . '/..' . '/ultrono/laravel-sitemap/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -9066,6 +9076,9 @@ class ComposerStaticInite1913143ef9f6b5da61ef224aa22046e
         'Tymon\\JWTAuth\\Validators\\PayloadValidator' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Validators/PayloadValidator.php',
         'Tymon\\JWTAuth\\Validators\\TokenValidator' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Validators/TokenValidator.php',
         'Tymon\\JWTAuth\\Validators\\Validator' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Validators/Validator.php',
+        'Ultrono\\Sitemap\\Model' => __DIR__ . '/..' . '/ultrono/laravel-sitemap/src/Ultrono/Sitemap/Model.php',
+        'Ultrono\\Sitemap\\Sitemap' => __DIR__ . '/..' . '/ultrono/laravel-sitemap/src/Ultrono/Sitemap/Sitemap.php',
+        'Ultrono\\Sitemap\\SitemapServiceProvider' => __DIR__ . '/..' . '/ultrono/laravel-sitemap/src/Ultrono/Sitemap/SitemapServiceProvider.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
@@ -9151,6 +9164,7 @@ class ComposerStaticInite1913143ef9f6b5da61ef224aa22046e
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite1913143ef9f6b5da61ef224aa22046e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite1913143ef9f6b5da61ef224aa22046e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite1913143ef9f6b5da61ef224aa22046e::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite1913143ef9f6b5da61ef224aa22046e::$classMap;
 
         }, null, ClassLoader::class);

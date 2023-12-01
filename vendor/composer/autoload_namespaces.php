@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Ultrono\\Sitemap' => array($vendorDir . '/ultrono/laravel-sitemap/src'),
 );
