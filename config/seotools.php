@@ -9,7 +9,7 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "Elevate Your English Skills with Easy English", // set false to total remove
+            'title'        => "Easy English", // set false to total remove
             'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description'  => 'Explore a fun and interactive way to enhance your English proficiency with Easy English - the ultimate online quiz portal. Test your language skills, improve your vocabulary, and enjoy a seamless learning experience.', // set false to total remove
             'separator'    => ' - ',

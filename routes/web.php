@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiteMapController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -48,25 +49,5 @@ Route::post('/download', [App\Http\Controllers\ExamController::class, 'download'
 Route::get('/question-pdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFquestion'])->name('question');
 Route::get('/rank-pdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFrank'])->name('rankpdf');
 Route::get('/resultCardPdf/{id}', [App\Http\Controllers\WebsiteController::class, 'generatePDFresultCardPdf'])->name('resultCardPdf');
-Route::get('sitemap', function() {
-    $sitemap = resolve("sitemap");
-    $sitemap->add(route('website'), '2012-08-26T12:30:00+02:00', '1.0','daily');
-    $sitemap->add(route('website.contact'), '2012-08-26T12:30:00+02:00', '0.99','daily');
-    $sitemap->add(route('website.about'), '2012-08-26T12:30:00+02:00', '0.98','daily');
-    $sitemap->add(route('blog'), '2012-08-26T12:30:00+02:00', '0.95','daily');
-    $sitemap->add(route('exam'), '2012-08-26T12:30:00+02:00', '0.97','daily');
-    $sitemap->add(route('ebook'), '2012-08-26T12:30:00+02:00', '0.96','daily');
-    $sitemap->add(route('notes'), '2012-08-26T12:30:00+02:00', '0.94','daily');
-    $sitemap->add(route('website.category_clouds'), '2012-08-26T12:30:00+02:00', '0.93','daily');
-    $sitemap->add(route('login'), '2012-08-25T20:10:00+02:00', '0.8', 'monthly');
-    $sitemap->add(route('register'), '2012-08-25T20:10:00+02:00', '0.8', 'monthly');
-    $posts = Post::orderBy('updated_at', 'desc')->get();
-
-    foreach ($posts as $post) {
-        $sitemap->add(route('website.post',['slug' => $post->slug]), $post->updated_at, '0.9', 'monthly');
-    }
-
-    $sitemap->store('xml', 'sitemap');
-    return redirect('/sitemap.xml');
-});
+Route::get('sitemap',[SiteMapController::class,'generateSitemap']);
 Route::get('/{slug}', [App\Http\Controllers\WebsiteController::class, 'post'])->name('website.post');

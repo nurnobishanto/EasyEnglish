@@ -73,5 +73,29 @@
 		<lastmod>2023-11-27T12:57:56+06:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
+	<url>
+	<loc>http://127.0.0.1:8000/subject/english</loc>
+		<priority>0.9</priority>
+		<lastmod>2023-11-23T11:21:24+06:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>http://127.0.0.1:8000/subject/bangla</loc>
+		<priority>0.9</priority>
+		<lastmod>2023-11-23T11:21:18+06:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>http://127.0.0.1:8000/exam-category/exam-category-1</loc>
+		<priority>0.9</priority>
+		<lastmod>2023-11-23T11:22:05+06:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>http://127.0.0.1:8000/start/1</loc>
+		<priority>0.9</priority>
+		<lastmod>2023-11-23T13:10:36+06:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
 </urlset>
 
